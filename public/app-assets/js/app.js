@@ -5,6 +5,6 @@ $(document).ready(function () {
             title: $("#username").val(),
             description: $("#password").val(),
         };
-        alert(formData["title"]);
+        console.log(formData["description"]);
     });
 });

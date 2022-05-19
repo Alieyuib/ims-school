@@ -4,7 +4,7 @@ $(document).ready(function () {
         var formData = {
             title: $("#username").val(),
             description: $("#password").val(),
-            price: $("#price").val(),
         };
+        alert(formData["title"]);
     });
 });

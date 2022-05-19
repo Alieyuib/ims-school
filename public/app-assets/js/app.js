@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-center",
+        position: "top",
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
@@ -16,7 +16,7 @@ $(document).ready(function () {
             title: $("#username").val(),
             description: $("#password").val(),
         };
-        if (formData["title"] == "" && formData["description" == ""]) {
+        if ($("#username").val() == "" && $("#password").val() == "") {
             Toast.fire({
                 icon: "error",
                 title: "Username/Password fields require",

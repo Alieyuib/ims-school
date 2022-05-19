@@ -1,0 +1,73 @@
+body {
+    background-image: url("../img/loginhero001.jpg");
+    background-size: cover;
+    background-color: rgba(49, 181, 102, 0.6);
+}
+.main-login {
+    height: 400px;
+    background-color: rgba(98, 158, 155, 0.4);
+    position: relative;
+    left: 750px;
+    top: 100px;
+    border: none !important;
+    /* border: 2px solid #fff; */
+}
+.login-header {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    text-align: center;
+    color: #00ac4d;
+}
+.login-header p {
+    font-size: 24px;
+}
+.login-header p strong {
+    font-size: 28px;
+}
+.login-header p span {
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+}
+.login-form {
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+.login-form div.input-group {
+    margin-bottom: 50px !important;
+}
+span.input-group-text {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #00ac4d;
+}
+.login-form div.input-group input {
+    height: 50px;
+    border-radius: 20px;
+    /* border: none !important; */
+    /* border: 1px solid rgba(98, 158, 155, 0.4); */
+}
+.btn-login {
+    background-color: #00ac4d !important;
+    width: 100%;
+    color: #fff;
+    border-radius: 20px;
+}
+.forget-password-div {
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+}
+p.forget-password-text {
+    font-size: 18px;
+    /* text-transform: uppercase; */
+}
+p.forget-password-text a {
+    text-decoration: none;
+    color: #fff;
+}

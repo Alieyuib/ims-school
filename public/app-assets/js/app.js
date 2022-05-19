@@ -7,9 +7,7 @@ $(document).ready(function () {
         };
         Swal.fire({
             title: "Button Pressed!",
-            text: "Text Body",
             icon: "success",
-            confirmButtonText: "Cool",
         });
     });
 });

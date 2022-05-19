@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-12">
                                 <button class="btn btn-login" id="loginBtn">
-                                    Login
+                                    <i class="fa fa-lock fa-1x"></i>
                                 </button>
                             </div>
                             <div class="col-md-12 forget-password-div">

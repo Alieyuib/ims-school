@@ -11,7 +11,8 @@
                             <span>School</span>
                         </p>
                     </div>
-                    <form action="/" method="POST" class="login-form col-md-10">
+                    <form action="" method="POST" class="login-form col-md-10">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="input-group mb-3">
@@ -36,7 +37,7 @@
                             </div>
                             <div class="col-md-12 forget-password-div">
                                 <p class="forget-password-text">
-                                    <a href="" class="link">forget password</a> <i class="fa fa-question"></i>
+                                    <a href="" class="link" id="forget-password-link">forget password</a> <i class="fa fa-question"></i>
                                 </p>
                             </div>
                         </div>

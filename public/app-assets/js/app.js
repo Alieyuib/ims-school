@@ -28,4 +28,34 @@ $(document).ready(function () {
             });
         }
     });
+    $("#forget-password-link").on("click", function (e) {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        e.preventDefault();
+        var formData = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+        };
+        $.ajax({
+            type: "POST",
+            url: "{{ url('/add-user') }}",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            },
+        });
+    });
+    $('#result-table').dataTable({
+        paging: false,
+        ordering: false,
+        info: false,
+        searching: false
+      })
 });

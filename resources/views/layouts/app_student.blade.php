@@ -30,7 +30,7 @@
    <div class="row">
        <div class="col-md-2 sidebar-div">
            @section('sidebar')
-                @include('layouts.sidebar')  
+                @include('layouts.student_sidebar')  
            @show
        </div>
        <div class="col-md-10 dashboard-overlay">
@@ -57,7 +57,7 @@
                                         </a>
                                     </li>
                                     <li class="btn-settings">
-                                        <a href="{{ route('logout') }}" class="btn-link">
+                                        <a href="{{ route('portal.logout') }}" class="btn-link">
                                             <i class="fa fa-sign-out"></i>
                                         </a>
                                     </li>

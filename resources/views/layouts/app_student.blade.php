@@ -35,7 +35,7 @@
        </div>
        <div class="col-md-10 dashboard-overlay">
            @section('header')
-                    <div class="dashboard-header">
+                    <div class="dashboard-header bg-success">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="username-div">

@@ -1,17 +1,17 @@
 @section('sidebar')
-    <div class="ims-sidebar">
-                <div class="sidebar-header">
+    <div class="ims-sidebar bg-success">
+                <div class="sidebar-header bg-success">
                     <h5>The Priority School</h5>
                 </div>
                 <div class="sidebar-links">
-                    <ul class="list-group">
+                    <ul class="list-group bg-success">
                         <li class="list-group-item">
                             <span class="link-name">
-                                <a href="">
+                                <a href="{{ route('portal.dashboard') }}">
                                     <span class="float-left">
                                         <i class="fa fa-dashboard"></i>
                                     </span>
-                                    Dashboard</a>
+                                    &nbsp;Dashboard</a>
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -20,16 +20,16 @@
                                     <span class="float-left">
                                         <i class="fa fa-bookmark"></i>
                                     </span>
-                                    Check Result</a>
+                                    &nbsp;Check Result</a>
                             </span>
                         </li>
                         <li class="list-group-item">
                             <span class="link-name">
-                                <a href="">
+                                <a href="{{ route('portal.biodata') }}">
                                     <span class="float-left">
                                         <i class="fa fa-vcard"></i>
                                     </span>
-                                    Updated Bio Data</a>
+                                    &nbsp;Updated Bio Data</a>
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -38,15 +38,16 @@
                                     <span class="float-left">
                                         <i class="fa fa-book"></i>
                                     </span>
-                                    Courses</a>
+                                    &nbsp;Courses</a>
                             </span>
                         </li>
                         <li class="list-group-item">
-                            <span class="float-left">
-                                <i class="fa fa-money"></i>
-                            </span>
                             <span class="link-name">
-                                Finance
+                                <a href="{{ route('portal.finance') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-money"></i>
+                                    </span>
+                                    &nbsp;Finance</a>
                             </span>
                         </li>
                     </ul>

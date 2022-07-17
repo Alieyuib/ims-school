@@ -95,7 +95,7 @@ p.forget-password-text a {
 
 .ims-sidebar {
     height: 100vh;
-    background-color: #00550a;
+    /* background-color: #00550a; */
     /* border-right: 2px solid #00ac4d; */
     padding-right: 0 !important;
     /* margin-left: -12px; */
@@ -107,7 +107,7 @@ p.forget-password-text a {
 .sidebar-header {
     width: auto;
     height: 60px;
-    background-color: #00550a;
+    /* background-color: #00550a; */
     border-bottom: 1px solid #fff;
     text-align: center;
 }
@@ -124,31 +124,31 @@ p.forget-password-text a {
 
 .sidebar-links ul {
     list-style: none !important;
-    width: auto;
+    width: 100%;
     height: auto;
-    background-color: #00550a !important;
-    text-align: center;
+    /* background-color: #00550a !important; */
+    /* text-align: center; */
     border-radius: 0 !important;
-    margin-left: -10px;
+    margin-left: 10px;
 }
 
 .sidebar-links ul li {
     /* margin-bottom: 20px; */
     margin-top: 5px;
     border: none !important;
-    display: block;
+    /* display: block; */
     cursor: pointer;
-    background-color: #00550a;
+    background-color: #198754;
     color: #fff;
     text-transform: uppercase;
-    font-size: 13.2px;
+    font-size: 14px;
 }
 
 .sidebar-links ul li span.link-name a {
     text-decoration: none;
     color: #fff;
     display: inline-block;
-    font-size: 13.2px !important;
+    /* font-size: 13.2px !important; */
     /* background-color: blue; */
     width: 100%;
 }
@@ -164,7 +164,7 @@ p.forget-password-text a {
 .dashboard-header {
     height: 60px;
     width: 100%;
-    background-color: #00550a !important;
+    /* background-color: #00550a !important; */
     border-bottom: 1px solid #fff;
     /* margin-left: -12px; */
 }
@@ -378,4 +378,41 @@ h6 span{
 }
 #result-table-div{
     margin-left: 70px;
+}
+
+.finance_div div.col-md-5{
+    padding: 10px;
+}
+.finance_div div.col-md-5:hover{
+    box-shadow: 0 4px 8px 0 rgba(113, 255, 108, 0.2), 0 6px 20px 0 rgba(101, 255, 127, 0.19);
+    cursor: pointer;
+}
+.finance_div div.col-md-5 h4{
+    padding: 10px;
+    font-weight: 400;
+}
+.finance_div div.col-md-5 h4 span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.receipt-div{
+    padding: 20px;;
+    margin-top: 30px;
+    margin-left: 180px;
+    box-shadow: 0 4px 8px 0 rgba(113, 255, 108, 0.5), 0 6px 20px 0 rgba(101, 255, 127, 0.5);
+}
+.print-btn{
+    padding: 20px;
+}
+.bio-data-row div.col-md-4, .bio-data-row div.col-md-7{
+    margin-left: 30px;
+}
+.bio-data-div{
+    padding: 20px;;
+    margin-top: 30px;
+    /* margin-left: 180px; */
+    box-shadow: 0 4px 8px 0 rgba(113, 255, 108, 0.5), 0 6px 20px 0 rgba(101, 255, 127, 0.5);
+}
+.avatar-div img{
+    width: 50%;
 }

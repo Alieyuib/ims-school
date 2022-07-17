@@ -81,6 +81,11 @@ Route::get('/student/portal/myresults', 'PortalController@resultView')->name('po
 Route::get('/student/portal/myresult', 'PortalController@getResults')->name('portal.get.result');
 Route::get('/student/portal/myresult/signle', 'PortalController@getResultSingle')->name('portal.result.single');
 
+Route::get('/student/portal/finance', 'PortalController@financeView')->name('portal.finance');
+Route::get('/student/portal/finance/print-fee', 'PortalController@printFee')->name('portal.finance.view');
+Route::get('/student/portal/finance/view-receipt', 'PortalController@viewReceipt')->name('portal.receipt');
+Route::get('/student/portal/bio-data', 'PortalController@viewBioData')->name('portal.biodata');
+
 // Route::any('/students', [StudentController::class, 'index'])->name('students');
 // Route::any('/dashboard/student/new/add', [DashboardController::class, 'addStudent'])->name('newstudent');
 // Route::any('/student/add', [StudentController::class, 'store'])->name('newStudent');

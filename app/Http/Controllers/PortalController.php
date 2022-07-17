@@ -36,6 +36,7 @@ class PortalController extends Controller
                 $request->session()->put('loggedInUser', $student->id);
                 $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
                 $request->session()->put('loggedInEmail', $student->email);
+                $request->session()->put('loggedInFamilyName', $student->ffname);
                 $request->session()->put('loggedInCreatedAt', $student->created_at);
                 $userLoggedIn = $request->session()->get('loggedInName');
                 return response()->json([
@@ -57,6 +58,11 @@ class PortalController extends Controller
     public function dashboard(Request $request)
     {
         return view('student_dashboard.dashboard');
+    }
+
+    public function viewBioData()
+    {
+        return view('student_dashboard.student_bio_data');
     }
 
     //result
@@ -119,5 +125,37 @@ class PortalController extends Controller
     {
         Auth::logout();
         return redirect('student/portal');
+    }
+
+    // finance view
+    public function financeView(Request $request)
+    {
+        $view_data['loggedInFamilyName']  = $request->session()->get('loggedInFamilyName');
+        $view_data['loggedInName']  = $request->session()->get('loggedInName');
+        return view('student_dashboard.finance', $view_data);
+    }
+
+    // print fee
+    public function printFee(Request $request)
+    {
+        $loggedInFamilyName  = $request->session()->get('loggedInFamilyName');
+        $stmt = Student::where('ffname', $loggedInFamilyName)->get();
+        if ($stmt) {
+            return response()->json($stmt);
+        }else{
+            return response()->json([
+                'status' => 401,
+            ]);
+        }
+
+    }
+
+    // view receipt
+    public function viewReceipt(Request $request)
+    {
+        $loggedInFamilyName  = $request->session()->get('loggedInFamilyName');
+        $view_data['student_payment_data'] = Student::where('ffname', $loggedInFamilyName)->get();
+        // return $view_data['student_payment_data'];
+        return view('student_dashboard.receipt', $view_data);
     }
 }

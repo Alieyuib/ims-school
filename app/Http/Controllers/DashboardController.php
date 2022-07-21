@@ -60,6 +60,8 @@ class DashboardController extends Controller
         $fileName = time(). ".". $file->getClientOriginalExtension();
         $file->storeAs('public/images', $fileName);
 
+        $student_token = '123456xyz';
+
         $student_data = [
             'fname' => $request->input('fname'),
             'lname' => $request->input('lname'),
@@ -74,12 +76,14 @@ class DashboardController extends Controller
             'email' => $request->input('email'),
             'ffname' => $request->input('ffname'),
             'passport' => $fileName,
+            'token' => $student_token
         ];
 
         $stmt = Student::create($student_data);
         if ($stmt) {
             return response()->json([
-                'status' => 200
+                'status' => 200,
+                'data' => $stmt
             ]);
         }else{
             return response()->json([

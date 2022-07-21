@@ -16,13 +16,13 @@
                             <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Email Address">
                             <div class="invalid-feedback"></div>
                         </div>
-                        {{-- <div class="mb-3">
-                            <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="Password">
+                        <div class="mb-3">
+                            <input type="password" name="token" id="token" class="form-control rounded-0" placeholder="Token">
                             <div class="invalid-feedback"></div>
                         </div>
-                        <div class="mb-3">
-                            <a href="{{ route('forgot') }}" class="text-decoration-none text-success">Forgot Password?</a> --}}
-                        </div>
+                        {{-- <div class="mb-3">
+                            <a href="{{ route('forgot') }}" class="text-decoration-none text-success">Forgot Password?</a>
+                        </div> --}}
                         <div class="mb-3 d-grid">
                             <input type="submit" value="Login" class="btn ims-bg-green rounded-0" id="login_btn">
                         </div>
@@ -54,7 +54,7 @@
                    success: function(res){
                        if (res.status == 400) {
                            showError('email', res.msg.email);
-                        //    showError('password', res.msg.password);
+                           showError('token', res.msg.password);
                            $('#login_btn').val('Login');
                        }else if (res.status == 401) {
                            showMessage(res.icon, res.msg);

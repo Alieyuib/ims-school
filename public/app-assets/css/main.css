@@ -62,8 +62,8 @@ html, body{
     background-color: #145251 !important;
 }
 .btn-ims-orange{
-    color: #fff;
-    background-color: #d9ba79;
+    color: #fff !important;
+    background-color: #d9ba79 !important;
 }
 
 .background-img{
@@ -113,6 +113,11 @@ html, body{
     opacity: 0.6;
     left: 250px;
     top: 170px;
+}
+.login-body{
+    /* background-image: url('../img/logo.jpg');
+    background-repeat: repeat-y;
+    background-repeat: repeat; */
 }
 
 .main-login {
@@ -168,7 +173,7 @@ span.input-group-text {
     margin-bottom: 10px;
 }
 .btn-login {
-    background-color: #00ac4d !important;
+    background-color: #00ac4d;
     width: 100%;
     color: #fff;
     border-radius: 20px;

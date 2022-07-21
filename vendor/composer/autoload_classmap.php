@@ -33,6 +33,7 @@ return array(
     'App\\Student' => $baseDir . '/app/Student.php',
     'App\\StudentAdults' => $baseDir . '/app/StudentAdults.php',
     'App\\StudentClass' => $baseDir . '/app/StudentClass.php',
+    'App\\Subjects' => $baseDir . '/app/Subjects.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/CorsService.php',

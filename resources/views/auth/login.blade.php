@@ -5,8 +5,11 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center min-vh-100">
-            <div class="col-md-3 card shadow bg-light p-20 text-center rounded-0" style="padding: 20px;">
-                <h5 class="text-secondary">The Priority School</h5>
+            <div class="col-md-3 card shadow ims-bg-green p-20 text-center rounded-0" style="padding: 20px;">
+                <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
+                <h2 class="text-ims-orange">The Priority School</h2>
+                <h4 class="text-light">المدرسة ذات الأولوية</h4>
+                <h5 class="text-ims-orange">Admistrative Portal</h5>
                 <div class="card-body">
                     <form action="" method="POST" id="login_form">
                         @csrf
@@ -19,14 +22,16 @@
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="mb-3">
-                            <a href="{{ route('forgot') }}" class="text-decoration-none">Forgot Password?</a>
+                            <a href="#" class="text-decoration-none">Forgot Password?</a>
                         </div>
                         <div class="mb-3 d-grid">
-                            <input type="submit" value="Login" class="btn btn-success rounded-0" id="login_btn">
+                            <button type="submit" class="btn btn-ims-orange" id="login_btn">
+                                Login
+                            </button>
                         </div>
-                        <div class="mb-3 text-secondary">
+                        {{-- <div class="mb-3 text-secondary">
                             Dont have an account?&nbsp;<a href="{{ route('register') }}" class="text-decoration-none">Register here.</a>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
             </div>

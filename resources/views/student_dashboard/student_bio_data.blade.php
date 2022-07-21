@@ -40,9 +40,9 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="firstname">Fullname</label>
-                    <input type="hidden" class="form-control" name="status" id="status" value="1">
+                    {{-- <input type="hidden" class="form-control" name="status" id="status" value="1"> --}}
                     <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname">
-                    <input type="hidden" class="form-control" name="lname" placeholder="Lastname" id="lastname" value="nil">
+                    <input type="hidden" class="form-control" name="lname" placeholder="Lastname" id="lastname" value="xyz">
                 </div>
                 {{-- <div class="form-group col-md-4">
                     <label for="lastname">Lastname</label>

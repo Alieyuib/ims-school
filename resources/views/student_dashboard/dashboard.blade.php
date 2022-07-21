@@ -65,7 +65,7 @@
                                     (أفراد)
                                 </p>
                                 <p class="number-total">
-                                    <span><b>6</b></span>
+                                    <span><b>{{ $member_count }}</b></span>
                                 </p>
                             </div>
                         </div>

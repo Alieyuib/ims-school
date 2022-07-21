@@ -112,12 +112,13 @@
                 processData: false,
                 contentType: false,
                 success: function(res){
+                    console.log(res);
                     if (res.status == 200) {
                         Swal.fire(
                             'Student',
                             'Enrollment Sucessfully',
                             'success'
-                        )
+                        );
                         // fetchAllEmployees();
                         $('#add_student_form').trigger('reset');
                         $('#add_student_btn').text('Enroll');

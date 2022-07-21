@@ -24,7 +24,7 @@ class PortalController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:100',
-            // 'password' => 'required|min:6|max:50',
+            'token' => 'required|min:6|max:50',
         ]);
 
         if ($validator->fails()) {
@@ -35,17 +35,27 @@ class PortalController extends Controller
         }else{
             $student = Student::where('email', $request->email)->first();
             if ($student) {
-                $request->session()->put('loggedInUser', $student->id);
-                $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
-                $request->session()->put('loggedInEmail', $student->email);
-                $request->session()->put('loggedInFamilyName', $student->ffname);
-                $request->session()->put('loggedInCreatedAt', $student->created_at);
-                $userLoggedIn = $request->session()->get('loggedInName');
-                return response()->json([
-                    'status' => 200,
-                    'msg'    => 'success',
-                    'msg2'   => 'LoggedIN As'.' '.$userLoggedIn,
-                   ]);
+                if ($request->token == $student->token) {
+                    $request->session()->put('loggedInUser', $student->id);
+                    $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
+                    $request->session()->put('loggedInEmail', $student->email);
+                    $request->session()->put('loggedInFamilyName', $student->ffname);
+                    $request->session()->put('loggedInCreatedAt', $student->created_at);
+                    $userLoggedIn = $request->session()->get('loggedInName');
+                    return response()->json([
+                        'status' => 200,
+                        'msg'    => 'success',
+                        'msg2'   => 'LoggedIN As'.' '.$userLoggedIn,
+                    ]);
+                }else{
+
+                    return response()->json([
+                        'status' => 401,
+                        'msg'    => 'Email or password is incorrect',
+                        'icon' =>   'warning'
+                    ]);
+                }
+                
             }else{
                 return response()->json([
                     'status'  => 401,
@@ -59,7 +69,10 @@ class PortalController extends Controller
     // dashboard view
     public function dashboard(Request $request)
     {
-        return view('student_dashboard.dashboard');
+        $userLoggedId = $request->session()->get('loggedInUser');
+        $member_count = Student::where('id', $userLoggedId)->get();
+        $view_data['member_count'] = $member_count->count();
+        return view('student_dashboard.dashboard', $view_data);
     }
 
     public function viewBioData(Request $request)

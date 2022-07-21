@@ -25,6 +25,7 @@ class Student extends Model
         'name_of_school',
         'ffname',
         'address',
-        'passport'
+        'passport',
+        'token',
     ];
 }

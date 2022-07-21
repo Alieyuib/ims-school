@@ -39,14 +39,15 @@
             <input type="hidden" name="student_passport" id="student_passport">
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="firstname">Firstname</label>
+                    <label for="firstname">Fullname</label>
                     <input type="hidden" class="form-control" name="status" id="status" value="1">
                     <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname">
+                    <input type="hidden" class="form-control" name="lname" placeholder="Lastname" id="lastname" value="nil">
                 </div>
-                <div class="form-group col-md-4">
+                {{-- <div class="form-group col-md-4">
                     <label for="lastname">Lastname</label>
-                    <input type="text" class="form-control" name="lname" placeholder="Lastname" id="lastname">
-                </div>
+                    
+                </div> --}}
                 <div class="form-group col-md-4">
                     <label for="familyname">Family Name</label>
                     <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="familyname">

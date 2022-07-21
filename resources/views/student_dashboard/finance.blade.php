@@ -3,15 +3,16 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+            <img src="{{ asset('images/logo.jpg') }}" alt="" class="background-img-finance">
             <div class="container">
                 <div class="row finance_div">
-                    <div class="col-md-5 dashboard-card card bg-success" id="print_fee_schedule">
+                    <div class="col-md-5 dashboard-card card" id="print_fee_schedule">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <i class="fa fa-print fa-4x text-light"></i>
+                                <i class="fa fa-print fa-4x text-ims-default"></i>
                             </div>
                             <div class="col-md-12 text-center">
-                                <h4 class="text-light">
+                                <h4 class="text-ims-default">
                                     Print Fee Schedule
                                 </h4>
                             </div>
@@ -20,34 +21,34 @@
                     <div class="col-md-5 dashboard-card card" id="payment_online">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <i class="fa fa-credit-card-alt fa-4x text-success"></i>
+                                <i class="fa fa-credit-card-alt fa-4x text-ims-default"></i>
                             </div>
                             <div class="col-md-12 text-center">
-                                <h4 class="text-success">
+                                <h4 class="text-ims-default">
                                     Payment&nbsp;<span>Online</span>
                                 </h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 dashboard-card card bg-light" id="payment_bank">
+                    <div class="col-md-5 dashboard-card card" id="payment_bank">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <i class="fa fa-bank fa-4x text-success"></i>
+                                <i class="fa fa-bank fa-4x text-ims-default"></i>
                             </div>
                             <div class="col-md-12 text-center">
-                                <h4 class="text-success">
+                                <h4 class="text-ims-default">
                                     Payment&nbsp;<span>Bank</span>
                                 </h4>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 dashboard-card card bg-success" id="payment_history">
+                    <div class="col-md-5 dashboard-card card" id="payment_history">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <i class="fa fa-money fa-4x text-light"></i>
+                                <i class="fa fa-money fa-4x text-ims-default"></i>
                             </div>
                             <div class="col-md-12 text-center">
-                                <h4 class="text-light">
+                                <h4 class="text-ims-default">
                                     Transaction History
                                 </h4>
                             </div>

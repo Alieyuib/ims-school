@@ -17,11 +17,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('app-assets/js/app.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 </head>
 <!-- END: Head-->
@@ -34,41 +36,7 @@
            @show
        </div>
        <div class="col-md-10 dashboard-overlay">
-           @section('header')
-                    <div class="dashboard-header">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="username-div">
-                                    <p class="username-text">
-                                        {{-- LoggedIN As: <span>{{ $loggedInData['loggedInName'] }}</span> --}}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <ul class="header-btn">
-                                    <li class="btn-settings">
-                                        <a href="" class="btn-link">    
-                                            <i class="fa fa-user"></i>
-                                        </a>
-                                    </li>
-                                    <li class="btn-settings">
-                                        <a href="" class="btn-link">
-                                            <i class="fa fa-gear"></i>
-                                        </a>
-                                    </li>
-                                    <li class="btn-settings">
-                                        <a href="{{ route('logout') }}" class="btn-link">
-                                            <i class="fa fa-sign-out"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                @show
            @section('content')
-               
-           
        </div>
    </div>
    @show

@@ -5,9 +5,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center min-vh-100">
-            <div class="col-md-3 card shadow bg-dark p-20 text-center rounded-0" style="padding: 20px;">
-                <h3 class="text-success">The Priority School</h3>
-                <h5 class="text-light">Student Portal</h5>
+            <div class="col-md-3 card shadow p-20 text-center rounded-0" style="padding: 20px;">
+                <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
+                <h3 class="text-ims-default">The Priority School</h3>
+                <h5 class="text-ims-orange">Student Portal</h5>
                 <div class="card-body">
                     <form action="" method="POST" id="login_form">
                         @csrf
@@ -23,7 +24,7 @@
                             <a href="{{ route('forgot') }}" class="text-decoration-none text-success">Forgot Password?</a> --}}
                         </div>
                         <div class="mb-3 d-grid">
-                            <input type="submit" value="Login" class="btn btn-success rounded-0" id="login_btn">
+                            <input type="submit" value="Login" class="btn ims-bg-green rounded-0" id="login_btn">
                         </div>
                         {{-- <div class="mb-3 text-light">
                             Dont have an account?&nbsp;<a href="{{ route('register') }}" class="text-decoration-none text-success">Register here.</a>
@@ -63,7 +64,7 @@
                                showMessage(res.msg, res.msg2);
                                setTimeout(() => {
                                    window.location = '{{ route('portal.dashboard') }}'
-                               }, 1500);
+                               }, 1000);
                            }
                        }
                    }

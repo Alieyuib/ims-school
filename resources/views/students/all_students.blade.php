@@ -111,11 +111,11 @@ data-bs-backdrop="static" aria-hidden="true">
 </div>
 {{-- edit student modal end --}}
   <div class="container">
-    <div class="row my-5">
-      <div class="col-lg-12">
+    <div class="row my-1">
+      <div class="col-lg-12 student-list-div">
         <div class="card shadow">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="text-success">All Enroll Students</h3>
+            <h3 class="text-success">All Enroll Students (تسجيل جميع الطلاب)</h3>
           </div>
           <div class="card-body bg-orange" id="show_all_students">
             <h1 class="text-center text-secondary my-5">
@@ -210,7 +210,7 @@ data-bs-backdrop="static" aria-hidden="true">
                     $('#phone').val(res.phone_no);
                     $('#school').val(res.name_of_school);
                     $('#subject').val(res.Subject_learned);
-                    $('#passport-div').html(`<img src="storage/images/${res.passport}" class="img-thumbnail">`)
+                    $('#passport-div').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
                     $('#address').val(res.address);
                     $('#sickness').val(res.sickness_allergy);
                 }

@@ -180,6 +180,10 @@ class DashboardController extends Controller
             'arabiyya' => $request->input('arabiyya'),
             'no_in_class' => $request->input('no_in_class'),
             'class_in' => $request->input('student_class'),
+            'quran_grade' => $request->input('quran_grade'),
+            'azkar_grade' => $request->input('azkar_grade'),
+            'huruf_grade' => $request->input('huruf_grade'),
+            'arabiyya_grade' => $request->input('arabiyya_grade'),
         ];
 
         $stmt = Results::create($student_data_grades);

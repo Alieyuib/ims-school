@@ -1,6 +1,6 @@
 @section('sidebar')
-    <div class="ims-sidebar bg-success">
-                <div class="sidebar-header bg-success">
+    <div class="ims-sidebar">
+                <div class="sidebar-header">
                     <h5>The Priority School</h5>
                 </div>
                 <div class="sidebar-links">

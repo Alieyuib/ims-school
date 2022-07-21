@@ -34,41 +34,7 @@
            @show
        </div>
        <div class="col-md-10 dashboard-overlay">
-           @section('header')
-                    <div class="dashboard-header bg-success">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="username-div">
-                                    <p class="username-text">
-                                        {{-- LoggedIN As: <span>{{ $loggedInData['loggedInName'] }}</span> --}}
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <ul class="header-btn">
-                                    <li class="btn-settings">
-                                        <a href="" class="btn-link">    
-                                            <i class="fa fa-user"></i>
-                                        </a>
-                                    </li>
-                                    <li class="btn-settings">
-                                        <a href="" class="btn-link">
-                                            <i class="fa fa-gear"></i>
-                                        </a>
-                                    </li>
-                                    <li class="btn-settings">
-                                        <a href="{{ route('portal.logout') }}" class="btn-link">
-                                            <i class="fa fa-sign-out"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                @show
-           @section('content')
-               
-           
+           @section('content') 
        </div>
    </div>
    @show

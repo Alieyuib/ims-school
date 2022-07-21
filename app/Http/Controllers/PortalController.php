@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 use App\Student As Student;
 use App\Results As Results;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use LDAP\Result;
 
 class PortalController extends Controller
 {
@@ -72,6 +74,49 @@ class PortalController extends Controller
         return view('student_dashboard.results', $view_data);
     }
 
+    public function viewResult(Request $request)
+    {
+        $userLoggedId = $request->session()->get('loggedInUser');
+        $student_data = Student::where('id', $userLoggedId)->first();
+        if ($student_data) {
+            $result_data = Results::where('student_id', $userLoggedId)->first();
+            $view_data['student_name'] = $student_data->fname . ' ' . $student_data->lname;
+            $view_data['term'] = $result_data->academic_term;
+            $view_data['session'] = $result_data->academic_session;
+            $view_data['class'] = $result_data->class_in;
+            $view_data['no_in_class'] = $result_data->no_in_class;
+
+
+            $view_data['quran'] = $result_data->quran;
+            $view_data['azkar'] = $result_data->azkar;
+            $view_data['huruf'] = $result_data->huruf;
+            $view_data['arabiyya'] = $result_data->arabiyya;
+
+            $view_data['quran_grade'] = $result_data->quran_grade;
+            $view_data['azkar_grade'] = $result_data->azkar_grade;
+            $view_data['huruf_grade'] = $result_data->huruf_grade;
+            $view_data['arabiyya_grade'] = $result_data->arabiyya_grade;
+
+
+            $total_scores = $result_data->quran + $result_data->azkar + $result_data->huruf + $result_data->arabiyya;
+
+            $total_average = $total_scores/4;
+
+            $view_data['total_average'] = $total_average;
+            $view_data['total_scores'] = $total_scores;
+
+
+
+
+
+
+            return view('student_dashboard.result', $view_data);
+        }else{
+            $view_data['no_result'] = 'Res';
+        }
+        
+    }
+
     // student result
     public function getResults(Request $request)
     {
@@ -97,7 +142,7 @@ class PortalController extends Controller
                         <td>'.$item->academic_term.' '. 'Term'.'</td>
                         <td>'.$item->class_in.' '. 'Class'.'</td>
                         <td>
-                            <a href="#" id="'.$item->id.'" class="mx-2 view-result text-success text-decoration-none" data-bs-toggle="modal" data-bs-target="#resultModal"><i class="bi-bookmark text-success"></i>&nbspView Result</a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 view-result text-ims-default text-decoration-none"><i class="bi-bookmark text-ims-default"></i>&nbspView Result</a>
                         </td>
                     </tr>';
                 }
@@ -154,8 +199,69 @@ class PortalController extends Controller
     public function viewReceipt(Request $request)
     {
         $loggedInFamilyName  = $request->session()->get('loggedInFamilyName');
-        $view_data['student_payment_data'] = Student::where('ffname', $loggedInFamilyName)->get();
+        $student_data = Student::where('ffname', $loggedInFamilyName)->first();
+        $view_data['student_name'] = $student_data->fname . ' ' .$student_data->lname;
+        $view_data['student_address'] = $student_data->address;
+        $view_data['receipt_date'] = date('D/M/Y');
+        $view_data['receipt_no'] = Str::random(12);
         // return $view_data['student_payment_data'];
         return view('student_dashboard.receipt', $view_data);
+    }
+
+    // handle edit ajax
+
+    public function getBioData(Request $request)
+    {
+        $id = $request->id;
+        $stmt = Student::find($id);
+        return response()->json($stmt);
+    }
+
+    // handle edit biodata
+    public function updateBioData(Request $request)
+    {
+        // $student_id = $request->input('student_id');
+        $fileName = '';
+        $student_id = $request->input('student_id');
+        $stmt = Student::find($request->student_id);
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = time(). '.' .$file->getClientOriginalExtension();
+            $file->storeAs('public/images', $fileName);
+            if ($stmt->avatar) {
+                Storage::delete('public/images/' .$stmt->avatar);
+            }
+        }else {
+
+            $fileName = $request->student_passport;
+        }
+
+        $student_data = [
+            'fname' => $request->input('fname'),
+            'lname' => $request->input('lname'),
+            'dob' => $request->input('dob'),
+            'pob' => $request->input('pob'),
+            'sickness_allergy' => $request->input('sickness'),
+            'guardian' => $request->input('guard'),
+            'address' => $request->input('address'),
+            'phone_no' => $request->input('phone'),
+            'name_of_school' => $request->input('school'),
+            'Subject_learned' => $request->input('subject'),
+            'email' => $request->input('email'),
+            'ffname' => $request->input('ffname'),
+            'passport' => $fileName,
+        ];
+
+            
+            $final_stmt = Student::where('id', $student_id)->update($student_data);
+            if ($final_stmt) {
+                return response()->json([
+                    'status' => 200
+                ]);
+            }else {
+                return response()->json([
+                    'status' => 300
+                ]);
+            }
     }
 }

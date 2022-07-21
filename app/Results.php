@@ -16,6 +16,10 @@ class Results extends Model
         'huruf',
         'arabiyya',
         'class_in',
-        'no_in_class'
+        'no_in_class',
+        'quran_grade',
+        'azkar_grade',
+        'huruf_grade',
+        'arabiyya_grade'
     ];
 }

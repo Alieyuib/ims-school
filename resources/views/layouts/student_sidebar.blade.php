@@ -50,6 +50,15 @@
                                     &nbsp;Finance</a>
                             </span>
                         </li>
+                        <li class="list-group-item">
+                            <span class="link-name">
+                                <a href="{{ route('portal.logout') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-sign-out"></i>
+                                    </span>
+                                    Logout</a>
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>

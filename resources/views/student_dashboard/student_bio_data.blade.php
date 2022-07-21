@@ -142,7 +142,7 @@
                     $('#firstname').val(res.fname);
                     $('#student_id').val(res.id);
                     $('#student_passport').val(res.passport);
-                    $('#lastname').val(res.lname);
+                    // $('#lastname').val(res.lname);
                     $('#familyname').val(res.ffname);
                     $('#email').val(res.email);
                     $('#pob').val(res.pob);

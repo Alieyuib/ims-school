@@ -503,6 +503,7 @@ class ComposerStaticInited0df2dd2a99713d062b638a10793e80
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Results' => __DIR__ . '/../..' . '/app/Results.php',
         'App\\Student' => __DIR__ . '/../..' . '/app/Student.php',
+        'App\\StudentAdults' => __DIR__ . '/../..' . '/app/StudentAdults.php',
         'App\\StudentClass' => __DIR__ . '/../..' . '/app/StudentClass.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',

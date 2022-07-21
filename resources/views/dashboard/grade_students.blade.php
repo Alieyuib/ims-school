@@ -23,7 +23,11 @@
         </div>
         <div class="form-group col-md-4">
             <label for="student_class">STUDENT CLASS</label>
-            <input type="number" class="form-control" name="student_class" placeholder="CLASS" id="student_class">
+            <select name="student_class" id="student_class" class="form-control">
+                @foreach ($classes as $item)
+                    <option value="{{ $item->class_name }}">{{ $item->class_name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group col-md-4">
             <label for="no_in_class">NO IN CLASS</label>

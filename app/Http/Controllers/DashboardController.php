@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Student as Student;
 
+use App\StudentAdults as StudentAdults;
+
+use App\StudentClass as StudentClass;
+
 use App\Results as Results;
 
 use Illuminate\Http\Client\Response;
@@ -16,6 +20,10 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        $stmt_students = Student::all();
+        $stmt_students_adult = StudentAdults::all();
+        $view_data['total_students'] = $stmt_students->count();
+        $view_data['total_student_adult'] = $stmt_students_adult->count();
         $view_data['loggedInData'] = $request->session()->all();
         return view('dashboard.index', $view_data);
     }
@@ -164,6 +172,7 @@ class DashboardController extends Controller
     public function gradeStudents()
     {
         $view_data['student_list'] = Student::all();
+        $view_data['classes'] = StudentClass::all();
         $view_data['header'] = 'Subjects';
         return view('dashboard.grade_students', $view_data);
     }

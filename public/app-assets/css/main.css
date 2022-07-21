@@ -451,6 +451,15 @@ a.paginate_button.current {
     text-transform: uppercase;
 }
 
+.reg-modal-form input.form-control, .reg-modal-form select.form-control{
+    height: 45px;
+    margin-bottom: 20px;
+}
+
+.reg-modal-form .btn{
+    width: 100%;
+}
+
 .reg-form input.form-control, .reg-form select.form-control {
     height: 45px;
     /* border-radius: 10px; */

@@ -50,14 +50,6 @@
                             </span>
                         </li>
                         <li class="list-group-item">
-                            <span class="float-left">
-                                <i class="fa fa-user"></i>
-                            </span>
-                            <span class="link-name">
-                                Students Registration
-                            </span>
-                        </li>
-                        <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('logout') }}">
                                     <span class="float-left">

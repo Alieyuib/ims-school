@@ -17,7 +17,7 @@
                                     (الطلاب النشطاء)
                                 </p>
                                 <p class="number-total">
-                                    <span>100</span>
+                                    <span>{{ $total_students }}</span>
                                 </p>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                     (الطلاب الكبار)
                                 </p>
                                 <p class="number-total">
-                                    <span>70</span>
+                                    <span>{{ $total_student_adult }}</span>
                                 </p>
                             </div>
                         </div>

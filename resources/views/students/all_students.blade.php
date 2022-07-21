@@ -34,7 +34,7 @@ data-bs-backdrop="static" aria-hidden="true">
         <h5 class="modal-title" id="exampleModalLabel">Edit Enroll Student Data</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="#" method="POST" id="edit_student_form" enctype="multipart/form-data" class="reg-form">
+        <form action="#" method="POST" id="edit_student_form" enctype="multipart/form-data" class="reg-modal-form">
         @csrf
         <input type="hidden" name="student_id" id="student_id">
         <input type="hidden" name="student_passport" id="student_passport">
@@ -55,7 +55,7 @@ data-bs-backdrop="static" aria-hidden="true">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="dob">DOB</label>
-                    <input type="date" class="form-control" name="dob" placeholder="DOB" id="dob">
+                    <input type="text" class="form-control" name="dob" placeholder="DOB" id="dob">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="pob">POB</label>

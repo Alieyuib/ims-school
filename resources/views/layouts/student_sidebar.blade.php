@@ -34,15 +34,6 @@
                         </li>
                         <li class="list-group-item">
                             <span class="link-name">
-                                <a href="">
-                                    <span class="float-left">
-                                        <i class="fa fa-book"></i>
-                                    </span>
-                                    &nbsp;Courses</a>
-                            </span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="link-name">
                                 <a href="{{ route('portal.finance') }}">
                                     <span class="float-left">
                                         <i class="fa fa-money"></i>

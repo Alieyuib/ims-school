@@ -31,6 +31,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Results' => $baseDir . '/app/Results.php',
     'App\\Student' => $baseDir . '/app/Student.php',
+    'App\\StudentAdults' => $baseDir . '/app/StudentAdults.php',
     'App\\StudentClass' => $baseDir . '/app/StudentClass.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Cors.php',

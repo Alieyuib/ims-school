@@ -28,7 +28,7 @@
             <label for="student_bio_id">Select Student</label>
             <select name="student_bio_id" id="student_bio_id" class="form-control">
                 <option value="">--Select Student--</option>
-                <option value="7">Musab Saad</option>
+                <option value="{{ $student_id }}">{{ $student_name }}</option>
                 {{-- <option value="5">Aisha Ibrahim</option> --}}
             </select>
         </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="dob">DOB</label>
-                    <input type="date" class="form-control" name="dob" placeholder="DOB" id="dob">
+                    <input type="text" class="form-control" name="dob" placeholder="DOB" id="dob">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="pob">POB</label>
@@ -153,7 +153,7 @@
                     $('#passport-div').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
                     $('#address').val(res.address);
                     $('#sickness').val(res.sickness_allergy);
-                    $('#fullname').text(res.fname + ' ' + res.lname);
+                    $('#fullname').text(res.fname);
                     $('#family').text(res.ffname);
                     $('#pob_bio').text(res.pob);
                     $('#dob_bio').text(res.dob);

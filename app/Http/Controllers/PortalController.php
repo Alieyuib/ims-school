@@ -62,9 +62,13 @@ class PortalController extends Controller
         return view('student_dashboard.dashboard');
     }
 
-    public function viewBioData()
-    {
-        return view('student_dashboard.student_bio_data');
+    public function viewBioData(Request $request)
+    {   
+        $userLoggedId = $request->session()->get('loggedInUser');
+        $student_bio = Student::where('id', $userLoggedId)->first();
+        $view_data['student_id'] = $student_bio->id;
+        $view_data['student_name'] = $student_bio->fname;
+        return view('student_dashboard.student_bio_data', $view_data);
     }
 
     //result

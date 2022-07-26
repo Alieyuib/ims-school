@@ -12,7 +12,7 @@ class TransactionController extends Controller
     //index function
     public function index(Request $request)
     {
-        return view('finance_dashboard.index');
+        return view('dashboard.finance');
     }
 
      // view receipt
@@ -54,7 +54,8 @@ class TransactionController extends Controller
             'amount_paid' => $amount_to_paid,
             'balance' => $balance,
             'status' => $status,
-            'invoice_no' => $invoice_no
+            'invoice_no' => $invoice_no,
+            'family_email' => $userLoggedInEmail
         ];
 
         $stmt = Finance::create($finance_data);
@@ -114,6 +115,80 @@ class TransactionController extends Controller
             echo '<h1 class="text-center text-secondary my-5">
                 No records present in the database
             </h1>';
+        }
+     }
+
+     public function transactionHistoryAdmin(Request $request)
+     {
+        // $ffname = $request->session()->get('loggedInFamilyName');
+        $stmt = Finance::all();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-striped align-middle table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Family Name</th>
+                        <th>Amount to pay</th>
+                        <th>Amount Paid</th>
+                        <th>Balance</th>
+                        <th>Invoice number</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>'.$item->ffname.'</td>
+                        <td>'.$item->amount_to_pay.'</td>
+                        <td>'.$item->amount_paid.'</td>
+                        <td>'.$item->balance.'</td>
+                        <td>'.$item->invoice_no.'</td>
+                        <td>'.$item->status.'</td>
+                        <td>
+                            <a href="#" id="'.$item->id.'" class="mx-2 confirmIcon"><i class="fa fa-check-square text-secondary"></i></a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+     }
+
+     public function confirmTransaction(Request $request)
+     {
+        $transaction_id = $request->id;
+
+        $transaction_status = 'Paid';
+
+        $transaction_data = [
+            'status' => $transaction_status,
+        ];
+
+        $stmt_data = Finance::find($transaction_id);
+
+        $invoice_no = $stmt_data->invoice_no;
+
+        $stmt = Finance::where('id', $transaction_id)->update($transaction_data);
+
+        if ($stmt) {
+            return response()->json([
+                'status' => 200,
+                'transaction_id' => $transaction_id,
+                'invoice_no' => $invoice_no
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
         }
      }
  

@@ -11,6 +11,7 @@ use App\RegisteredCourses as RegisteredCourses;
 use App\Books as Books;
 
 use App\StudentClass as StudentClass;
+use App\Finance as Finance;
 
 use App\Results as Results;
 

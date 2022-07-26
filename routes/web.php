@@ -82,6 +82,10 @@ Route::get('/dashboard/student/records', 'DashboardController@subjectRecord')->n
 Route::get('/dashboard/books', 'DashboardController@getBooks')->name('dashboard.books');
 Route::post('/dashboard/book/upload', 'DashboardController@uploadBook')->name('dashboard.upload.book');
 Route::get('/dashboard/book/load', 'DashboardController@loadBook')->name('dashboard.all.books');
+Route::get('/dashboard/finance/', 'TransactionController@index')->name('dashboard.finance');
+Route::get('/dashboard/finance/logs', 'TransactionController@transactionHistoryAdmin')->name('dashboard.logs');
+Route::post('/dashboard/finance/logs/confirm', 'TransactionController@confirmTransaction')->name('dashboard.confirm.transaction');
+
 
 
 Route::get('/students', [StudentController::class, 'index']);
@@ -119,6 +123,8 @@ Route::get('/student/portal/course-registration', 'PortalController@courseRegist
 Route::post('/student/portal/course-registration', 'PortalController@coursesRegistration')->name('portal.courses.registration');
 Route::get('/student/portal/get-books', 'PortalController@getBooks')->name('portal.get.books');
 Route::get('/student/portal/get-book', 'PortalController@loadBook')->name('portal.all.books');
+Route::get('/student/portal/subject-record', 'PortalController@subjectRecord')->name('portal.subject.record');
+Route::get('/student/portal/subject-records', 'PortalController@subjectRecordView')->name('portal.subject.records');
 
 // portal.course.registration
 // portal.course.registrationportal.course.registration

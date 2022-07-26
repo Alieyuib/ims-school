@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use LDAP\Result;
 
+use App\Finance as Finance;
+
 class PortalController extends Controller
 {
     //index(dashboard) 
-    public function index()
+    public function index(Request $request)
     {
         return view('student_dashboard.index');
     }
@@ -76,8 +78,14 @@ class PortalController extends Controller
     // dashboard view
     public function dashboard(Request $request)
     {
-        $userLoggedId = $request->session()->get('loggedInUser');
-        $member_count = Student::where('id', $userLoggedId)->get();
+
+        $family_email = $request->session()->get('loggedInEmail');
+        $stmt = Finance::where('family_email', $family_email)->first();
+
+        // $view_data['balance'] = $stmt->balance;
+
+        $userLoggedId = $request->session()->get('loggedInEmail');
+        $member_count = Student::where('email', $userLoggedId)->get();
         $view_data['member_count'] = $member_count->count();
         return view('student_dashboard.dashboard', $view_data);
     }
@@ -354,6 +362,55 @@ class PortalController extends Controller
                             <td>'.$item->id.'</td>
                             <td> <a href="../../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
                             <td>'.$item->created_at.'</td>  
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+    }
+
+    public function subjectRecordView(Request $request)
+    {
+        return view('student_dashboard.subjects_records');
+    }
+
+    public function subjectRecord(Request $request)
+    {
+        $student_id = $request->session()->get('loggedInUser');
+        $stmt = RegisteredCourses::where('student_id', $student_id)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Student Class</th>
+                            <th>Academic Term</th>
+                            <th>Academic Session</th>
+                            <th>Al-Quran Scores</th>
+                            <th>Al-Azkar Scores</th>
+                            <th>Al-Huruf Scores</th>
+                            <th>Al-Arabiya Scores</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->student_name.'</td>
+                            <td>'.$item->student_class.'</td>
+                            <td>'.$item->academic_term.' Term</td>
+                            <td>'.$item->academic_session.'</td>  
+                            <td>'.$item->sub_one_scores.'</td>  
+                            <td>'.$item->sub_two_scores.'</td>  
+                            <td>'.$item->sub_three_scores.'</td>  
+                            <td>'.$item->sub_four_scores.'</td>  
                         </tr>';
                     }
 

@@ -455,6 +455,10 @@ p.forget-password-text a {
     border-radius: 30px;
     /* background-image: url('../img/logo.jpg') */
 }
+.dashboard-card:hover{
+    box-shadow: 0 4px 8px 0 rgba(255, 191, 94, 0.2), 0 6px 20px 0 rgba(255, 161, 73, 0.19);
+    cursor: pointer;
+}
 .student-list-div{
     margin-left: -30px;
     height: 100%;

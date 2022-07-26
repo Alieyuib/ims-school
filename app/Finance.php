@@ -19,5 +19,6 @@ class Finance extends Model
         'balance',
         'status',
         'invoice_no',
+        'family_email'
     ];
 }

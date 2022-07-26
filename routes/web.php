@@ -21,12 +21,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//Route cache:
-Route::get('/route-cache', function() {
-    $exitCode = Artisan::call('route:cache');
-    return '<h1>Routes cached</h1>';
-});
-
 
 
 // front page

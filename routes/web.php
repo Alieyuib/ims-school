@@ -21,10 +21,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//Clear Cache facade value:
-Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('cache:clear');
-    return 'Clear Cache';
+//Reoptimized class loader:
+Route::get('/optimize', function() {
+    $exitCode = Artisan::call('optimize');
+    return '<h1>Reoptimized class loader</h1>';
 });
 
 

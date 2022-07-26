@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Student As Student;
+use App\Books as Books;
 use App\Results As Results;
+use App\StudentClass as StudentClass;
+use App\RegisteredCourses as RegisteredCourses;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -39,9 +42,13 @@ class PortalController extends Controller
                     $request->session()->put('loggedInUser', $student->id);
                     $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
                     $request->session()->put('loggedInEmail', $student->email);
+                    $request->session()->put('loggedInAddress', $student->address);
                     $request->session()->put('loggedInFamilyName', $student->ffname);
+                    $request->session()->put('loggedInGuardian', $student->guardian);
                     $request->session()->put('loggedInCreatedAt', $student->created_at);
                     $userLoggedIn = $request->session()->get('loggedInName');
+                    $userLoggedInEmail = $request->session()->get('loggedInEmail');
+                    $userLoggedInGuardian = $request->session()->get('loggedInGuardian');
                     return response()->json([
                         'status' => 200,
                         'msg'    => 'success',
@@ -215,8 +222,8 @@ class PortalController extends Controller
     // view receipt
     public function viewReceipt(Request $request)
     {
-        $loggedInFamilyName  = $request->session()->get('loggedInFamilyName');
-        $student_data = Student::where('ffname', $loggedInFamilyName)->first();
+        $loggedInFamilyName  = $request->session()->get('loggedInUser');
+        $student_data = Student::where('id', $loggedInFamilyName)->first();
         $view_data['student_name'] = $student_data->fname . ' ' .$student_data->lname;
         $view_data['student_address'] = $student_data->address;
         $view_data['receipt_date'] = date('D/M/Y');
@@ -279,6 +286,83 @@ class PortalController extends Controller
                 return response()->json([
                     'status' => 300
                 ]);
+            }
+    }
+
+    public function courseRegistration(Request $request)
+    {
+        $userLoggedId = $request->session()->get('loggedInUser');
+        $stmt = Student::find($userLoggedId);
+        $view_data['student_name'] = $stmt->fname;
+        $view_data['student_id'] = $stmt->id;
+        $view_data['classes'] = StudentClass::all();
+        return view('student_dashboard.course_registration', $view_data);
+    }
+
+    public function coursesRegistration(Request $request)
+    {
+        $student_course_data = [
+            'student_name' => $request->input('student_name'),
+            'student_id' => $request->input('student_id'),
+            'student_class' => $request->input('student_class'),
+            'academic_session' => $request->input('academic_session'),
+            'academic_term' => $request->input('academic_term'),
+            'sub_one' => $request->input('al_quran'),
+            'sub_two' => $request->input('al_azkar'),
+            'sub_three' => $request->input('al_huruf'),
+            'sub_four' => $request->input('al_arabiyya'),
+            'sub_one_scores' => 0,
+            'sub_two_scores' => 0,
+            'sub_three_scores' => 0,
+            'sub_four_scores' => 0,
+        ];
+
+        $course_registration = RegisteredCourses::create($student_course_data);
+
+        if ($course_registration) {
+            return response()->json([
+                'status' => 200
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        }
+    }
+
+    public function getBooks(Request $request)
+    {
+        return view('student_dashboard.books');
+    }
+
+    public function loadBook()
+    {
+        $stmt = Books::all();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Book Name</th>
+                            <th>Uploaded On</th>  
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> <a href="../../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
+                            <td>'.$item->created_at.'</td>  
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
             }
     }
 }

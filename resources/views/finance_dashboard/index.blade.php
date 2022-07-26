@@ -5,10 +5,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center min-vh-100">
-            <div class="col-md-3 card shadow student-login p-20 text-center rounded-0" style="padding: 20px;">
+            <div class="col-md-3 card shadow admin-login p-20 text-center rounded-0" style="padding: 20px;">
                 <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
-                <h3 class="text-ims-default">The Priority School</h3>
-                <h5 class="text-ims-orange">Student Portal</h5>
+                <h3 class="text-ims-orange">The Priority School</h3>
+                {{-- <h5 class="text-ims-orange">Student Portal</h5> --}}
                 <div class="card-body">
                     <form action="" method="POST" id="login_form">
                         @csrf

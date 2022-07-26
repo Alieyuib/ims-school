@@ -1,7 +1,7 @@
 @extends('layouts.app_student')
 
 @section('content')
-<div class="col-md-8 receipt-div card" id="receipt">
+<div class="col-md-8 receipt-div card shadow" id="receipt">
     <img src="{{ asset('images/logo.jpg') }}" alt="" class="background-img-receipt">
     {{-- <div class="col-md-4">
       <img src="" alt="" class="img-thumbnail">

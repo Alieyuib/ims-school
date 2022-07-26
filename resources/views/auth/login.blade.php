@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center min-vh-100">
-            <div class="col-md-3 card shadow ims-bg-green p-20 text-center rounded-0" style="padding: 20px;">
+            <div class="col-md-3 card shadow admin-login p-20 text-center rounded-0" style="padding: 20px;">
                 <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
                 <h2 class="text-ims-orange">The Priority School</h2>
                 <h4 class="text-light">المدرسة ذات الأولوية</h4>

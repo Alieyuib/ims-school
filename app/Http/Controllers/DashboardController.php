@@ -6,6 +6,10 @@ use App\Student as Student;
 
 use App\StudentAdults as StudentAdults;
 
+use App\RegisteredCourses as RegisteredCourses;
+
+use App\Books as Books;
+
 use App\StudentClass as StudentClass;
 
 use App\Results as Results;
@@ -209,5 +213,142 @@ class DashboardController extends Controller
                 'status' => 300
             ]);
         };
+    }
+
+    public function gradeInfo(Request $request)
+    {
+
+        $id = $request->id;
+        $session_ = $request->session_;
+        $term = $request->term;
+
+        $grade_info_data = [
+            'student_id' => $request->id,
+            'academic_session' => $request->session_,
+            'academic_term' => $request->term
+        ];
+
+        $stmt = RegisteredCourses::where('academic_session', $session_)->get();
+
+        return response()->json($stmt);
+    }
+
+    public function subjectRecord()
+    {
+        return view('dashboard.subject_records');
+    }
+
+    public function subjectRecords()
+    {
+        $stmt = RegisteredCourses::all();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Student Class</th>
+                            <th>Academic Term</th>
+                            <th>Academic Session</th>
+                            <th>Al-Quran Scores</th>
+                            <th>Al-Azkar Scores</th>
+                            <th>Al-Huruf Scores</th>
+                            <th>Al-Arabiya Scores</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->student_name.'</td>
+                            <td>'.$item->student_class.'</td>
+                            <td>'.$item->academic_term.' Term</td>
+                            <td>'.$item->academic_session.'</td>  
+                            <td>'.$item->sub_one_scores.'</td>  
+                            <td>'.$item->sub_two_scores.'</td>  
+                            <td>'.$item->sub_three_scores.'</td>  
+                            <td>'.$item->sub_four_scores.'</td>  
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"><i class="fa fa-bookmark text-secondary"></i>Make Result</a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+    }
+
+    public function getBooks(Request $request)
+    {
+        return view('dashboard.books');
+    }
+
+    public function loadBook()
+    {
+        $stmt = Books::all();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Book Name</th>
+                            <th>Uploaded On</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> <a href="../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
+                            <td>'.$item->created_at.'</td>  
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+    }
+
+    public function uploadBook(Request $request)
+    {
+        $file = $request->file('book_file');
+        $fileName = time(). ".". $file->getClientOriginalExtension();
+        $file->storeAs('public/books', $fileName);
+
+        $book_name = $request->input('book_name');
+
+        $book_data = [
+            'book_name' => $book_name,
+            'book_file' => $fileName
+        ];
+
+        $stmt = Books::create($book_data);
+
+        if ($stmt) {
+            return response()->json([
+                'status' => 200
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400
+            ]);
+        }
     }
 }

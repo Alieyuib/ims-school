@@ -4,7 +4,62 @@ html, body{
 }
 
 
+/* front page */
 
+.header-ims{
+    height: 80px;
+    /* position: fixed; */
+    background-color: #fff;
+}
+.logo-header img{
+    width: 11%;
+}
+.logo-header h3{
+    margin-left: 80px;
+    margin-top: -50px;
+    color: #145251;
+}
+.links-header ul{
+    /* display: inline-block !important; */
+    float: right;
+}
+
+.links-header ul li{
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.links-header ul li a{
+    text-decoration: none;
+    color: #145251;
+    font-weight: 600;
+}
+.links-header ul li a:hover{
+    color: #d9ba79;
+}
+.hero-slider{
+    /* height: 650px !important; */
+    background-color: #d9ba79;
+    /* background-image: url('../img/loginhero.jpg'); */
+    /* background-size: cover; */
+}
+.carousel{
+    margin: 0px !important;
+}
+.carousel-inner{
+    height: 580px !important;
+    width: 100% !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+div.hero-text{
+    margin-top: 200px;
+}
+.about-section{
+    height: 300px;
+    background-color: #fff;
+}
 /** default and google theme **/
 .selectstyle{position:relative;}
 .ss_dib{display:inline-block;vertical-align:top;}
@@ -115,11 +170,13 @@ html, body{
     top: 170px;
 }
 .login-body{
-    /* background-image: url('../img/logo.jpg');
-    background-repeat: repeat-y;
-    background-repeat: repeat; */
+    background-image: url('../img/loginhero.jpg');
+    background-size: cover;
 }
-
+.login-form-teacher{
+    padding: 20px !important;
+    background-color: rgba(225, 225, 225, 0.4) !important;
+}
 .main-login {
     height: 400px;
     /* background-color: rgba(98, 158, 155, 0.4); */
@@ -152,6 +209,13 @@ html, body{
     width: 100%;
     height: auto;
     margin-top: 10px;
+    background-color: rgba(225, 255, 255, 0.4) !important;
+}
+.admin-login{
+    background-color: rgba(0, 73, 73, 0.4) !important;
+}
+.student-login{
+    background-color: rgba(255, 255, 255, 0.4) !important;
 }
 .login-form div.input-group {
     margin-bottom: 50px !important;
@@ -206,6 +270,34 @@ p.forget-password-text a {
     position: relative;
     /* height: 100%; */
 }
+.header-dashboard{
+    height: 70px;
+    width: 100%;
+    background-color: #145251;
+}
+.footer-dashboard{
+    height: 70px;
+    width: 100%;
+    margin-top: 40px;
+    background-color: #d9ba79 !important;
+}
+.user-info{
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.footer-text{
+    padding: 20px;
+}
+.user-info h4{
+    text-transform: uppercase;
+}
+.user-info h5{
+    text-transform: uppercase;
+}
+/* .user-info img{
+    width: 70%;
+} */
 .main-div {
     width: 100vw;
     height: 100vh;
@@ -216,9 +308,31 @@ p.forget-password-text a {
     /* overflow-x: hidden; */
     overflow: hidden;
 }
-
+.upload-book-form{
+    margin-top: 20px;
+    padding: 30px;
+    /* margin-left: 380px; */
+    text-align: center;
+    /* background-color: rgba(134, 134, 134, 0.1); */
+    border-radius: 5px;
+}
+/* .form-icon{
+    position: absolute;
+} */
+.upload-book-form input{
+    margin-bottom: 10px;
+}
+.upload-book-form button{
+    margin-top: 10px;
+}
 .sidebar-div {
     padding: 0;
+}
+
+.new-book-div{
+    height: 100%;
+    /* position: fixed; */
+    padding: 10px;
 }
 
 .ims-sidebar {
@@ -474,6 +588,9 @@ a.paginate_button.current {
 .reg-form .btn {
     width: 100%;
 }
+.grade-form{
+    padding: 50px;
+}
 .grade-form input.form-control, .grade-form select.form-control{
     height: 45px;
     /* border-radius: 10px; */
@@ -581,7 +698,12 @@ h6 span{
 #result-table-div{
     margin-left: 70px;
 }
-
+#checkout-form{
+    text-align: center;
+}
+#checkout-form input{
+    margin-bottom: 10px;
+}
 .finance_div div.col-md-5{
     padding: 10px;
 }
@@ -603,7 +725,7 @@ h6 span{
     margin-top: 30px;
     margin-left: 180px;
     /* box-shadow: 0 4px 8px 0 rgba(113, 255, 108, 0.5), 0 6px 20px 0 rgba(101, 255, 127, 0.5); */
-    height: 520px;
+    height: 100%;
 }
 .print-btn{
     padding: 20px;

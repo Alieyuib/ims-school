@@ -36,17 +36,27 @@
                             <span class="link-name">
                                 <a href="{{ route('dashboard.grade.students') }}">
                                     <span class="float-left">
-                                        <i class="fa fa-book"></i>
+                                        <i class="fa fa-bookmark"></i>
                                     </span>
                                     Grade Students</a>
                             </span>
                         </li>
                         <li class="list-group-item">
-                            <span class="float-left">
-                                <i class="fa fa-bar-chart"></i>
-                            </span>
                             <span class="link-name">
-                                Students Result
+                                <a href="{{ route('dashboard.record') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-bar-chart"></i>
+                                    </span>
+                                    Student Result</a>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="link-name">
+                                <a href="{{ route('dashboard.books') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                    Books</a>
                             </span>
                         </li>
                         <li class="list-group-item">

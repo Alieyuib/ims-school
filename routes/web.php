@@ -3,7 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StudentController;
-
+use App\Teachers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +21,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// front page
+
+Route::get('/', 'FrontPageController@index')->name('front.page');
+
 
 // Route::any('/', 'MainController@index');
-Route::get('/', 'Authentication@index')->name('login');
+Route::get('/login', 'Authentication@index')->name('login');
 Route::get('/forgot', 'Authentication@forgot')->name('forgot');
 Route::get('/register', 'Authentication@register')->name('register');
 // Route::get('/register', 'Authentication@register')->name('register');
@@ -55,6 +59,12 @@ Route::any('/dashboard/student/new/add', 'DashboardController@addStudent')->name
 Route::any('/dashboard/student/edit/{sid}', 'DashboardController@editStudent')->name('editstudent');
 Route::any('/dashboard/student/edit/inst/{sid}', 'DashboardController@editInst');
 Route::any('/dashboard/student/delete/{sid}', 'DashboardController@deleteStudent');
+Route::any('/dashboard/student/grade-info', 'DashboardController@gradeInfo')->name('dashboard.grade.get');
+Route::get('/dashboard/student/record', 'DashboardController@subjectRecords')->name('dashboard.records');
+Route::get('/dashboard/student/records', 'DashboardController@subjectRecord')->name('dashboard.record');
+Route::get('/dashboard/books', 'DashboardController@getBooks')->name('dashboard.books');
+Route::post('/dashboard/book/upload', 'DashboardController@uploadBook')->name('dashboard.upload.book');
+Route::get('/dashboard/book/load', 'DashboardController@loadBook')->name('dashboard.all.books');
 
 
 Route::get('/students', [StudentController::class, 'index']);
@@ -88,7 +98,32 @@ Route::get('/student/portal/finance/view-receipt', 'PortalController@viewReceipt
 Route::get('/student/portal/bio-data', 'PortalController@viewBioData')->name('portal.biodata');
 Route::get('/student/portal/bio-data/get', 'PortalController@getBioData')->name('portal.biodata.get');
 Route::post('/student/portal/bio-data/update', 'PortalController@updateBioData')->name('portal.biodata.update');
+Route::get('/student/portal/course-registration', 'PortalController@courseRegistration')->name('portal.course.registration');
+Route::post('/student/portal/course-registration', 'PortalController@coursesRegistration')->name('portal.courses.registration');
+Route::get('/student/portal/get-books', 'PortalController@getBooks')->name('portal.get.books');
+Route::get('/student/portal/get-book', 'PortalController@loadBook')->name('portal.all.books');
+
+// portal.course.registration
+// portal.course.registrationportal.course.registration
 
 // Route::any('/students', [StudentController::class, 'index'])->name('students');
 // Route::any('/dashboard/student/new/add', [DashboardController::class, 'addStudent'])->name('newstudent');
 // Route::any('/student/add', [StudentController::class, 'store'])->name('newStudent');
+
+// Teachers Routes
+
+Route::get('/teacher/portal', 'TeachersController@index')->name('portal.teacher.index');
+Route::post('/teacher/portal/login', 'TeachersController@portalLogin')->name('portal.teacher.login');
+Route::get('/teacher/portal/dashboard', 'TeachersController@dashboardView')->name('portal.teacher.dashboard');
+Route::get('/teacher/portal/grade-students', 'TeachersController@gradeView')->name('portal.teacher.grade');
+Route::get('/teacher/portal/grade-student', 'TeachersController@fetchAllStudentCourse')->name('portal.teacher.grades');
+Route::get('/teacher/portal/subject-data', 'TeachersController@getSubjectData')->name('portal.teacher.subject');
+Route::post('/teacher/portal/update-scores', 'TeachersController@updateScores')->name('portal.teacher.scores');
+
+// Transaction route
+
+Route::get('/finance/login', 'TransactionController@index')->name('finance.login');
+Route::get('/student/portal/transaction/checkout', 'TransactionController@viewReceiptCheckout')->name('portal.checkout');
+Route::post('/student/portal/transaction/checkout', 'TransactionController@checkout')->name('portal.checkout.final');
+Route::get('/student/portal/transaction/history', 'TransactionController@transactionHistoryView')->name('portal.transaction.history');
+Route::get('/student/portal/transaction/histories', 'TransactionController@transactionHistory')->name('portal.transaction.histories');

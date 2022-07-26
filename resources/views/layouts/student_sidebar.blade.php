@@ -34,6 +34,24 @@
                         </li>
                         <li class="list-group-item">
                             <span class="link-name">
+                                <a href="{{ route('portal.course.registration') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                    &nbsp;Course Registration</a>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="link-name">
+                                <a href="{{ route('portal.get.books') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                    &nbsp;Learning Books</a>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="link-name">
                                 <a href="{{ route('portal.finance') }}">
                                     <span class="float-left">
                                         <i class="fa fa-money"></i>

@@ -15,9 +15,9 @@
         <h5>STUDENT DATA</h5>
         <div class="form-group col-md-4">
             <label for="student_name">STUDENT NAME</label>
-            <select name="student_name" id="student_name student_name_search" class="form-control" style="text-transform: uppercase" data-search="true" theme="google">
+            <select name="student_name" id="student_name" class="form-control" style="text-transform: uppercase">
                 @foreach ($student_list as $item)
-                    <option value="{{ $item->id }}">{{ $item->fname . ' ' . $item->lname }}</option>
+                    <option value="{{ $item->id }}">{{ $item->id . $item->fname}}</option>
                 @endforeach
             </select>
         </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="academic_session">ACADEMIC SESSION</label>
-            <input type="text" class="form-control" name="academic_session" placeholder="ACADEMIC SESSION" id="academic_session">
+            <input type="text" class="form-control" name="academic_session" placeholder="ACADEMIC SESSION" id="academic_session" value="{{ date('Y') }}">
         </div>
         <div class="form-group col-md-4">
             <label for="academic_term">ACADEMIC TERM</label>
@@ -178,5 +178,50 @@
     }
         
     });
+
+    $('#student_name').on('change', function(e){
+            e.preventDefault();
+            let id = $('#student_name').val();
+            let session_ = $('#academic_session').val();
+            let term = $('#academic_term').val();
+            $.ajax({
+                url: '{{ route('dashboard.grade.get') }}',
+                method: 'get',
+                data:{
+                    id: id,
+                    session_: session_,
+                    term: term,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    console.log(res);
+                    $('#firstname').val(res.fname);
+                    $('#student_id').val(res.id);
+                    $('#student_passport').val(res.passport);
+                    // $('#lastname').val(res.lname);
+                    $('#familyname').val(res.ffname);
+                    $('#email').val(res.email);
+                    $('#pob').val(res.pob);
+                    $('#dob').val(res.dob);
+                    $('#guard').val(res.guardian);
+                    $('#phone').val(res.phone_no);
+                    $('#school').val(res.name_of_school);
+                    $('#subject').val(res.Subject_learned);
+                    $('#passport-div').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
+                    $('#address').val(res.address);
+                    $('#sickness').val(res.sickness_allergy);
+                    $('#fullname').text(res.fname);
+                    $('#family').text(res.ffname);
+                    $('#pob_bio').text(res.pob);
+                    $('#dob_bio').text(res.dob);
+                    $('#sickness_bio').text(res.sickness_allergy);
+                    $('#phone_bio').text(res.phone_no);
+                    $('#email_bio').text(res.email);
+                    $('.img-bio').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
+                    $('#address_bio').text(res.address);
+                }
+            })
+        })
 </script>
 @endsection

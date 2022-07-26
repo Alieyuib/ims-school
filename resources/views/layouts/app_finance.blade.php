@@ -22,7 +22,6 @@
     <script src="{{ asset('app-assets/js/app.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://js.paystack.co/v1/inline.js"></script> 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 </head>
 <!-- END: Head-->
@@ -31,7 +30,7 @@
    <div class="row">
        <div class="col-md-2 sidebar-div">
            @section('sidebar')
-                @include('layouts.student_sidebar')  
+                @include('layouts.finance_sidebar')  
            @show
        </div>
        <div class="col-md-10 dashboard-overlay">

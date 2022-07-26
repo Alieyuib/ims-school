@@ -58,19 +58,6 @@
             </div>
         </div>
     </div>
-    {{-- <body class="bg-dark"> --}}
-<div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-data-bs-backdrop="static" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content modal-color">
-        <div class="modal-header">
-        <h5 class="modal-title text-light" id="exampleModalLabel">Fee Schecule For <span id="student-name" style="text-transform: uppercase">{{ $loggedInFamilyName }}</span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-    </div>
-    </div>
-</div>
-{{-- edit student modal end --}}
 <script>
 
     // view result
@@ -90,6 +77,40 @@ data-bs-backdrop="static" aria-hidden="true">
             })
 
         })
+
+    $(document).on('click', '#payment_online', function(e){
+        e.preventDefault();
+        $.ajax({
+                url: '{{ route('portal.checkout') }}',
+                method: 'get',
+                data: {
+                    // id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(res){
+                    window.location = '{{ route('portal.checkout') }}';
+                    // console.log(res);
+                }
+            })
+    })
+
+    $(document).on('click', '#payment_history', function(e){
+        e.preventDefault();
+        $.ajax({
+                url: '{{ route('portal.transaction.history') }}',
+                method: 'get',
+                data: {
+                    // id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(res){
+                    window.location = '{{ route('portal.transaction.history') }}';
+                    // console.log(res);
+                }
+            })
+    })
+
+    
 
 </script>
 @endsection

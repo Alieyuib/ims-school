@@ -32,6 +32,10 @@ Route::get('/clear', function() {
  
  });
  
+ Route::get('/foo', function () {
+    Artisan::call('storage:link');
+    return 'Linked';
+});
 
 
 // front page

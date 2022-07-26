@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 //Clear Cache facade value:
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
+    return 'Clear Cache';
 });
 
 

@@ -93,6 +93,7 @@ class TransactionController extends Controller
                         <th>Amount Paid</th>
                         <th>Balance</th>
                         <th>Invoice number</th>
+                        <th>Invoice date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -105,6 +106,7 @@ class TransactionController extends Controller
                         <td>'.$item->amount_paid.'</td>
                         <td>'.$item->balance.'</td>
                         <td>'.$item->invoice_no.'</td>
+                        <td>'.$item->created_at.'</td>
                         <td>'.$item->status.'</td>
                     </tr>';
                 }
@@ -133,6 +135,7 @@ class TransactionController extends Controller
                         <th>Amount Paid</th>
                         <th>Balance</th>
                         <th>Invoice number</th>
+                        <th>Invoice date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -146,6 +149,7 @@ class TransactionController extends Controller
                         <td>'.$item->amount_paid.'</td>
                         <td>'.$item->balance.'</td>
                         <td>'.$item->invoice_no.'</td>
+                        <td>'.$item->created_at.'</td>
                         <td>'.$item->status.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 confirmIcon"><i class="fa fa-check-square text-secondary"></i></a>

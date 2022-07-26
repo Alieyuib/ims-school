@@ -32,14 +32,14 @@
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Online Registration</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('front.online.registration') }}">Online Registration</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead">
+        <header class="masthead-front">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-light mb-5">Your Favorite Place for learning <b>Islamic knowledge</b> Click the button below to enroll</p>
-                        <a class="btn btn-ims-orange btn-xl" href="#about">Enroll Now</a>
+                        <a class="btn btn-ims-orange btn-xl" href="{{ route('front.online.registration') }}">Enroll Now</a>
                     </div>
                 </div>
             </div>

@@ -11413,7 +11413,7 @@ header.masthead h1, header.masthead .h1 {
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
-    min-height: 40rem;
+    min-height: 65rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
   }
@@ -11426,6 +11426,40 @@ header.masthead h1, header.masthead .h1 {
 }
 @media (min-width: 1200px) {
   header.masthead h1, header.masthead .h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* new masthead */
+
+header.masthead-front {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(0, 73, 73, 0.4) 0%, rgba(0, 73, 73, 0.4) 100%), url("../img/loginhero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead-front h1, header.masthead-front .h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.masthead-front {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.masthead-front p {
+    font-size: 1.15rem;
+  }
+  header.masthead-front h1, header.masthead-front .h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.masthead-front h1, header.masthead-front .h1 {
     font-size: 3.5rem;
   }
 }

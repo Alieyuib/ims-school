@@ -177,6 +177,26 @@ div.hero-text{
     padding: 20px !important;
     background-color: rgba(225, 225, 225, 0.4) !important;
 }
+.online-reg-form{
+    height: auto;
+    margin-top: 20px !important;
+    border-radius: 5px;
+    background-color: rgba(225, 225, 225, 0.8);
+    /* background-color: #fff; */
+}
+.online-reg-form h3{
+    padding: 20px;
+    text-transform: uppercase;
+}
+.online-form label{
+    text-transform: uppercase;
+    color: #145251;
+}
+.online-form input{
+    height: 50px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
 .main-login {
     height: 400px;
     /* background-color: rgba(98, 158, 155, 0.4); */

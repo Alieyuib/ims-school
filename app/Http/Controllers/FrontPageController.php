@@ -11,4 +11,10 @@ class FrontPageController extends Controller
     {
         return view('front_page.index');
     }
+
+    // online registration
+    public function onlineRegView()
+    {
+        return view('front_page.online_registration');
+    }
 }

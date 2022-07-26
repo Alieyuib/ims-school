@@ -41,6 +41,7 @@ Route::get('/clear', function() {
 // front page
 
 Route::get('/', 'FrontPageController@index')->name('front.page');
+Route::get('/online/registration', 'FrontPageController@onlineRegView')->name('front.online.registration');
 
 
 // Route::any('/', 'MainController@index');

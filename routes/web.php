@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});
+
 // front page
 
 Route::get('/', 'FrontPageController@index')->name('front.page');

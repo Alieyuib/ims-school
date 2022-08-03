@@ -23,7 +23,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">
+                <a class="navbar-brand" href="{{ route('front.page') }}">
                     <img src="{{asset('images/logo.jpg')}}" alt="">
                     The Priority School
                 </a>
@@ -43,7 +43,7 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for learning <b>Islamic knowledge</b></h1>
+                        <h1 class="text-white font-weight-bold">Your Favorite Place for learning <b><span class="text-ims-default">Islamic</span> knowledge</b></h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">

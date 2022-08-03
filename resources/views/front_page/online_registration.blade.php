@@ -44,7 +44,10 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 online-reg-form text-center shadow">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 12%; margin-top:10px">
+                        <h3 class="text-ims-orange">The Priority School</h3>
                         <h3 class="text-ims-default">Online Registration</h3>
+                        <h6 class="text-ims-default">Please ensure that the form is properly completed and all information given therein is correct to the best of your knowledge.</h6>
                         <form action="#" method="POST" enctype="multipart/form-data" class="online-form col-md-12" id="online-form">
                             @csrf
                             <div class="row">
@@ -96,6 +99,10 @@
                                 <div class="form-group col-md-12">
                                     <label for="address">Address</label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" id="address">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="address">Term & Condition</label>
+                                    <input type="checkbox" class="form-control" name="address" placeholder="Address" id="address">
                                 </div>
                                 <button type="submit" id="add_student_btn" class="btn btn-ims-orange">Enroll</button>
                             </div>

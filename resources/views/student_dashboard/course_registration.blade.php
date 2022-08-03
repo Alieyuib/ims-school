@@ -14,9 +14,15 @@
     <div class="row">
         <h5>STUDENT DATA</h5>
         <div class="form-group col-md-12">
-            <label for="student_name">STUDENT NAME</label>
-            <input type="text" name="student_name" class="form-control" id="student_name" placeholder="Student Name" value="{{ $student_name }}">
-            <input type="hidden" name="student_id" value="{{ $student_id }}">
+            <label for="student_id">STUDENT NAME</label>
+            <select name="student_id" id="student_id" class="form-control">
+                @foreach ($students as $item)
+                    <option value="{{ $item->id }}">{{ $item->fname }}</option>
+                @endforeach
+            </select>
+            <input type="hidden" name="student_name" id="student_name">
+            {{-- <input type="text" name="student_name" class="form-control" id="student_name" placeholder="Student Name" value="{{ $student_name }}">
+            <input type="hidden" name="student_id" value="{{ $student_id }}"> --}}
         </div>
         <div class="form-group col-md-4">
             <label for="student_class">STUDENT CLASS</label>
@@ -64,6 +70,24 @@
     </div>
 </form>
 <script>
+
+$('#student_id').on('change', function(e){
+            e.preventDefault();
+            let id = $(this).val();
+            $.ajax({
+                url: '{{ route('portal.biodata.get') }}',
+                method: 'get',
+                data:{
+                    id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    console.log(res);
+                    $('#student_name').val(res.fname);
+                }
+            })
+        })
 
 $('#course_student_form').submit(function(e){
         e.preventDefault();

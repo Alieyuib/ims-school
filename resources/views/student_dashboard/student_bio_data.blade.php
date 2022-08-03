@@ -27,9 +27,9 @@
         <div class="col-md-12">
             <label for="student_bio_id">Select Student</label>
             <select name="student_bio_id" id="student_bio_id" class="form-control">
-                <option value="">--Select Student--</option>
-                <option value="{{ $student_id }}">{{ $student_name }}</option>
-                {{-- <option value="5">Aisha Ibrahim</option> --}}
+               @foreach ($student_bio as $item)
+                   <option value="{{ $item->id }}">{{ $item->fname }}</option>
+               @endforeach
             </select>
         </div>
         <img src="{{ asset('images/logo.jpg') }}" alt="" class="background-img-biodata">
@@ -138,7 +138,7 @@
                 },
 
                 success: function(res){
-                    // console.log(res);
+                    console.log(res);
                     $('#firstname').val(res.fname);
                     $('#student_id').val(res.id);
                     $('#student_passport').val(res.passport);

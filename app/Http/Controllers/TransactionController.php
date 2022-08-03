@@ -21,7 +21,7 @@ class TransactionController extends Controller
          $userLoggedInGuardian = $request->session()->get('loggedInGuardian');
          $loggedInFamilyName  = $request->session()->get('loggedInFamilyName');
          $loggedInAddress  = $request->session()->get('loggedInAddress');
-         $student_data = Student::where('guardian', $userLoggedInGuardian)->get();
+         $student_data = Student::where('ffname', $loggedInFamilyName)->get();
          $view_data['family_name'] = $loggedInFamilyName;
          $view_data['family_address'] = $loggedInAddress;
         //  $view_data['family_address'] = $student_data->address;

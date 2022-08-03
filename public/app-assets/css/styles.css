@@ -11328,7 +11328,7 @@ hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
   margin: 1.5rem auto;
-  background-color: #145251;
+  background-color: #d9ba79;
   opacity: 1;
 }
 
@@ -11413,7 +11413,7 @@ header.masthead h1, header.masthead .h1 {
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
-    min-height: 65rem;
+    min-height: 75rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
   }

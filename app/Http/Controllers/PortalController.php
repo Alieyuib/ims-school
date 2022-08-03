@@ -20,8 +20,8 @@ class PortalController extends Controller
 {
     //index(dashboard) 
     public function index(Request $request)
-    {
-        return view('student_dashboard.index');
+    {   $view_data['password'] = Hash::make('abcxyz');
+        return view('student_dashboard.index', $view_data);
     }
 
     // portal login
@@ -40,7 +40,7 @@ class PortalController extends Controller
         }else{
             $student = Student::where('email', $request->email)->first();
             if ($student) {
-                if ($request->token == $student->token) {
+                if (Hash::check($request->input('token'), $student->token)) {
                     $request->session()->put('loggedInUser', $student->id);
                     $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
                     $request->session()->put('loggedInEmail', $student->email);
@@ -92,10 +92,11 @@ class PortalController extends Controller
 
     public function viewBioData(Request $request)
     {   
-        $userLoggedId = $request->session()->get('loggedInUser');
-        $student_bio = Student::where('id', $userLoggedId)->first();
-        $view_data['student_id'] = $student_bio->id;
-        $view_data['student_name'] = $student_bio->fname;
+        $userLoggedId = $request->session()->get('loggedInFamilyName');
+        $view_data['student_bio'] = Student::where('ffname', $userLoggedId)->get();
+        // $student_bio = Student::where('id', $userLoggedId)->first();
+        // $view_data['student_id'] = $student_bio->id;
+        // $view_data['student_name'] = $student_bio->fname;
         return view('student_dashboard.student_bio_data', $view_data);
     }
 
@@ -299,10 +300,11 @@ class PortalController extends Controller
 
     public function courseRegistration(Request $request)
     {
-        $userLoggedId = $request->session()->get('loggedInUser');
-        $stmt = Student::find($userLoggedId);
-        $view_data['student_name'] = $stmt->fname;
-        $view_data['student_id'] = $stmt->id;
+        $loggedInFamilyName = $request->session()->get('loggedInFamilyName');
+        // $stmt = Student::find($userLoggedId);
+        $view_data['students'] = Student::where('ffname', $loggedInFamilyName)->get();
+        // $view_data['student_name'] = $stmt->fname;
+        // $view_data['student_id'] = $stmt->id;
         $view_data['classes'] = StudentClass::all();
         return view('student_dashboard.course_registration', $view_data);
     }

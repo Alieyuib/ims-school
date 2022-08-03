@@ -46,7 +46,7 @@
                     <div class="col-lg-10 online-reg-form text-center shadow">
                         <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 12%; margin-top:10px">
                         <h3 class="text-ims-orange">The Priority School</h3>
-                        <h3 class="text-ims-default">Online Registration</h3>
+                        <h5 class="text-ims-default">Online Registration</h5>
                         <h6 class="text-ims-default">Please ensure that the form is properly completed and all information given therein is correct to the best of your knowledge.</h6>
                         <form action="#" method="POST" enctype="multipart/form-data" class="online-form col-md-12" id="online-form">
                             @csrf

@@ -18,6 +18,49 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ asset('app-assets/css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
+        <style>
+             /* Dropdown Button */
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  /* padding: 5px; */
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #414141;} 
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -33,7 +76,15 @@
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('front.online.registration') }}">Online Registration</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li> --}}
+                        <div class="dropdown">
+                        <button class="dropbtn">Portals</button>
+                            <div class="dropdown-content">
+                                <a class="nav-link" href="{{ route('portal.index') }}">Student/Family Portal</a>
+                                <a class="nav-link" href="{{ route('portal.teacher.index') }}">Teachers Portal</a>
+                                <a class="nav-link" href="{{ route('login') }}">Administrative Portal</a>
+                            </div>
+                        </div> 
                     </ul>
                 </div>
             </div>

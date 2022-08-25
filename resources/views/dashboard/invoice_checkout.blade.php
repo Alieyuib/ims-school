@@ -151,12 +151,15 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success:function(data){
-                            if (res.status == 200) {
+                            if (data.status == 200) {
                                 Swal.fire(
                                     '',
                                     'Saved',
                                     'success'
-                            );
+                                );
+                            }
+                            // console.log(data);
+                            // printReceipt('invoice')
                         }
                     });
                 }

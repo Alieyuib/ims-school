@@ -34,11 +34,4 @@
         </div>
     </div>
 </div>
-    <script>
-       
-        
-    </script>
 @endsection
-{{-- </body>
-</html> --}}
-

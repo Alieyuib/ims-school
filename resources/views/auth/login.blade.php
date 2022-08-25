@@ -7,9 +7,9 @@
         <div class="row d-flex justify-content-center align-items-center min-vh-100">
             <div class="col-md-3 card shadow admin-login p-20 text-center rounded-0" style="padding: 20px;">
                 <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
-                <h2 class="text-ims-orange">The Priority School</h2>
-                <h4 class="text-light">المدرسة ذات الأولوية</h4>
-                <h5 class="text-ims-orange">Admistrative Portal</h5>
+                <h2 class="text-ims-default">The Priority School</h2>
+                <h6 class="text-ims-orange">المدرسة ذات الأولوية</h6>
+                <h6 class="text-ims-default">Admistrative Portal</h6>
                 <div class="card-body">
                     <form action="" method="POST" id="login_form">
                         @csrf

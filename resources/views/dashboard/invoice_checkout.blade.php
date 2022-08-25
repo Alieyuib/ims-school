@@ -46,6 +46,7 @@
                 </div>
                 <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
                 <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button>
+                <button class="btn-lg btn-primary my-1" style="width: 100%" id="save_btn"><i class="fa fa-reply"></i>&nbsp;Send to Mail</button>
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@
                 <table class="table table-bordered mx-1">
                     <thead>
                         <tr>
+                            <th>S/N</th>
                             <th>Invoice ID</th>
                             <th>Invoice</th>
                             <th>To</th>
@@ -21,6 +22,7 @@
                     <tbody>
                         @foreach ($recent_invoice as $item)
                             <tr>
+                                <td>{{ $counter++ }}</td>
                                 <td>{{ $item->invoice_id }}</td>
                                 <td><a href="../../storage/{{ $item->invoice }}">{{ $item->invoice }}</a></td>
                                 <td>{{ $item->student_email }}</td>

@@ -545,7 +545,7 @@ class TransactionController extends Controller
      public function recentInvoice()
      {
         $view_data['recent_invoice'] = RecentInvoice::all();
-
+        $view_data['counter'] = 1;
         return view('dashboard.recent_invoice', $view_data);
      }
  

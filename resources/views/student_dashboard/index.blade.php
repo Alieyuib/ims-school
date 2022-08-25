@@ -16,10 +16,10 @@
                             <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Email Address">
                             <div class="invalid-feedback"></div>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <input type="password" name="token" id="token" class="form-control rounded-0" placeholder="Token">
                             <div class="invalid-feedback"></div>
-                        </div>
+                        </div> --}}
                         {{-- <div class="mb-3">
                             <a href="{{ route('forgot') }}" class="text-decoration-none text-success">Forgot Password?</a>
                         </div> --}}

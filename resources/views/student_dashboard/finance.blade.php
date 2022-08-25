@@ -21,11 +21,11 @@
                     <div class="col-md-5 dashboard-card card" id="payment_online">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <i class="fa fa-credit-card-alt fa-4x text-ims-default"></i>
+                                <i class="fa fa-money fa-4x text-ims-default"></i>
                             </div>
                             <div class="col-md-12 text-center">
                                 <h4 class="text-ims-default">
-                                    Payment&nbsp;<span>Online</span>
+                                    Billing&nbsp;<span>Invoice</span>
                                 </h4>
                             </div>
                         </div>

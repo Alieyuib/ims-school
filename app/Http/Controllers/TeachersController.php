@@ -9,7 +9,9 @@ use Illuminate\Support\Str;
 use App\Student As Student;
 use App\Results As Results;
 // use App\StudentCourses as StudentCourses;
+use App\systemUsers as SystemUsers;
 use App\RegisteredCourses as RegisteredCourses;
+use App\StudentData;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -56,13 +58,13 @@ class TeachersController extends Controller
                 'msg'   => $validator->getMessageBag()
             ]);
         }else{
-            $teacher = Teachers::where('email', $request->email)->first();
-            if ($teacher) {
-                if (Hash::check($request->token, $teacher->token)) {
-                    $request->session()->put('loggedInUser', $teacher->id);
-                    $request->session()->put('loggedInTeacher', $teacher->fname);
-                    $request->session()->put('loggedInEmail', $teacher->email);
-                    $request->session()->put('loggedInSubject', $teacher->teaching_subject);
+            $user = SystemUsers::where('email', $request->email)->first();
+            if ($user) {
+                if (Hash::check($request->token, $user->password)) {
+                    $request->session()->put('loggedInUser', $user->id);
+                    $request->session()->put('loggedInTeacher', $user->fname);
+                    $request->session()->put('loggedInEmail', $user->email);
+                    $request->session()->put('loggedInSubject', $user->role);
                     $userLoggedIn = $request->session()->get('loggedInTeacher');
                     return response()->json([
                         'status' => 200,
@@ -104,7 +106,7 @@ class TeachersController extends Controller
     public function fetchAllStudentCourse(Request $request)
     {
         $loggedInSubject = $request->session()->get('loggedInSubject');
-        if ($loggedInSubject == 'al-quran') {
+        if ($loggedInSubject == 'Al-Quran') {
             $stmt = RegisteredCourses::where('sub_one', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -144,7 +146,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-azkar') {
+        if ($loggedInSubject == 'Al-Azkar') {
             $stmt = RegisteredCourses::where('sub_two', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -184,7 +186,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-huruf') {
+        if ($loggedInSubject == 'Al-Huruf') {
             $stmt = RegisteredCourses::where('sub_three', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -224,7 +226,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-arabiyya') {
+        if ($loggedInSubject == 'Al-Arabiyya') {
             $stmt = RegisteredCourses::where('sub_four', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -263,8 +265,354 @@ class TeachersController extends Controller
                 </h1>';
             }
         }
+
+        // $loggedInSubject = $request->session()->get('loggedInSubject');
+        if ($loggedInSubject == 'Faslul Hifiz') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Arrauda Ath-thaaniya') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Arraudatul Ola') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Hadaanah') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Class 1') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Class 2') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Class 3') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
+
+        if ($loggedInSubject == 'Class 4') {
+            $stmt = StudentData::where('current_class', $loggedInSubject)->get();
+            $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Dob</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Sickness/Allergy</th>
+                            <th>Student Class</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->name.'</td>
+                            <td> '.$item->dob.'</td>
+                            <td> '.$item->address.'</td>
+                            <td> '.$item->phone_no.'</td>
+                            <td> '.$item->sickness_allergy.'</td>
+                            <td>'.$item->current_class.'</td> 
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+        }
         
     }
+
 
     public function getSubjectData(Request $request)
     {
@@ -281,7 +629,7 @@ class TeachersController extends Controller
     {
         $loggedInSubject = $request->session()->get('loggedInSubject');
         $subject_id = $request->input('subject_id');
-        if ($loggedInSubject == 'al-quran') {
+        if ($loggedInSubject == 'Al-Quran') {
             $scores_data = [
                 'sub_one_scores' => $request->input('subject_marks'),
             ];
@@ -299,7 +647,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-azkar') {
+        if ($loggedInSubject == 'Al-Azkar') {
             $scores_data = [
                 'sub_two_scores' => $request->input('subject_marks'),
             ];
@@ -317,7 +665,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-huruf') {
+        if ($loggedInSubject == 'Al-Huruf') {
             $scores_data = [
                 'sub_three_scores' => $request->input('subject_marks'),
             ];
@@ -335,7 +683,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'al-arabiyya') {
+        if ($loggedInSubject == 'Al-Arabiyya') {
             $scores_data = [
                 'sub_four_scores' => $request->input('subject_marks'),
             ];
@@ -352,5 +700,17 @@ class TeachersController extends Controller
                 ]);
             }
         }
+    }
+
+    public function getResults(Request $request)
+    {
+        return 'middleware';
+    }
+
+    // logout 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('teacher/portal');
     }
 }

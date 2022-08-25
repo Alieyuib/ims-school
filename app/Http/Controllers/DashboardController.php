@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Student as Student;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use App\StudentAdults as StudentAdults;
+use App\systemUsers as SystemUsers;
+use App\StudentData as StudentData;
 
 use App\RegisteredCourses as RegisteredCourses;
 
 use App\Books as Books;
 
-use App\StudentClass as StudentClass;
+use App\SchoolClasses as SchoolClasses;
+
 use App\Finance as Finance;
-
+use App\Items;
 use App\Results as Results;
-
+use App\StudentFamilyAccount;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -25,10 +31,14 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $stmt_students = Student::all();
-        $stmt_students_adult = StudentAdults::all();
+        $stmt_students = StudentData::all();
+        $stmt_users = SystemUsers::all();
+        $stmt_account = StudentFamilyAccount::all();
+        // $stmt_students_adult = StudentAdults::all();
         $view_data['total_students'] = $stmt_students->count();
-        $view_data['total_student_adult'] = $stmt_students_adult->count();
+        $view_data['total_users'] = $stmt_users->count();
+        $view_data['total_account'] = $stmt_account->count();
+        // $view_data['total_student_adult'] = $stmt_students_adult->count();
         $view_data['loggedInData'] = $request->session()->all();
         return view('dashboard.index', $view_data);
     }
@@ -181,7 +191,7 @@ class DashboardController extends Controller
     public function gradeStudents()
     {
         $view_data['student_list'] = Student::all();
-        $view_data['classes'] = StudentClass::all();
+        $view_data['classes'] = SchoolClasses::all();
         $view_data['header'] = 'Subjects';
         return view('dashboard.grade_students', $view_data);
     }
@@ -272,7 +282,7 @@ class DashboardController extends Controller
                             <td>'.$item->sub_three_scores.'</td>  
                             <td>'.$item->sub_four_scores.'</td>  
                             <td>
-                                <a href="#" id="'.$item->id.'" class="mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"><i class="fa fa-bookmark text-secondary"></i>Make Result</a>
+                                <a href="#" id="'.$item->id.'" class="btn btn-ims-orange mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"></i>Send Result</a>
                             </td>
                         </tr>';
                     }
@@ -351,5 +361,318 @@ class DashboardController extends Controller
                 'status' => 400
             ]);
         }
+    }
+
+    public function getAwaitStudents(Request $request)
+    {
+        $view_data['classes'] = SchoolClasses::all();
+        return view('dashboard.enrollment', $view_data);
+    }
+
+    public function getAwaitingStudents()
+    {  
+        $stmt = StudentData::where('status', 'Awaiting')->get();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-striped align-middle table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Avatar</th>
+                        <th>Name</th>
+                        <th>POB</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Sickness/Allergy</th>
+                        <th>Phone Number</th>
+                        <th>Family Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>
+                            <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
+                        </td>
+                        <td> '.$item->name.' </td>
+                        <td>'.$item->pob.'</td>
+                        <td>'.$item->dob.'</td>
+                        <td>'.$item->email.'</td>
+                        <td>'.$item->sickness_allergy.'</td>
+                        <td>'.$item->phone_no.'</td>
+                        <td>'.$item->ffname.'</td>
+                        <td>'.$item->status.'</td>
+                        <td>
+                            <a href="#" id="'.$item->id.'" class="mx-2 editIcon btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#editStudentModal">Enroll Student</a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+    }
+
+    public function getStudentAwaitData(Request $request)
+    {
+        $id = $request->id;
+        $stmt = StudentData::find($id);
+        return response()->json($stmt);
+    }
+
+    public function enrollAwaitingStudent(Request $request)
+    {
+        // $student_id = $request->input('student_id');
+        // $view_data['password'] = Hash::make('abcxyz');
+        $fileName = '';
+        $student_id = $request->input('student_id');
+        $stmt = Student::find($request->student_id);
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = time(). '.' .$file->getClientOriginalExtension();
+            $file->storeAs('public/images', $fileName);
+            if ($stmt->avatar) {
+                Storage::delete('public/images/' .$stmt->avatar);
+            }
+        }else {
+
+            $fileName = $request->student_passport;
+        }
+        
+        $current_class = $request->input('class_admitted');
+
+        $student_data = [
+            'token' => Hash::make('abcxyz'),
+            'status' => 'Enrolled', 
+            'date_admitted' => date('D/M/Y'),
+            'class_admitted' => $current_class,
+            'current_class' => $current_class,
+        ];
+
+            
+            $final_stmt = StudentData::where('id', $student_id)->update($student_data);
+            if ($final_stmt) {
+                return response()->json([
+                    'status' => 200
+                ]);
+            }else {
+                return response()->json([
+                    'status' => 300
+                ]);
+            }
+    }
+
+    public function allUsers(Request $request)
+    {
+        return view('dashboard.user_management');
+    }
+
+    public function newUser(Request $request)
+    {
+        return view('dashboard.new_user');
+    }
+
+    public function createUser(Request $request)
+    {
+        $user_data = [
+            'fname' => $request->input('fname'),
+            'phone_no' => $request->input('phone_no'),
+            'email' => $request->input('email'),
+            'password' => Hash::make('abcxyz'),
+            'role' => '',
+        ];
+
+        $stmt = SystemUsers::create($user_data);
+        if ($stmt) {
+            return response()->json([
+                'status' => 200,
+                'data' => $stmt
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        };
+    }
+
+    public function viewAllUser()
+    {
+        $stmt = SystemUsers::all();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-striped align-middle table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>'.$item->fname.'</td>
+                        <td>'.$item->email.'</td>
+                        <td>'.$item->phone_no.'</td>
+                        <td>'.$item->role.'</td>
+                        <td>
+                            <a href="#" id="'.$item->id.'" class="mx-2 assignIcon btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#assignModal">Assign Role</a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+    }
+
+    public function getUserData(Request $request)
+    {
+        $id = $request->id;
+        $stmt = SystemUsers::find($id);
+        return response()->json($stmt);
+    }
+
+    public function userDataUpdate(Request $request)
+    {
+        $user_id = $request->input('user_id');
+
+        $role = $request->input('role');
+
+        $user_data = [
+            'role' => $role
+        ];
+            
+        $final_stmt = SystemUsers::where('id', $user_id)->update($user_data);
+
+        if ($final_stmt) {
+            return response()->json([
+                'status' => 200
+            ]);
+        }else {
+            return response()->json([
+                'status' => 300
+            ]);
+        }
+    }
+
+    public function newItem()
+    {
+        return view('dashboard.new_item');
+    }
+
+    public function addNewItem(Request $request)
+    {
+        $item_data = [
+            'item_name' => $request->input('item_name'),
+            'item_price' => $request->input('item_price'),
+        ];
+
+        $stmt = Items::create($item_data);
+        if ($stmt) {
+            return response()->json([
+                'status' => 200,
+                'data' => $stmt
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        };
+    }
+
+    public function viewAllItem()
+    {
+        return view('dashboard.items');
+    }
+
+    public function getItems()
+    {
+        $stmt = Items::all();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-striped align-middle table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>'.$item->item_name.'</td>
+                        <td>&#8358;'.$item->item_price.'</td>
+                        <td>
+                            <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi-pencil-square text-secondary"></i></a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+    }
+
+    public function getItem(Request $request)
+    {
+        $id = $request->id;
+        $stmt = Items::find($id);
+        return response()->json($stmt);
+    }
+
+    public function updateItem(Request $request)
+    {
+        $item_id = $request->input('item_id');
+        // $item_name = $request->input('item_name');
+        // $item_price = $request->input('item_price');
+
+        $item_data = [
+            'item_name' => $request->input('item_name'),
+            'item_price' => $request->input('item_price'),
+        ];
+            
+        $final_stmt = Items::where('id', $item_id)->update($item_data);
+
+        if ($final_stmt) {
+            return response()->json([
+                'status' => 200
+            ]);
+        }else {
+            return response()->json([
+                'status' => 300
+            ]);
+        }
+    }
+
+    public function deleteItem(Request $request)
+    {
+        $id = $request->id;
+        $stmt = Items::find($id);
+        // return $stmt;
+        return Items::destroy($id);
     }
 }

@@ -29,10 +29,19 @@
                                     <span class="float-left">
                                         <i class="fa fa-user-plus"></i>
                                     </span>
-                                    Student Enrollment</a>
+                                    Student Registration</a>
                             </span>
                         </li>
                         <li class="list-group-item">
+                            <span class="link-name">
+                                <a href="{{ route('dashboard-enroll-student') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-user-plus"></i>
+                                    </span>
+                                    Student Enrollment</a>
+                            </span>
+                        </li>
+                        {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('dashboard.grade.students') }}">
                                     <span class="float-left">
@@ -40,7 +49,7 @@
                                     </span>
                                     Grade Students</a>
                             </span>
-                        </li>
+                        </li> --}}
                         <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('dashboard.record') }}">
@@ -59,15 +68,57 @@
                                     Books</a>
                             </span>
                         </li>
-                        <li class="list-group-item">
-                            <span class="link-name">
-                                <a href="{{ route('dashboard.finance') }}">
-                                    <span class="float-left">
-                                        <i class="fa fa-money"></i>
-                                    </span>
-                                    Conirm Payments</a>
-                            </span>
-                        </li>
+                        <div class="dropdown">
+                            <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="link-name">
+                                    <a href="">
+                                        <span class="float-left">
+                                            <i class="fa fa-money"></i>
+                                        </span>
+                                        Finance</a>
+                                </span>
+                            </li>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a></li>
+                                <li><a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ route('dashboard.finance.edit') }}">Student/Family Account</a></li> --}}
+                                {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="link-name">
+                                    <a href="">
+                                        <span class="float-left">
+                                            <i class="fa fa-users"></i>
+                                        </span>
+                                        User Management</a>
+                                </span>
+                            </li>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('dashboard.new.user') }}">Create new user</a></li>
+                                <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">All users</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">Edit Invoice</a></li> --}}
+                                {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="link-name">
+                                    <a href="">
+                                        <span class="float-left">
+                                            <i class="fa fa-list"></i>
+                                        </span>
+                                        Products</a>
+                                </span>
+                            </li>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Product</a></li>
+                                <li><a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Products</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">Edit Invoice</a></li> --}}
+                                {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
+                            </ul>
+                        </div>
                         <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('logout') }}">

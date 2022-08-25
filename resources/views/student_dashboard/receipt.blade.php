@@ -9,9 +9,9 @@
     <div class="col-md-12 text-center">
       <h3 class="text-ims-default">THE PRIORITY SCHOOL</h3>
       <h5 class="text-dark">NO: 3 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h5>
-      <h5 class="text-ims-orange">OFFICIAL RECEIPT</h5>
-      <h6 class="text-ims-default" style="text-transform: uppercase">RECEIPT NO: {{ $receipt_no }} &nbsp;&nbsp;&nbsp;RECEIPT DATE: {{ $receipt_date }}</h6>
-      <h6 class="text-ims-default">NAME: {{ $student_name }} &nbsp;&nbsp;&nbsp;ADDRESS: {{ $student_address }}</h6>
+      <h5 class="text-ims-orange">SCHOOL FEE SCHEDULE</h5>
+      <h6 class="text-ims-default" style="text-transform: uppercase">DATE: {{ $receipt_date }}</h6>
+      {{-- <h6 class="text-ims-default">NAME: {{ $student_name }} &nbsp;&nbsp;&nbsp; <br> ADDRESS: {{ $student_address }}</h6> --}}
       <table class="table table-bordered table-stripped" id="result-table">
         <thead>
           <tr class="text-ims-default">
@@ -23,38 +23,47 @@
         <tbody>
             <tr>
                 <td>1</td>
-                <td>Tuition Fee For 1st Term 2021</td>
-                <td>&#8358;68,000.00</td>
+                <td>Tuition Fee For 1st Term</td>
+                <td>&#8358;80,000.00</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>Tuition Fee For 2nd Term 2021</td>
-                <td>&#8358;50,000.00</td>
+                <td>Tuition Fee For 2nd Term</td>
+                <td>&#8358;60,000.00</td>
             </tr>
             <tr>
-                <td>3</td>
-                <td>A complete Set of Uniform</td>
-                <td>&#8358;10,500.00</td>
+                <td>2</td>
+                <td>Tuition Fee For 2nd Term</td>
+                <td>&#8358;60,000.00</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><b>Per Annum</b></td>
+                <td><b>&#8358;200,000.00</b></td>
             </tr>
         </tbody>
       </table>
       <div class="row">
         <div class="col-md-12 text-center">
-            <h6>TOTAL DUE AMOUNT:&nbsp;&#8358;128,500</h6>
+            <H5>ACCOUNT DETAILS</H5>
+            <h6><b>Account Name:</b>&nbsp;The Priority School</h6>
+            <h6><b>Account Number:</b>&nbsp;0002044118</h6>
+            <h6><b>Bank Name:</b>&nbsp;Jaiz Bank PLC</h6>
+            {{-- <h6><b>Account Name:</b>&nbsp;The Priority School</h6> --}}
         </div>
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <h6 class="text-dark">
                 <b>SIGNATURE:</b>&nbsp; <span class="text-ims-default">________________</span>
             </h6>
-        </div>
-        <div class="col-md-6">
+        </div> --}}
+        <div class="col-md-12">
             <h6 class="text-dark">
-                <b>DATE:</b>&nbsp;<span class="text-ims-default">{{ date('D/M/Y') }}</span>
+                
             </h6>
         </div>
         <div class="col-md-12 text-center print-btn">
              <button class="btn btn-ims-green" id="print-btn">
-                <i class="fa fa-print"></i>&nbsp; PRINT RECEIPT
+                <i class="fa fa-print"></i>&nbsp; PRINT
              </button>
         </div>
       </div>

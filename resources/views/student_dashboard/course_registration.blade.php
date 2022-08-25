@@ -17,7 +17,7 @@
             <label for="student_id">STUDENT NAME</label>
             <select name="student_id" id="student_id" class="form-control">
                 @foreach ($students as $item)
-                    <option value="{{ $item->id }}">{{ $item->fname }}</option>
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
             <input type="hidden" name="student_name" id="student_name">
@@ -26,11 +26,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="student_class">STUDENT CLASS</label>
-            <select name="student_class" id="student_class" class="form-control">
-                @foreach ($classes as $item)
-                    <option value="{{ $item->class_name }}">{{ $item->class_name }}</option>
-                @endforeach
-            </select>
+            <input type="text" class="form-control" name="student_class" id="student_class">
         </div>
         <div class="form-group col-md-4">
             <label for="academic_session">ACADEMIC SESSION</label>
@@ -84,7 +80,8 @@ $('#student_id').on('change', function(e){
 
                 success: function(res){
                     console.log(res);
-                    $('#student_name').val(res.fname);
+                    $('#student_name').val(res.name);
+                    $('#student_class').val(res.current_class);
                 }
             })
         })

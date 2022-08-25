@@ -31,6 +31,12 @@ Route::get('/clear', function() {
     return "Cleared!";
  
  });
+
+Route::get('/migrate', function(){
+    \Artisan::call('migrate');
+    dd('migrated!');
+});
+
  
  Route::get('/foo', function () {
     Artisan::call('storage:link');
@@ -72,6 +78,10 @@ Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::post('/dashboard/student/enroll', 'DashboardController@enrollStudent')->name('enroll.student');
 Route::get('/dashboard/students', 'DashboardController@fetchStudents')->name('fetch.students');
 Route::get('/dashboard/student/new', 'DashboardController@newStudent')->name('dashboard-new-student');
+Route::get('/dashboard/students/enrollment', 'DashboardController@getAwaitStudents')->name('dashboard-enroll-student');
+Route::get('/dashboard/student/enrollment', 'DashboardController@getAwaitingStudents')->name('fetch.awaiting');
+Route::get('/dashboard/student/enrollment/data', 'DashboardController@getStudentAwaitData')->name('get.await.student.data');
+Route::post('/dashboard/student/enrollment/data', 'DashboardController@enrollAwaitingStudent')->name('enroll.await.student');
 Route::any('/add-user', 'DashboardController@loginDashboard');
 Route::any('/dashboard/student/new/add', 'DashboardController@addStudent')->name('newstudent');
 Route::any('/dashboard/student/edit/{sid}', 'DashboardController@editStudent')->name('editstudent');
@@ -83,10 +93,39 @@ Route::get('/dashboard/student/records', 'DashboardController@subjectRecord')->n
 Route::get('/dashboard/books', 'DashboardController@getBooks')->name('dashboard.books');
 Route::post('/dashboard/book/upload', 'DashboardController@uploadBook')->name('dashboard.upload.book');
 Route::get('/dashboard/book/load', 'DashboardController@loadBook')->name('dashboard.all.books');
-Route::get('/dashboard/finance/', 'TransactionController@index')->name('dashboard.finance');
-Route::get('/dashboard/finance/logs', 'TransactionController@transactionHistoryAdmin')->name('dashboard.logs');
-Route::post('/dashboard/finance/logs/confirm', 'TransactionController@confirmTransaction')->name('dashboard.confirm.transaction');
+Route::get('/dashboard/users/', 'DashboardController@allUsers')->name('dashboard.all.users');
+Route::get('/dashboard/user/new', 'DashboardController@newUser')->name('dashboard.new.user');
+Route::post('/dashboard/user/new', 'DashboardController@createUser')->name('dashboard.new.user');
+Route::get('/dashboard/users/all', 'DashboardController@viewAllUser')->name('dashboard.get.all.users');
+Route::get('/dashboard/user/data', 'DashboardController@getUserData')->name('get.user.data');
+Route::post('/dashboard/user/update', 'DashboardController@userDataUpdate')->name('user.data.update');
+Route::get('/dashboard/item/new', 'DashboardController@newItem')->name('dashboard.new.item');
+Route::post('/dashboard/item/new', 'DashboardController@addNewItem')->name('dashboard.add.item');
+Route::get('/dashboard/item/all/list', 'DashboardController@viewAllItem')->name('dashboard.all.item');
+Route::get('/dashboard/item/all', 'DashboardController@getItems')->name('dashboard.item.list');
+Route::get('/dashboard/item/single', 'DashboardController@getItem')->name('dashboard.edit.item');
+Route::post('/dashboard/item/update', 'DashboardController@updateItem')->name('dashboard.update.item');
+Route::post('/dashboard/item/delete', 'DashboardController@deleteItem')->name('dashboard.delete.item');
 
+// Transaction Routes
+
+
+Route::get('/dashboard/accounts/', 'TransactionController@index')->name('dashboard.finance');
+Route::get('/dashboard/finance/generate', 'TransactionController@indexGenerate')->name('dashboard.finance.generate');
+Route::get('/dashboard/finance/edit', 'TransactionController@indexEdit')->name('dashboard.finance.edit');
+Route::get('/dashboard/finance/logs', 'TransactionController@transactionHistoryAdmin')->name('dashboard.logs');
+Route::get('/dashboard/finance/logs/generate', 'TransactionController@generateTransactionHistoryAdmin')->name('dashboard.logs.generate');
+Route::get('/dashboard/finance/logs/edit', 'TransactionController@editTransactionHistoryAdmin')->name('dashboard.logs.edit');
+Route::post('/dashboard/finance/logs/confirm', 'TransactionController@confirmTransaction')->name('dashboard.confirm.transaction');
+Route::get('/dashboard/finance/logs/data', 'TransactionController@getInvoiceData')->name('get.invoice.data');
+Route::get('/dashboard/account/edit/', 'TransactionController@getAccountBalance')->name('dashboard.edit.account');
+Route::post('/dashboard/account/edit/', 'TransactionController@editAccountBalance')->name('dashboard.edit.account.balance');
+Route::get('/dashboard/generate/invoice/{id}', 'TransactionController@invoiceCheckout')->name('dashboard.invoice.checkout');
+Route::get('/dashboard/item/price/', 'TransactionController@getItemPrice')->name('dashboard.item.price');
+Route::post('/dashboard/item/cart/', 'TransactionController@addItemToCart')->name('dashboard.add.item.cart');
+Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name('dashboard.get.cart');
+Route::get('/dashboard/items/carts/', 'TransactionController@generateInvoice2')->name('dashboard.invoice');
+Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')->name('dashboard.add.invoice');
 
 
 Route::get('/students', [StudentController::class, 'index']);
@@ -95,6 +134,10 @@ Route::get('/fetch-all', [StudentController::class, 'fetchAll'])->name('fetchAll
 Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
 Route::post('/update', [StudentController::class, 'update'])->name('update');
 Route::post('/delete', [StudentController::class, 'delete'])->name('delete');
+Route::get('/studentData', [StudentController::class, 'studentData'])->name('studentData');
+
+// Registration Routes
+Route::post('/online/register', 'RegistrationController@index')->name('registration.online');
 
 // Subjects Routes
 
@@ -141,8 +184,11 @@ Route::post('/teacher/portal/login', 'TeachersController@portalLogin')->name('po
 Route::get('/teacher/portal/dashboard', 'TeachersController@dashboardView')->name('portal.teacher.dashboard');
 Route::get('/teacher/portal/grade-students', 'TeachersController@gradeView')->name('portal.teacher.grade');
 Route::get('/teacher/portal/grade-student', 'TeachersController@fetchAllStudentCourse')->name('portal.teacher.grades');
+Route::get('/teacher/portal/class-student', 'TeachersController@fetchAllStudent')->name('portal.teacher.class');
 Route::get('/teacher/portal/subject-data', 'TeachersController@getSubjectData')->name('portal.teacher.subject');
 Route::post('/teacher/portal/update-scores', 'TeachersController@updateScores')->name('portal.teacher.scores');
+Route::post('/teacher/portal/results', 'TeachersController@getResults')->name('portal.teacher.results')->middleware('can:get_results');
+Route::get('/teacher/portal/logout', 'TeachersController@logout')->name('teacher.logout');
 
 // Transaction route
 
@@ -151,3 +197,8 @@ Route::get('/student/portal/transaction/checkout', 'TransactionController@viewRe
 Route::post('/student/portal/transaction/checkout', 'TransactionController@checkout')->name('portal.checkout.final');
 Route::get('/student/portal/transaction/history', 'TransactionController@transactionHistoryView')->name('portal.transaction.history');
 Route::get('/student/portal/transaction/histories', 'TransactionController@transactionHistory')->name('portal.transaction.histories');
+Route::get('/student/portal/invoice/', 'TransactionController@getInvoice')->name('portal.transaction.invoice');
+Route::get('/student/portal/transaction/{id}', 'TransactionController@viewInvoice')->name('portal.transaction.invoice.view');
+
+// Pdf Routes
+Route::get('generate-pdf/invoice', 'PdfController@index')->name('download.invoice.pdf');

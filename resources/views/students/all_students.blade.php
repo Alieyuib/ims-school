@@ -40,14 +40,10 @@ data-bs-backdrop="static" aria-hidden="true">
         <input type="hidden" name="student_passport" id="student_passport">
         <div class="modal-body p-4 bg-light">
             <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="firstname">Firstname</label>
+                <div class="form-group col-md-8">
+                    <label for="firstname">Fullname</label>
                     {{-- <input type="hidden" class="form-control" name="status" id="status" value="1"> --}}
                     <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="lastname">Lastname</label>
-                    <input type="text" class="form-control" name="lname" placeholder="Lastname" id="lastname">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="familyname">Family Name</label>
@@ -198,10 +194,10 @@ data-bs-backdrop="static" aria-hidden="true">
                 },
                 success: function(res){
                     console.log(res);
-                    $('#firstname').val(res.fname);
+                    $('#firstname').val(res.name);
                     $('#student_id').val(res.id);
                     $('#student_passport').val(res.passport);
-                    $('#lastname').val(res.lname);
+                    // $('#lastname').val(res.lname);
                     $('#familyname').val(res.ffname);
                     $('#email').val(res.email);
                     $('#pob').val(res.pob);

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\SchoolClasses as SchoolClasses;
 use App\Student As Student;
+use App\StudentData as StudentData;
 use App\Books as Books;
 use App\Results As Results;
 use App\StudentClass as StudentClass;
+use App\StudentFamilyAccount as StudentFamilyAccount;
 use App\RegisteredCourses as RegisteredCourses;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +32,7 @@ class PortalController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:100',
-            'token' => 'required|min:6|max:50',
+            // 'token' => 'required|min:6|max:50',
         ]);
 
         if ($validator->fails()) {
@@ -38,33 +41,23 @@ class PortalController extends Controller
                 'msg'   => $validator->getMessageBag()
             ]);
         }else{
-            $student = Student::where('email', $request->email)->first();
+            $student = StudentData::where('email', $request->email)->first();
             if ($student) {
-                if (Hash::check($request->input('token'), $student->token)) {
-                    $request->session()->put('loggedInUser', $student->id);
-                    $request->session()->put('loggedInName', $student->fname . ' ' . $student->lname);
-                    $request->session()->put('loggedInEmail', $student->email);
-                    $request->session()->put('loggedInAddress', $student->address);
-                    $request->session()->put('loggedInFamilyName', $student->ffname);
-                    $request->session()->put('loggedInGuardian', $student->guardian);
-                    $request->session()->put('loggedInCreatedAt', $student->created_at);
-                    $userLoggedIn = $request->session()->get('loggedInName');
-                    $userLoggedInEmail = $request->session()->get('loggedInEmail');
-                    $userLoggedInGuardian = $request->session()->get('loggedInGuardian');
-                    return response()->json([
-                        'status' => 200,
-                        'msg'    => 'success',
-                        'msg2'   => 'LoggedIN As'.' '.$userLoggedIn,
-                    ]);
-                }else{
-
-                    return response()->json([
-                        'status' => 401,
-                        'msg'    => 'Email or password is incorrect',
-                        'icon' =>   'warning'
-                    ]);
-                }
-                
+                $request->session()->put('loggedInUser', $student->id);
+                $request->session()->put('loggedInName', $student->name);
+                $request->session()->put('loggedInEmail', $student->email);
+                $request->session()->put('loggedInAddress', $student->address);
+                $request->session()->put('loggedInFamilyName', $student->ffname);
+                $request->session()->put('loggedInGuardian', $student->guardian);
+                $request->session()->put('loggedInCreatedAt', $student->created_at);
+                $userLoggedIn = $request->session()->get('loggedInName');
+                $userLoggedInEmail = $request->session()->get('loggedInEmail');
+                $userLoggedInGuardian = $request->session()->get('loggedInGuardian');
+                return response()->json([
+                    'status' => 200,
+                    'msg'    => 'success',
+                    'msg2'   => 'LoggedIN As'.' '.$userLoggedIn,
+                ]);
             }else{
                 return response()->json([
                     'status'  => 401,
@@ -80,20 +73,25 @@ class PortalController extends Controller
     {
 
         $family_email = $request->session()->get('loggedInEmail');
-        $stmt = Finance::where('family_email', $family_email)->first();
+        $stmt = StudentFamilyAccount::where('email', $family_email)->first();
 
-        // $view_data['balance'] = $stmt->balance;
+        $userLoggedIn = $request->session()->get('loggedInUser');
+        $student_data = StudentData::find($userLoggedIn);
+
+        $view_data['current_class'] = $student_data->current_class;
+
+        $view_data['balance'] = $stmt->balance;
 
         $userLoggedId = $request->session()->get('loggedInEmail');
-        $member_count = Student::where('email', $userLoggedId)->get();
+        $member_count = StudentData::where('email', $userLoggedId)->get();
         $view_data['member_count'] = $member_count->count();
         return view('student_dashboard.dashboard', $view_data);
     }
 
     public function viewBioData(Request $request)
     {   
-        $userLoggedId = $request->session()->get('loggedInFamilyName');
-        $view_data['student_bio'] = Student::where('ffname', $userLoggedId)->get();
+        $userLoggedId = $request->session()->get('loggedInEmail');
+        $view_data['student_bio'] = StudentData::where('email', $userLoggedId)->get();
         // $student_bio = Student::where('id', $userLoggedId)->first();
         // $view_data['student_id'] = $student_bio->id;
         // $view_data['student_name'] = $student_bio->fname;
@@ -246,7 +244,7 @@ class PortalController extends Controller
     public function getBioData(Request $request)
     {
         $id = $request->id;
-        $stmt = Student::find($id);
+        $stmt = StudentData::find($id);
         return response()->json($stmt);
     }
 
@@ -256,7 +254,7 @@ class PortalController extends Controller
         // $student_id = $request->input('student_id');
         $fileName = '';
         $student_id = $request->input('student_id');
-        $stmt = Student::find($request->student_id);
+        $stmt = StudentData::find($request->student_id);
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $fileName = time(). '.' .$file->getClientOriginalExtension();
@@ -270,8 +268,8 @@ class PortalController extends Controller
         }
 
         $student_data = [
-            'fname' => $request->input('fname'),
-            'lname' => $request->input('lname'),
+            'name' => $request->input('fname'),
+            // 'lname' => $request->input('lname'),
             'dob' => $request->input('dob'),
             'pob' => $request->input('pob'),
             'sickness_allergy' => $request->input('sickness'),
@@ -286,7 +284,7 @@ class PortalController extends Controller
         ];
 
             
-            $final_stmt = Student::where('id', $student_id)->update($student_data);
+            $final_stmt = StudentData::where('id', $student_id)->update($student_data);
             if ($final_stmt) {
                 return response()->json([
                     'status' => 200
@@ -300,12 +298,12 @@ class PortalController extends Controller
 
     public function courseRegistration(Request $request)
     {
-        $loggedInFamilyName = $request->session()->get('loggedInFamilyName');
+        $loggedInEmail = $request->session()->get('loggedInEmail');
         // $stmt = Student::find($userLoggedId);
-        $view_data['students'] = Student::where('ffname', $loggedInFamilyName)->get();
+        $view_data['students'] = StudentData::where('email', $loggedInEmail)->get();
         // $view_data['student_name'] = $stmt->fname;
         // $view_data['student_id'] = $stmt->id;
-        $view_data['classes'] = StudentClass::all();
+        $view_data['classes'] = SchoolClasses::all();
         return view('student_dashboard.course_registration', $view_data);
     }
 

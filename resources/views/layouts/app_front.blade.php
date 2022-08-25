@@ -65,7 +65,7 @@
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
+            <div class="container-fluid px-4 px-lg-5">
                 <a class="navbar-brand" href="{{ route('front.page') }}">
                     <img src="{{asset('images/logo.jpg')}}" alt="">
                     The Priority School
@@ -75,6 +75,7 @@
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#management">Our Management</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('front.online.registration') }}">Online Registration</a></li>
                         {{-- <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li> --}}
                         <div class="dropdown">
@@ -99,11 +100,37 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-light mb-5">Your Favorite Place for learning <b>Islamic knowledge</b> Click the button below to enroll</p>
-                        <a class="btn btn-ims-orange btn-xl" href="{{ route('front.online.registration') }}">Enroll Now</a>
+                        <a class="btn btn-ims-orange btn-xl" href="{{ route('front.online.registration') }}">Register Now</a>
                     </div>
                 </div>
             </div>
         </header>
+        <!-- Portfolio-->
+        <div id="management">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-12 mngdiv">
+                        <h2 class="text-center py-10 mngtext">Our Management Team</h2>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 teamdiv">
+                        <div class="row p-0">
+                            <div class="col-lg-12 avatar-team">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 teamdiv">
+                        
+                    </div>
+                    <div class="col-lg-3 col-sm-6 teamdiv">
+                        
+                    </div>
+                    <div class="col-lg-3 col-sm-6 teamdiv">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- About-->
         {{-- <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
@@ -154,67 +181,6 @@
                 </div>
             </div>
         </section>
-        <!-- Portfolio-->
-        <div id="portfolio">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/6.jpg" alt="..." />
-                            <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">Category</div>
-                                <div class="project-name">Project Name</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container px-4 px-lg-5 text-center">

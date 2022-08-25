@@ -17,7 +17,7 @@
                                     (الرصيد)
                                 </p>
                                 <p class="number-total">
-                                    {{-- <span><b>&#8358;{{ $balance }}</b></span> --}}
+                                    <span><b>&#8358;{{ $balance }}</b></span>
                                 </p>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                     (صف دراسي)
                                 </p>
                                 <p class="number-total">
-                                    <span><b>CLASS 2</b></span>
+                                    <span><b>{{ $current_class }}</b></span>
                                 </p>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-8 card-text">
                                 <p class="number-text">
-                                    SUBJECTS <br>
+                                    BOOKS <br>
                                     (المواضيع)
                                 </p>
                                 <p class="number-total">

@@ -1,3 +1,11 @@
+@media print {
+    .invoice{ 
+        width: 100% !important; 
+        position: relative !important;
+        background-color: red !important;
+    }
+}
+
 html, body{
     height: 100%;
     margin: 0;
@@ -22,6 +30,24 @@ html, body{
 .links-header ul{
     /* display: inline-block !important; */
     float: right;
+}
+
+.mngdiv{
+    height: 90px;
+    width: 100%;
+    background-color: #fff;
+    position: relative;
+}
+.mngtext{
+    padding: 30px;
+    color: #145251;
+}
+.teamdiv{
+    height: 400px;
+    background-color: #d9ba79;
+}
+.dropdown-menu{
+    background-color: #fff;
 }
 
 .links-header ul li{
@@ -280,6 +306,13 @@ p.forget-password-text a {
 
 /* dashboard styles */
 
+.assign-role-form{
+    padding: 30px;
+}
+.assign-role-form div.form-group{
+    margin-bottom: 30px;
+}
+
 .dashboard-overlay {
     background-color: #fff;
     /* width: 100%; */
@@ -483,6 +516,24 @@ p.forget-password-text a {
     margin-left: -30px;
     height: 100%;
     width: 85%;
+    overflow: scroll;
+    overflow-x: scroll;
+    position: fixed;
+}
+.student-list-div-2{
+    /* margin-left: -30px; */
+    height: 100%;
+    /* width: 85%; */
+    margin-left: 150px;
+    margin-top: 20px;
+    overflow: scroll;
+    overflow-x: scroll;
+    position: fixed;
+}
+.student-list-div-3{
+    /* margin-left: -30px; */
+    height: 100%;
+    width: 52%;
     overflow: scroll;
     overflow-x: scroll;
     position: fixed;

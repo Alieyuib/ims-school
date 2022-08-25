@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Model\Students;
 use App\Student;
+use App\StudentData as StudentData;
 use App\Students as AppStudents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
+    public function studentData()
+    {
+        return StudentData::all();
+    }
     public function index()
     {
         return view('students.all_students');
@@ -49,7 +54,7 @@ class StudentController extends Controller
 
 public function fetchAll()
     {
-        $stmt = Student::all();
+        $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
             $output .= '<table class="table table-striped align-middle table-hover">
@@ -60,7 +65,7 @@ public function fetchAll()
                         <th>Name</th>
                         <th>POB</th>
                         <th>DOB</th>
-                        <th>Guardian</th>
+                        <th>Email</th>
                         <th>Sickness/Allergy</th>
                         <th>Phone Number</th>
                         <th>Family Name</th>
@@ -74,10 +79,10 @@ public function fetchAll()
                         <td>
                             <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
                         </td>
-                        <td> '.$item->fname.' '.$item->lname.' </td>
+                        <td> '.$item->name.' </td>
                         <td>'.$item->pob.'</td>
                         <td>'.$item->dob.'</td>
-                        <td>'.$item->guardian.'</td>
+                        <td>'.$item->email.'</td>
                         <td>'.$item->sickness_allergy.'</td>
                         <td>'.$item->phone_no.'</td>
                         <td>'.$item->ffname.'</td>
@@ -102,7 +107,7 @@ public function fetchAll()
     public function edit(Request $request)
     {
         $id = $request->id;
-        $stmt = Student::find($id);
+        $stmt = StudentData::find($id);
         return response()->json($stmt);
     }
 
@@ -111,7 +116,7 @@ public function fetchAll()
     {
         $fileName = '';
         $student_id = $request->input('student_id');
-        $stmt = Student::find($request->student_id);
+        $stmt = StudentData::find($request->student_id);
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $fileName = time(). '.' .$file->getClientOriginalExtension();
@@ -125,12 +130,12 @@ public function fetchAll()
         }
 
         $student_data = [
-            'fname' => $request->input('fname'),
-            'lname' => $request->input('lname'),
+            'name' => $request->input('fname'),
+            // 'lname' => $request->input('lname'),
             'dob' => $request->input('dob'),
             'pob' => $request->input('pob'),
             'sickness_allergy' => $request->input('sickness'),
-            'guardian' => $request->input('guard'),
+            // 'guardian' => $request->input('guard'),
             'address' => $request->input('address'),
             'phone_no' => $request->input('phone'),
             'name_of_school' => $request->input('school'),
@@ -141,7 +146,7 @@ public function fetchAll()
         ];
 
             
-            $final_stmt = Student::where('id', $student_id)->update($student_data);
+            $final_stmt = StudentData::where('id', $student_id)->update($student_data);
             if ($final_stmt) {
                 return response()->json([
                     'status' => 200
@@ -157,11 +162,10 @@ public function fetchAll()
     public function delete(Request $request)
     {
         $id = $request->id;
-        $stmt = Student::find($id);
+        $stmt = StudentData::find($id);
         // return $stmt;
-        if (Storage::delete('public/images/'.$stmt->passport)) {
-            return Student::destroy($id);
-        }
+        Storage::delete('public/images/'.$stmt->passport);
+        return StudentData::destroy($id);
     }
 
 }

@@ -17,12 +17,12 @@
                                     (الطلاب النشطاء)
                                 </p>
                                 <p class="number-total">
-                                    <span>{{ $total_students }}</span>
+                                    <span><b>{{ $total_students }}</b></span>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 dashboard-card card">
+                    {{-- <div class="col-md-3 dashboard-card card">
                         <div class="row">
                             <div class="col-md-4 card-icon">
                                 <i class="fa fa-male fa-3x text-ims-default"></i>
@@ -37,8 +37,8 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 dashboard-card card">
+                    </div> --}}
+                    {{-- <div class="col-md-3 dashboard-card card">
                         <div class="row">
                             <div class="col-md-4 card-icon">
                                 <i class="fa fa-user-times fa-3x text-danger"></i>
@@ -53,7 +53,7 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-3 dashboard-card card">
                         <div class="row">
                             <div class="col-md-4 card-icon">
@@ -65,7 +65,23 @@
                                      (طاقم العمل)
                                 </p>
                                 <p class="number-total">
-                                    <span>30</span>
+                                    <span><b>{{ $total_users }}</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 dashboard-card card">
+                        <div class="row">
+                            <div class="col-md-4 card-icon">
+                                <i class="fa fa-money fa-3x text-success"></i>
+                            </div>
+                            <div class="col-md-8 card-text">
+                                <p class="number-text">
+                                     Accounts <br>
+                                     (طاقم العمل)
+                                </p>
+                                <p class="number-total">
+                                    <span><b>{{ $total_account }}</b></span>
                                 </p>
                             </div>
                         </div>

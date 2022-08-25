@@ -53,12 +53,12 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="firstname">Fullname</label>
-                                    <input type="hidden" class="form-control" name="status" id="status" value="1">
-                                    <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname">
+                                    {{-- <input type="hidden" class="form-control" name="status" id="status" value="0"> --}}
+                                    <input type="text" class="form-control" name="fname" placeholder="Firstname" id="fname">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="familyname">Family Name</label>
-                                    <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="familyname">
+                                    <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="ffname">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="dob">DOB</label>
@@ -100,11 +100,11 @@
                                     <label for="address">Address</label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" id="address">
                                 </div>
-                                <div class="form-group col-md-12">
+                                {{-- <div class="form-group col-md-12">
                                     <label for="address">Term & Condition</label>
                                     <input type="checkbox" class="form-control" name="address" placeholder="Address" id="address">
-                                </div>
-                                <button type="submit" id="add_student_btn" class="btn btn-ims-orange">Enroll</button>
+                                </div> --}}
+                                <button type="submit" id="add_student_btn" class="btn btn-ims-orange">Register</button>
                             </div>
                         </form>
                         <div class="col-md-12 text-center">
@@ -127,6 +127,9 @@
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted text-ims-default">Copyright &copy; {{date('Y')}} - The Priority School</div></div>
         </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{{ asset('app-assets/js/app.js') }}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- SimpleLightbox plugin JS-->
@@ -138,5 +141,65 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script>
+            // Adding New student
+            $('#online-form').submit(function(e){
+                e.preventDefault();
+                // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+                const fd = new FormData(this);
+                if (
+                $('#fname').val() == '' ||                   
+                $('#ffname').val() == '' ||            
+                $('#pob').val() == '' ||            
+                $('#dob').val() == '' ||            
+                $('#sickness').val() == '' ||            
+                $('#guard').val() == '' ||            
+                $('#phone').val() == '' ||            
+                $('#school').val() == '' ||            
+                $('#subject').val() == '' ||            
+                $('#email').val() == '' ||            
+                $('#address').val() == ''  ||
+                $('#passport').val() == ''         
+                ) {
+                Swal.fire(
+                    'All Form',
+                    'Input fields are require',
+                    'warning'
+                )
+            }else{
+                $('#add_student_btn').text('Registering...');
+                $.ajax({
+                    url: '{{ route('registration.online') }}',
+                    method: 'post',
+                    data: fd,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function(res){
+                        console.log(res);
+                        if (res.status == 200) {
+                            Swal.fire(
+                                'Student',
+                                'Registration Sucessfully',
+                                'success'
+                            );
+                            // fetchAllEmployees();
+                            $('#online-form').trigger('reset');
+                            $('#add_student_btn').text('Register');
+                        }else if (res.status == 300) {
+                            Swal.fire(
+                                'Student',
+                                'Registration Not Sucessfully',
+                                'error'
+                            )
+                        } 
+                    }
+                });
+            }
+                
+            });
+        </script>
     </body>
 </html>

@@ -14,17 +14,17 @@
       <h6 class="text-ims-default">FAMILY NAME: {{ $family_name }} &nbsp;&nbsp;&nbsp;ADDRESS: {{ $family_address }}</h6>
       <table class="table table-bordered table-stripped" id="result-table">
         <thead>
-          <tr class="text-ims-default">
+          <tr class="text-ims-default text-center">
             {{-- <th>S/N</th> --}}
             <th>STUDENT NAME</th>
-            <th>FAMILY NAME</th>
+            {{-- <th>FAMILY NAME</th> --}}
           </tr>
         </thead>
         <tbody>
             @foreach ($students_data as $item)
                 <tr>
-                    <td>{{ $item->fname }}</td>
-                    <td>{{ $family_name }}</td>
+                    <td>{{ $item->name }}</td>
+                    {{-- <td>{{ $family_name }}</td> --}}
                 </tr>
             @endforeach
         </tbody>
@@ -34,6 +34,7 @@
             @csrf
             <div class="row">
                 <div class="col-md-12">
+                    <h5>You have a balance of: <b>&#8358;{{ $balance }}</b></h5>
                     <label for="amount_to_pay">Total Due Amount in &#8358;</label>
                     <input type="text" name="amount_to_pay" id="amount_to_pay" placeholder="Amount to pay" value="{{ $total_due_amount }}">
                 </div>

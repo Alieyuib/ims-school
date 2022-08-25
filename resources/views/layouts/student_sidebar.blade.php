@@ -14,7 +14,7 @@
                                     &nbsp;Dashboard</a>
                             </span>
                         </li>
-                        <li class="list-group-item">
+                        {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.results') }}">
                                     <span class="float-left">
@@ -22,14 +22,14 @@
                                     </span>
                                     &nbsp;Check Result</a>
                             </span>
-                        </li>
+                        </li> --}}
                         <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.biodata') }}">
                                     <span class="float-left">
-                                        <i class="fa fa-vcard"></i>
+                                        <i class="fa fa-users"></i>
                                     </span>
-                                    &nbsp;Updated Bio Data</a>
+                                    &nbsp;Members</a>
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -38,7 +38,7 @@
                                     <span class="float-left">
                                         <i class="fa fa-book"></i>
                                     </span>
-                                    &nbsp;Course Registration</a>
+                                    &nbsp;Subject Registration</a>
                             </span>
                         </li>
                         <li class="list-group-item">

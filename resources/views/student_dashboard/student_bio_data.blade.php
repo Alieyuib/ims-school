@@ -28,7 +28,7 @@
             <label for="student_bio_id">Select Student</label>
             <select name="student_bio_id" id="student_bio_id" class="form-control">
                @foreach ($student_bio as $item)
-                   <option value="{{ $item->id }}">{{ $item->fname }}</option>
+                   <option value="{{ $item->id }}">{{ $item->name }}</option>
                @endforeach
             </select>
         </div>
@@ -38,63 +38,71 @@
             <input type="hidden" name="student_id" id="student_id">
             <input type="hidden" name="student_passport" id="student_passport">
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="firstname">Fullname</label>
                     {{-- <input type="hidden" class="form-control" name="status" id="status" value="1"> --}}
-                    <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname">
+                    <input type="text" class="form-control" name="fname" placeholder="Firstname" id="firstname" disabled>
                     <input type="hidden" class="form-control" name="lname" placeholder="Lastname" id="lastname" value="xyz">
                 </div>
                 {{-- <div class="form-group col-md-4">
                     <label for="lastname">Lastname</label>
                     
                 </div> --}}
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="familyname">Family Name</label>
-                    <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="familyname">
+                    <input type="text" class="form-control" disabled name="ffname" placeholder="Family Name" id="familyname">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="dob">DOB</label>
-                    <input type="text" class="form-control" name="dob" placeholder="DOB" id="dob">
+                    <input type="text" class="form-control" disabled name="dob" placeholder="DOB" id="dob">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="pob">POB</label>
-                    <input type="text" class="form-control" name="pob" placeholder="Place of Birth" id="pob">
+                    <input type="text" class="form-control" disabled name="pob" placeholder="Place of Birth" id="pob">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="sickness">Sickness/Allergy</label>
-                    <input type="text" class="form-control" name="sickness" placeholder="Sickness/Allergy" id="sickness">
+                    <input type="text" class="form-control" disabled name="sickness" placeholder="Sickness/Allergy" id="sickness">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="guard">Guardian/Husband</label>
-                    <input type="text" class="form-control" name="guard" placeholder="Guardian/Husband" id="guard">
+                    <input type="text" class="form-control" disabled name="guard" placeholder="Guardian/Husband" id="guard">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="phone">Phone Number</label>
-                    <input type="text" class="form-control" name="phone" placeholder="Phone Number" id="phone">
+                    <input type="text" class="form-control" disabled name="phone" placeholder="Phone Number" id="phone">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="school">Name of School</label>
-                    <input type="text" class="form-control" name="school" placeholder="Name of School" id="school">
+                    <input type="text" class="form-control" disabled name="school" placeholder="Name of School" id="school">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="subject">Subject Learned</label>
-                    <input type="text" class="form-control" name="subject" placeholder="Subject Learned" id="subject">
+                    <input type="text" class="form-control" disabled name="subject" placeholder="Subject Learned" id="subject">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="email">Email Address</label>
-                    <input type="text" class="form-control" name="email" placeholder="Email Address" id="email">
+                    <input type="text" class="form-control" disabled name="email" placeholder="Email Address" id="email">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
+                    <label for="email">Current Class</label>
+                    <input type="text" class="form-control" disabled name="email" placeholder="Current Class" id="current_class">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Data Admitted</label>
+                    <input type="text" class="form-control" disabled name="email" placeholder="Data Admitted" id="date_admitted">
+                </div>
+                <div class="form-group col-md-6">
                     <label for="passport">Passport</label>
-                    <input type="file" name="avatar" class="form-control" id="passport">
+                    <input type="file" name="avatar" class= disabled"form-control" id="passport">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" name="address" placeholder="Address" id="address">
                 </div>
-                <div class="form-group col-md-12">
+                {{-- <div class="form-group col-md-12">
                    <button class="btn ims-bg-green text-light" type="submit" id="save-btn-bio-data">Save <i class="fa fa-save"></i></button>
-                </div>
+                </div> --}}
             </div>
         </form>
     </div>
@@ -139,13 +147,15 @@
 
                 success: function(res){
                     console.log(res);
-                    $('#firstname').val(res.fname);
+                    $('#firstname').val(res.name);
                     $('#student_id').val(res.id);
                     $('#student_passport').val(res.passport);
                     // $('#lastname').val(res.lname);
                     $('#familyname').val(res.ffname);
                     $('#email').val(res.email);
                     $('#pob').val(res.pob);
+                    $('#current_class').val(res.current_class);
+                    $('#date_admitted').val(res.date_admitted);
                     $('#dob').val(res.dob);
                     $('#guard').val(res.guardian);
                     $('#phone').val(res.phone_no);
@@ -154,7 +164,7 @@
                     $('#passport-div').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
                     $('#address').val(res.address);
                     $('#sickness').val(res.sickness_allergy);
-                    $('#fullname').text(res.fname);
+                    $('#fullname').text(res.name);
                     $('#family').text(res.ffname);
                     $('#pob_bio').text(res.pob);
                     $('#dob_bio').text(res.dob);

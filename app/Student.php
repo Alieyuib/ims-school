@@ -27,5 +27,9 @@ class Student extends Model
         'address',
         'passport',
         'token',
+        'status',
+        'date_admitted',
+        'class_admitted',
+        'current_class',
     ];
 }

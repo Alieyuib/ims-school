@@ -18,14 +18,25 @@
                     <span class="link-name">
                         <a href="{{ route('portal.teacher.grade') }}">
                             <span class="float-left">
-                                <i class="fa fa-bookmark"></i>
+                                <i class="fa fa-users"></i>
                             </span>
-                            &nbsp;Grade Student</a>
+                            &nbsp;All Students</a>
                     </span>
                 </li>
+                @can('get_results')
+                    <li class="list-group-item">
+                        <span class="link-name">
+                            <a href="{{ route('portal.teacher.results') }}">
+                                <span class="float-left">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                &nbsp;All Students</a>
+                        </span>
+                    </li>
+                @endcan
                 <li class="list-group-item">
                     <span class="link-name">
-                        <a href="{{ route('portal.logout') }}">
+                        <a href="{{ route('teacher.logout') }}">
                             <span class="float-left">
                                 <i class="fa fa-sign-out"></i>
                             </span>

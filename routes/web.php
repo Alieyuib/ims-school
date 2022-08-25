@@ -126,6 +126,7 @@ Route::post('/dashboard/item/cart/', 'TransactionController@addItemToCart')->nam
 Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name('dashboard.get.cart');
 Route::get('/dashboard/items/carts/', 'TransactionController@generateInvoice2')->name('dashboard.invoice');
 Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')->name('dashboard.add.invoice');
+Route::get('/dashboard/invoice/recent/', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
 
 
 Route::get('/students', [StudentController::class, 'index']);

@@ -510,6 +510,7 @@ class TransactionController extends Controller
      {
         $img = $request->img;
         $order_id = $request->order_id;
+        $student_email = $request->student_email;
 
         $extension = explode('/', explode(':', substr($img, 0, strpos($img, ';')))[1])[1];   // .jpg .png .pdf
         $replace = substr($img, 0, strpos($img, ',')+1); 
@@ -525,7 +526,8 @@ class TransactionController extends Controller
 
         $invoice_data = [
             'invoice_id' => $order_id,
-            'invoice' => $imageName
+            'invoice' => $imageName,
+            'student_email' => $student_email
         ];
 
         $stmt = RecentInvoice::create($invoice_data);
@@ -538,6 +540,13 @@ class TransactionController extends Controller
                 'status' => 400
             ]);
         }
+     }
+
+     public function recentInvoice()
+     {
+        $view_data['recent_invoice'] = RecentInvoice::all();
+
+        return view('dashboard.recent_invoice', $view_data);
      }
  
 }

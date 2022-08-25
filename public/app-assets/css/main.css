@@ -6,6 +6,8 @@
     }
 }
 
+
+
 html, body{
     height: 100%;
     margin: 0;
@@ -533,10 +535,10 @@ p.forget-password-text a {
 .student-list-div-3{
     /* margin-left: -30px; */
     height: 100%;
-    width: 52%;
+    width: 100%;
     overflow: scroll;
     overflow-x: scroll;
-    position: fixed;
+    /* position: fixed; */
 }
 .result-list-div{
     height: 100%;

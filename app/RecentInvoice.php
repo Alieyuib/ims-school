@@ -11,6 +11,7 @@ class RecentInvoice extends Model
     protected $fillable = [
         'invoice_id',
         'invoice',
+        'student_email',
     ];
 }
 

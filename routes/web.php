@@ -5,7 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StudentController;
 use App\Teachers;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +33,7 @@ Route::get('/clear', function() {
  });
 
 Route::get('/migrate', function(){
-    \Artisan::call('migrate');
+    Artisan::call('migrate');
     dd('migrated!');
 });
 

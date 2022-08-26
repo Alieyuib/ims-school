@@ -44,9 +44,16 @@
                         </form>
                     </div>
                 </div>
-                <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
-                <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button>
-                <button class="btn-lg btn-primary my-1" style="width: 100%" id="save_btn"><i class="fa fa-reply"></i>&nbsp;Send to Mail</button>
+                {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button> --}}
+                {{-- <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button> --}}
+                <form action="{{ route('dashboard.send.invoice') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="order_id_invoice" id="order_id_invoice" value="{{ $order_id }}">
+                    <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">
+                    <input type="hidden" name="student_name" id="student_name" value="{{ $student_data->name }}">
+                    <input type="hidden" name="student_address" id="student_address" value="{{ $student_data->address }}">
+                    <button class="btn-lg btn-ims-green my-1" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
+                </form>
             </div>
         </div>
     </div>
@@ -56,23 +63,28 @@
             <h3 class="text-success">Invoice #{{ $order_id }}</h3>
             <input type="hidden" id="order_id_invoice" value="{{ $order_id }}">
           </div> --}}
-          <div class="card-body bg-orange text-center" id="show_all_students">
-            <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 10%">
-              <h4 class="text-ims-default">THE PRIORITY SCHOOL</h4>
-              <h6 class="text-dark">NO: 3 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h6>
-              <h6 class="text-ims-orange"><b>TO</b></h6>
-              <h6 class="text-ims-default"><b class="text-ims-orange">STUDENT NAME</b>: {{ $student_data->name }} <b class="text-ims-orange">EMAIL</b>: {{ $student_data->email }}</h6>
-              <h6 class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_data->address }}</h6>
-              <h6 class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h6>
-              <h5 class="text-ims-default"><b>Invoice #{{ $order_id }}</b></h5>
-              <input type="hidden" id="order_id_invoice" value="{{ $order_id }}">
-              <input type="hidden" id="student_email" value="{{ $student_data->email }}">
-                
+          <div class="card-body bg-orange" id="show_all_students">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 80%;">
+                </div>
+                <div class="col-md-8 invoice-header">
+                    <h4 class="text-ims-default">THE PRIORITY SCHOOL</h4>
+                    <h6 class="text-dark">NO: 3 Bilyaminu Street off Ebituukiwe, Jabi Abuja</h6>
+                </div>
+                <div class="col-md-12" style="margin-top: 20px">
+                    <h6 class="text-dark"><b class="text-dark">Invoice</b>: #{{ $order_id }}</h6>
+                    <h6 class="text-dark"><b class="text-dark">Invoice Date</b>: {{ date('d/m/y') }}</h6>
+                </div>
+            </div>
+              <h6 class="text-dark"><b class="text-dark">Name</b>: {{ $student_data->name }}</h6>
+              <h6 class="text-dark"><b class="text-dark">Email</b>: {{ $student_data->email }}</h6>
+              <h6 class="text-dark"><b class="text-dark">Address</b>: {{ $student_data->address }}</h6>
                 <div id="show_cart_items">
 
                 </div>
               <div class="row my-5">
-                <div class="col-md-12 payment">
+                <div class="col-md-12 payment text-center">
                     <h5><b>Signature/Date</b></h5>
                 </div>
               </div>
@@ -127,6 +139,29 @@
         //     });
         //     doc.save('invoice_the_priority_school.pdf');
         // });
+
+        $('#send_btn').on('click', function(e){
+            e.preventDefault();
+            let order_id = $('#order_id').val();
+            let student_email = $('#student_email').val();
+            let student_name = $('#student_name').val();
+            let student_address = $('#student_address').val();
+            $.ajax({
+                    type: 'post',
+                    url: '{{ route('dashboard.send.invoice') }}',
+                    data:{
+                        order_id: order_id, 
+                        student_email: student_email, 
+                        student_name: student_name, 
+                        student_address: student_address, 
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success:function(data){
+                        console.log(data);
+                        // printReceipt('invoice')
+                    }
+                });
+        })
 
         $('#print_btn').on('click', function(e) {
             e.preventDefault();

@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PdfController extends Controller
 {
     //index
 
-    public function index(Request $request)
+    public function index()
     {
-        $data = ['title' => 'Welcome to ItSolutionStuff.com'];
 
+        $data = ['status'=>'My Invoice'];
         $pdf = PDF::loadView('template.mypdf', $data);
 
-  
-
-        return $pdf->download('itsolutionstuff.pdf');
+        return $pdf->stream('mypdf.pdf');
     }
 }

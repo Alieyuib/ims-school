@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Student as Student;
 use App\Finance as Finance;
 use App\Invoice;
+use App\Mail\InvoiceSend;
 use App\ItemCheckout;
 use App\Items;
 use App\RecentInvoice;
 use App\StudentFamilyAccount as StudentFamilyAccount;
 use App\StudentData;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class TransactionController extends Controller
 {
@@ -539,6 +542,59 @@ class TransactionController extends Controller
             return response()->json([
                 'status' => 400
             ]);
+        }
+     }
+
+     public function sendInvoice(Request $request)
+     {
+        $totalAll = 0;
+        $order_id = $request->input('order_id_invoice');
+        $student_email = $request->input('student_email');
+        $student_name = $request->input('student_name');
+        $student_address = $request->input('student_address');
+
+        $stmt = ItemCheckout::where('order_id', $order_id)->get();
+        foreach ($stmt as $key => $value) {
+            $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
+         }
+
+        $cart_items = ItemCheckout::where('order_id', $order_id)->get();
+
+        $data = [
+            'status'=>'My Invoice',
+            'invoice_no' => $order_id,
+            'student_email' => $student_email,
+            'student_name' => $student_name,
+            'student_address' => $student_address,
+            'cart_items' => $cart_items,
+            'counter' => 1,
+            'totalAll' => $totalAll
+        ];
+        $pdf = PDF::loadView('template.mypdf', $data);
+
+        Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        Storage::put($path, $pdf->output());
+
+        // return $pdf->stream($order_id.'.pdf');
+
+        $invoice_data = [
+            'invoice_id' => $order_id,
+            'invoice' => $order_id.'.pdf',
+            'student_email' => $student_email
+        ];
+
+        $stmt = RecentInvoice::create($invoice_data);
+
+        if ($stmt) {
+            // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email, $pdf){
+            //     $m->to($student_email);
+            //     $m->subject('Your Invoice'.$order_id);
+            //     $m->attach($pdf->output());
+            // });
+            return $pdf->stream($order_id.'.pdf');
+        }else{
+            return redirect('/dashboard/generate/invoice/');
         }
      }
 

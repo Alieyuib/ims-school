@@ -68,6 +68,15 @@
                                     Books</a>
                             </span>
                         </li>
+                        <li class="list-group-item">
+                            <span class="link-name">
+                                <a href="{{ route('dashboard.get.idcard') }}">
+                                    <span class="float-left">
+                                        <i class="fa fa-vcard"></i>
+                                    </span>
+                                    Generate ID Card</a>
+                            </span>
+                        </li>
                         <div class="dropdown">
                             <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
                                 <span class="link-name">

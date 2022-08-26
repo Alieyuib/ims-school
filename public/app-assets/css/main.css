@@ -4,6 +4,16 @@
         position: relative !important;
         background-color: red !important;
     }
+
+    .bio-data-img{
+        margin-left: 1px;
+        margin-top: 80px;
+    }
+    .bio-data-img div.col-md-3{
+        height: 90px;
+        background-color: #145251;
+        /* margin-left: 10px; */
+    }
 }
 
 
@@ -11,9 +21,20 @@
 html, body{
     height: 100%;
     margin: 0;
-    font-family: Roboto !important;
+    font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+.invoice-header{
+    margin-top: 70px;
+    margin-left: 50px;
+}
+.invoice-header h4, .invoice-header h6{
+    float: right;
 }
 
+.idcard-div{
+    margin-left: 130px;
+    /* margin-top: 40px; */
+}
 
 /* front page */
 
@@ -876,8 +897,26 @@ h6 span{
     text-transform: uppercase;
     margin-top: 90px;
 }
+.name-bio h5{
+    /* font-weight: bold; */
+    color: #000;
+    text-transform: uppercase;
+    margin-top: 90px;
+}
+.name-bio h6{
+    /* font-weight: bold; */
+    color: #000;
+    text-transform: uppercase;
+    /* margin-top: 20px; */
+    /* margin-bottom: -50px; */
+}
 .bio-footer{
     height: 20px;
     background-color: #d9ba79;
+    margin: 0;
+}
+.bio-footer-2{
+    height: 20px;
+    background-color: #000;
     margin: 0;
 }

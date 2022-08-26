@@ -127,6 +127,7 @@ Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name(
 Route::get('/dashboard/items/carts/', 'TransactionController@generateInvoice2')->name('dashboard.invoice');
 Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')->name('dashboard.add.invoice');
 Route::get('/dashboard/invoice/recent/', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
+Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->name('dashboard.send.invoice');
 
 
 Route::get('/students', [StudentController::class, 'index']);
@@ -202,4 +203,10 @@ Route::get('/student/portal/invoice/', 'TransactionController@getInvoice')->name
 Route::get('/student/portal/transaction/{id}', 'TransactionController@viewInvoice')->name('portal.transaction.invoice.view');
 
 // Pdf Routes
-Route::get('generate-pdf/invoice', 'PdfController@index')->name('download.invoice.pdf');
+Route::get('generate-pdf', 'PdfController@index')->name('download.invoice.pdf');
+
+// Id Card Route
+Route::get('/students/idcard', 'IdCardController@index')->name('dashboard.get.idcard');
+Route::get('/students/idcard/{id}', 'IdCardController@generateIdCard')->name('dashboard.generate.idcard');
+
+

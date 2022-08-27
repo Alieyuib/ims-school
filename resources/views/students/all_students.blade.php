@@ -138,7 +138,7 @@ data-bs-backdrop="static" aria-hidden="true">
                 success: function(res){
                     $('#show_all_students').html(res);
                     $('table').DataTable({
-                        order: [0, 'desc'],
+                        order: [0, 'asc'],
                     });
                 }
             })

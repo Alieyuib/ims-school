@@ -562,6 +562,14 @@ p.forget-password-text a {
     overflow-x: scroll;
     /* position: fixed; */
 }
+.student-list-div-default{
+    /* margin-left: -30px; */
+    height: 100%;
+    width: 80%;
+    overflow: scroll;
+    overflow-x: scroll;
+    position: fixed;
+}
 .result-list-div{
     height: 100%;
     width: 80%;

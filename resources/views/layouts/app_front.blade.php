@@ -81,9 +81,10 @@
                         {{-- <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li> --}}
                         <div class="dropdown">
                         <button class="dropbtn">Portals</button>
-                            <div class="dropdown-content">
-                                <a class="nav-link" href="{{ route('portal.index') }}">Student/Family Portal</a>
-                                <a class="nav-link" href="{{ route('portal.teacher.index') }}">Teachers Portal</a>
+                            <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+
+                                {{-- <a class="nav-link" href="{{ route('portal.index') }}">Student/Family Portal</a>
+                                <a class="nav-link" href="{{ route('portal.teacher.index') }}">Teachers Portal</a> --}}
                                 <a class="nav-link" href="{{ route('login') }}">Administrative Portal</a>
                             </div>
                         </div> 

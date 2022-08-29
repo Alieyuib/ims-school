@@ -9,8 +9,9 @@ use Illuminate\Queue\SerializesModels;
 
 class InvoiceSend extends Mailable
 {
-    public $order_id;
-    public $imageName;
+    public $password;
+    public $email_to_send;
+    public $to_who;
     use Queueable, SerializesModels;
 
     /**
@@ -18,11 +19,12 @@ class InvoiceSend extends Mailable
      *
      * @return void
      */
-    public function __construct($order_id, $imageName)
+    public function __construct($password, $email_to_send, $to_who)
     {
         //
-        $this->order_id = $order_id;
-        $this->imageName = $imageName;
+        $this->password = $password;
+        $this->email_to_send = $email_to_send;
+        $this->to_who = $to_who;
     }
 
     /**
@@ -32,6 +34,6 @@ class InvoiceSend extends Mailable
      */
     public function build()
     {
-        return $this->markdown('generated_invoice')->subject('Your invoice');
+        return $this->markdown('generated_invoice')->subject('Your Login Details');
     }
 }

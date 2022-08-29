@@ -68,7 +68,7 @@ class Authentication extends Controller
             $user = User::where('email', $request->email)->first();
             if ($user) {
                 if (Hash::check($request->password, $user->password)) {
-                //    session(['key' => 'value']);                    
+                    Auth::login($user);  
                    $request->session()->put('loggedInUser', $user->id);
                    $request->session()->put('loggedInName', $user->name);
                    $request->session()->put('loggedInEmail', $user->email);
@@ -100,6 +100,11 @@ class Authentication extends Controller
     {
         $view_data['loggedInData'] = $request->session()->all();
         return $view_data['loggedInData'];
+    }
+
+    public function assignUserRole(Request $request)
+    {
+        return $request;
     }
 
     public function logout()

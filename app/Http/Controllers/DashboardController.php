@@ -19,11 +19,14 @@ use App\SchoolClasses as SchoolClasses;
 
 use App\Finance as Finance;
 use App\Items;
+use App\Mail\InvoiceSend;
 use App\Results as Results;
 use App\StudentFamilyAccount;
+use App\User;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Mail;
 use LDAP\Result;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -78,8 +81,8 @@ class DashboardController extends Controller
         $student_token = '123456xyz';
 
         $student_data = [
-            'fname' => $request->input('fname'),
-            'lname' => $request->input('lname'),
+            'name' => $request->input('fname'),
+            // 'lname' => $request->input('lname'),
             'dob' => $request->input('dob'),
             'pob' => $request->input('pob'),
             'sickness_allergy' => $request->input('sickness'),
@@ -91,10 +94,14 @@ class DashboardController extends Controller
             'email' => $request->input('email'),
             'ffname' => $request->input('ffname'),
             'passport' => $fileName,
-            'token' => $student_token
+            'token' => $student_token,
+            'status' => 'Awaiting', 
+            'date_admitted' => '',
+            'class_admitted' => '',
+            'current_class' => '',
         ];
 
-        $stmt = Student::create($student_data);
+        $stmt = StudentData::create($student_data);
         if ($stmt) {
             return response()->json([
                 'status' => 200,
@@ -433,7 +440,10 @@ class DashboardController extends Controller
         // $view_data['password'] = Hash::make('abcxyz');
         $fileName = '';
         $student_id = $request->input('student_id');
-        $stmt = Student::find($request->student_id);
+        $stmt = StudentData::find($request->student_id);
+        $password = 'abcxyz';
+        $email_to_send = $stmt->email;
+        $to_who = $stmt->name;
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $fileName = time(). '.' .$file->getClientOriginalExtension();
@@ -455,18 +465,18 @@ class DashboardController extends Controller
             'class_admitted' => $current_class,
             'current_class' => $current_class,
         ];
-
             
-            $final_stmt = StudentData::where('id', $student_id)->update($student_data);
-            if ($final_stmt) {
-                return response()->json([
-                    'status' => 200
-                ]);
-            }else {
-                return response()->json([
-                    'status' => 300
-                ]);
-            }
+        $final_stmt = StudentData::where('id', $student_id)->update($student_data);
+        if ($final_stmt) {
+            Mail::to($email_to_send)->send(new InvoiceSend($password, $email_to_send, $to_who));
+            return response()->json([
+                'status' => 200
+            ]);
+        }else {
+            return response()->json([
+                'status' => 300
+            ]);
+        }
     }
 
     public function allUsers(Request $request)
@@ -482,15 +492,18 @@ class DashboardController extends Controller
     public function createUser(Request $request)
     {
         $user_data = [
-            'fname' => $request->input('fname'),
-            'phone_no' => $request->input('phone_no'),
+            'name' => $request->input('fname'),
             'email' => $request->input('email'),
             'password' => Hash::make('abcxyz'),
-            'role' => '',
         ];
 
-        $stmt = SystemUsers::create($user_data);
+        $password = 'abcxyz';
+        $email_to_send = $request->input('email');
+        $to_who = $request->input('fname');
+
+        $stmt = User::create($user_data);
         if ($stmt) {
+            Mail::to($email_to_send)->send(new InvoiceSend($password, $email_to_send, $to_who));
             return response()->json([
                 'status' => 200,
                 'data' => $stmt
@@ -504,8 +517,11 @@ class DashboardController extends Controller
 
     public function viewAllUser()
     {
-        $stmt = SystemUsers::all();
+        $stmt = User::all();
         $output = '';
+        // foreach ($stmt->getRoleNames() as $role) {
+        //     $user_role = $role;
+        // }
         if ($stmt->count() > 0) {
             $output .= '<table class="table table-striped align-middle table-hover">
                 <thead>
@@ -513,8 +529,7 @@ class DashboardController extends Controller
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Role</th>
+                        // <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -522,10 +537,9 @@ class DashboardController extends Controller
                 foreach ($stmt as $item) {
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
-                        <td>'.$item->fname.'</td>
+                        <td>'.$item->name.'</td>
                         <td>'.$item->email.'</td>
                         <td>'.$item->phone_no.'</td>
-                        <td>'.$item->role.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 assignIcon btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#assignModal">Assign Role</a>
                         </td>

@@ -43,35 +43,10 @@ Route::get('/migrate', function(){
     return 'Linked';
 });
 
-
-// front page
-
-Route::get('/', 'FrontPageController@index')->name('front.page');
-Route::get('/online/registration', 'FrontPageController@onlineRegView')->name('front.online.registration');
-
-
-// Route::any('/', 'MainController@index');
-Route::get('/login', 'Authentication@index')->name('login');
-Route::get('/forgot', 'Authentication@forgot')->name('forgot');
-Route::get('/register', 'Authentication@register')->name('register');
-// Route::get('/register', 'Authentication@register')->name('register');
-Route::post('/register', 'Authentication@saveUser')->name('auth.register');
-Route::post('/login', 'Authentication@loginUser')->name('auth.login');
-Route::get('/profile', 'Authentication@profile')->name('profile');
-Route::get('/logout', 'Authentication@logout')->name('logout');
-// Route::any('/registration', 'MainController@registration');
-
-// // Route::get('/', [UserController::class, 'login'])->name('login');
-// Route::get('/register', [UserController::class, 'register'])->name('register');
-// Route::get('/forgot', [UserController::class, 'forgot'])->name('forgot');
-// Route::get('/reset', [UserController::class, 'reset'])->name('reset');
-
-
-// Route::post('/register', [UserController::class, 'saveUser'])->name('auth.register');
-// Route::post('/login', [UserController::class, 'loginUser'])->name('auth.login');
-// Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-// Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-
+Route::group(['middleware' => ['auth']], function() {
+   Route::get('/', function () {
+    return view('layouts.app');
+});
 
 Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
 // Route::any('/dashboard/students', 'DashboardController@viewStudents')->name('view.students');
@@ -208,5 +183,35 @@ Route::get('generate-pdf', 'PdfController@index')->name('download.invoice.pdf');
 // Id Card Route
 Route::get('/students/idcard', 'IdCardController@index')->name('dashboard.get.idcard');
 Route::get('/students/idcard/{id}', 'IdCardController@generateIdCard')->name('dashboard.generate.idcard');
+
+});
+
+// front page
+
+Route::get('/', 'FrontPageController@index')->name('front.page');
+Route::get('/online/registration', 'FrontPageController@onlineRegView')->name('front.online.registration');
+
+
+// Route::any('/', 'MainController@index');
+Route::get('/login', 'Authentication@index')->name('login');
+Route::get('/forgot', 'Authentication@forgot')->name('forgot');
+Route::get('/register', 'Authentication@register')->name('register');
+// Route::get('/register', 'Authentication@register')->name('register');
+Route::post('/register', 'Authentication@saveUser')->name('auth.register');
+Route::post('/login', 'Authentication@loginUser')->name('auth.login');
+Route::get('/profile', 'Authentication@profile')->name('profile');
+Route::get('/logout', 'Authentication@logout')->name('logout');
+// Route::any('/registration', 'MainController@registration');
+
+// // Route::get('/', [UserController::class, 'login'])->name('login');
+// Route::get('/register', [UserController::class, 'register'])->name('register');
+// Route::get('/forgot', [UserController::class, 'forgot'])->name('forgot');
+// Route::get('/reset', [UserController::class, 'reset'])->name('reset');
+
+
+// Route::post('/register', [UserController::class, 'saveUser'])->name('auth.register');
+// Route::post('/login', [UserController::class, 'loginUser'])->name('auth.login');
+// Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+// Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 

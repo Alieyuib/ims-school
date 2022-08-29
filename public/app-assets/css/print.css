@@ -1,0 +1,17 @@
+@media screen {
+    /* .invoice{ 
+        width: 100% !important; 
+        position: relative !important;
+        background-color: red !important;
+    } */
+
+    .bio-data-img{
+        margin-left: 1px;
+        margin-top: 80px;
+    }
+    .bio-data-img div.col-md-3{
+        height: 90px !important;
+        background-color: #145251 !important;
+        /* margin-left: 10px; */
+    }
+}

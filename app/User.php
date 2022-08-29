@@ -2,10 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Traits\HasRoles;
+
+class User extends Authenticatable
 {
     //
+    use HasRoles;
     protected $fillable = ['name', 'email', 'phone', 'password'];
 }

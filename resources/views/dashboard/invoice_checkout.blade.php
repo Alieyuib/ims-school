@@ -22,11 +22,13 @@
                             <input type="hidden" name="item_name" class="form-control" id="item_name"> 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="item_name">Item Name</label>
+                                    <label for="item_name">Uniform</label>
                                     <select name="item_selected" id="item_selected" class="form-control">
-                                        @foreach ($item_list as $item)
-                                            <option value="{{ $item->id }}">{{ $item->item_name }}</option> 
-                                        @endforeach   
+                                        <option value="">---Select Item---</option>
+                                        <option value="2">Abaya</option>   
+                                        <option value="3">Hijab</option>   
+                                        <option value="5">Cap</option>   
+                                        <option value="4">Jallabiya</option>   
                                     </select> 
                                 </div>
                                 {{-- <div class="col-md-4">
@@ -42,6 +44,83 @@
                                 </div>
                             </div>
                         </form>
+                        <form action="" class="add_item_form" method="POST" id="add_item_form_fee">
+                            @csrf
+                            <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
+                            <input type="hidden" name="order_id" class="form-control" value="{{ $order_id }}" id="order_id"> 
+                            <input type="hidden" name="item_price" class="form-control" id="item_price_fee"> 
+                            <input type="hidden" name="item_name" class="form-control" id="item_name_fee"> 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="item_name">School Fee</label>
+                                    <select name="item_selected" id="item_selected_fee" class="form-control">
+                                        <option value="">---Select Item---</option>
+                                        <option value="10">First Term 2021/2022</option>   
+                                        <option value="11">Second Term 2021/2022</option>   
+                                        <option value="12">Third Term 2021/2022</option>   
+                                        <option value="13">First Term 2022/2023</option>   
+                                        <option value="14">Second Term 2022/2023</option>   
+                                        <option value="15">Third Term 2022/2023</option>   
+                                    </select>  
+                                </div>
+                                {{-- <div class="col-md-4">
+                                    <label for="item_price">Item Price in &#8358;</label>
+                                    <input type="text" name="item_price" class="form-control" id="item_price"> 
+                                </div> --}}
+                                <div class="col-md-4">
+                                    <label for="item_name">Quantity</label>
+                                    <input type="text" name="item_quantity" class="form-control"> 
+                                </div>
+                                <div class="col-md-2">
+                                <button class="btn btn-ims-orange my-4" id="add_btn"><i class="fa fa-plus-square"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="" class="add_item_form" method="POST" id="add_item_form_sta">
+                            @csrf
+                            <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
+                            <input type="hidden" name="order_id" class="form-control" value="{{ $order_id }}" id="order_id"> 
+                            <input type="hidden" name="item_price" class="form-control" id="item_price_sta"> 
+                            <input type="hidden" name="item_name" class="form-control" id="item_name_sta"> 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="item_name">Stationaries</label>
+                                    <select name="item_selected" id="item_selected_sta" class="form-control">
+                                        <option value="">---Select Item---</option>
+                                        <option value="6">Books</option>     
+                                    </select>  
+                                </div>
+                                {{-- <div class="col-md-4">
+                                    <label for="item_price">Item Price in &#8358;</label>
+                                    <input type="text" name="item_price" class="form-control" id="item_price"> 
+                                </div> --}}
+                                <div class="col-md-4">
+                                    <label for="item_name">Quantity</label>
+                                    <input type="text" name="item_quantity" class="form-control"> 
+                                </div>
+                                <div class="col-md-2">
+                                <button class="btn btn-ims-orange my-4" id="add_btn"><i class="fa fa-plus-square"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        {{-- <form action="" class="add_item_form" method="POST" id="add_item_form_discount">
+                            @csrf
+                            <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
+                            <input type="hidden" name="order_id" class="form-control" value="{{ $order_id }}" id="order_id"> 
+                            <input type="hidden" name="item_price" class="form-control" id="item_price_sta"> 
+                            <input type="hidden" name="item_name" class="form-control" id="item_name_sta"> 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">&#8358;Discount</label>
+                                    <input type="number" name="discount" id="discount_amount" class="form-control"> 
+                                </div>
+                                <div class="col-md-12">
+                                <button class="btn btn-ims-orange my-4" id="discount_btn">
+                                    Add Discount
+                                </button>
+                                </div>
+                            </div>
+                        </form> --}}
                     </div>
                 </div>
                 {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button> --}}
@@ -52,6 +131,8 @@
                     <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">
                     <input type="hidden" name="student_name" id="student_name" value="{{ $student_data->name }}">
                     <input type="hidden" name="student_address" id="student_address" value="{{ $student_data->address }}">
+                    <label for="">&#8358; Discount</label>
+                    <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
                     <button class="btn-lg btn-ims-green my-1" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
                 </form>
             </div>
@@ -222,6 +303,44 @@
             })
         })
 
+        $('#item_selected_sta').on('change', function(e){
+            e.preventDefault();
+            let id = $(this).val();
+            $.ajax({
+                url: '{{ route('dashboard.item.price') }}',
+                method: 'get',
+                data:{
+                    id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    console.log(res);
+                    $('#item_price_sta').val(res.item_price);
+                    $('#item_name_sta').val(res.item_name);
+                }
+            })
+        })
+
+        $('#item_selected_fee').on('change', function(e){
+            e.preventDefault();
+            let id = $(this).val();
+            $.ajax({
+                url: '{{ route('dashboard.item.price') }}',
+                method: 'get',
+                data:{
+                    id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    console.log(res);
+                    $('#item_price_fee').val(res.item_price);
+                    $('#item_name_fee').val(res.item_name);
+                }
+            })
+        })
+
          $('#add_item_form').on('submit', function(e){
             e.preventDefault();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
@@ -244,6 +363,83 @@
                         );
                         fetchAllTransactions()
                     }
+                }
+            });
+            
+        });
+
+        $('#add_item_form_fee').on('submit', function(e){
+            e.preventDefault();
+            // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            const fd = new FormData(this);
+
+            $.ajax({
+                url: '{{ route('dashboard.add.item.cart') }}',
+                method: 'post',
+                data: fd,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(res){
+                    console.log(res);
+                    if (res.status == 200) {
+                        Swal.fire(
+                            '',
+                            'Added to cart',
+                            'success'
+                        );
+                        fetchAllTransactions()
+                    }
+                }
+            });
+            
+        });
+
+        $('#add_item_form_sta').on('submit', function(e){
+            e.preventDefault();
+            // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            const fd = new FormData(this);
+
+            $.ajax({
+                url: '{{ route('dashboard.add.item.cart') }}',
+                method: 'post',
+                data: fd,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(res){
+                    console.log(res);
+                    if (res.status == 200) {
+                        Swal.fire(
+                            '',
+                            'Added to cart',
+                            'success'
+                        );
+                        fetchAllTransactions()
+                    }
+                }
+            });
+            
+        });
+
+        $('#add_item_form_discount').on('submit', function(e){
+            e.preventDefault();
+            // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            const fd = new FormData(this);
+            let discount = $("#discount_amount").val();
+
+            $.ajax({
+                url: '{{ route('dashboard.invoice.discount') }}',
+                method: 'post',
+                data: fd,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(res){
+                    let new_amount = res.total_amount - discount;
+                    $('#total_price').text(new_amount);
+                    $('#discount').text('Discount of:' + discount);
+                    
                 }
             });
             

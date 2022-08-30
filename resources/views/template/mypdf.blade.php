@@ -50,6 +50,7 @@
               @endforeach
               <tr>
                 <td><b>Total of N&nbsp;{{ $totalAll }}</b></td>
+                <td><b>Discount of N&nbsp;{{ $discount }}</b></td>
               </tr>
             </tbody>
           </table>

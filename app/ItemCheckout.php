@@ -14,6 +14,7 @@ class ItemCheckout extends Model
         'item_price',
         'quantity',
         'total',
-        'order_id'
+        'order_id',
+        'discount'
     ];
 }

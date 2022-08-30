@@ -499,7 +499,7 @@ class TransactionController extends Controller
                         </tr>';
                     }
 
-                    $output .= '<tr><td><h5>Total Of &#8358;'.number_format($totalAll).'</h5></td> <tr></tbody></table>';
+                    $output .= '<tr><td><h5>Total Of &#8358;<span id="total_price">'.number_format($totalAll).'</span></h5></td><td><h5 id="discount"></h5></td><tr></tbody></table>';
                     echo $output;
             }else{
                 echo '<h1 class="text-center text-secondary my-5">
@@ -552,11 +552,14 @@ class TransactionController extends Controller
         $student_email = $request->input('student_email');
         $student_name = $request->input('student_name');
         $student_address = $request->input('student_address');
+        $discount = $request->input('discount');
 
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
         foreach ($stmt as $key => $value) {
             $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
          }
+
+         $total_discount = $totalAll - $discount;
 
         $cart_items = ItemCheckout::where('order_id', $order_id)->get();
 
@@ -568,7 +571,8 @@ class TransactionController extends Controller
             'student_address' => $student_address,
             'cart_items' => $cart_items,
             'counter' => 1,
-            'totalAll' => $totalAll
+            'totalAll' => $total_discount,
+            'discount' => $discount
         ];
         $pdf = PDF::loadView('template.mypdf', $data);
 
@@ -596,6 +600,21 @@ class TransactionController extends Controller
         }else{
             return redirect('/dashboard/generate/invoice/');
         }
+     }
+
+     public function invoiceDiscount(Request $request)
+     {
+        $totalAll = 0;
+        $counter = 1;
+        $order_id = $request->order_id;
+        $stmt = ItemCheckout::where('order_id', $order_id)->get();
+        foreach ($stmt as $key => $value) {
+            $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
+         }
+
+         return response()->json([
+            'total_amount' => $totalAll
+         ]);
      }
 
      public function recentInvoice()

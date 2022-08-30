@@ -25,9 +25,7 @@
                             <a href="#" class="text-decoration-none">Forgot Password?</a>
                         </div>
                         <div class="mb-3 d-grid">
-                            <button type="submit" class="btn btn-ims-orange" id="login_btn">
-                                Login
-                            </button>
+                            <input type="submit" value="Login" class="btn btn-ims-green" id="login_btn">
                         </div>
                         {{-- <div class="mb-3 text-secondary">
                             Dont have an account?&nbsp;<a href="{{ route('register') }}" class="text-decoration-none">Register here.</a>

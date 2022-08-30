@@ -17,10 +17,10 @@
             <label for="fname">Fullname</label>
             <input type="text" class="form-control" name="fname" placeholder="Fullname" id="fname">
         </div>
-        <div class="form-group col-md-12">
+        {{-- <div class="form-group col-md-12">
             <label for="phone_no">Phone Number</label>
             <input type="text" class="form-control" name="phone_no" placeholder="Phone Number" id="phone_no">
-        </div>
+        </div> --}}
         <div class="form-group col-md-12">
             <label for="email">Email <Address></Address></label>
             <input type="text" class="form-control" name="email" placeholder="Email Address" id="email">
@@ -72,10 +72,7 @@
         const fd = new FormData(this);
         if (
         $('#fname').val() == '' ||            
-        $('#email').val() == '' ||            
-        $('#phone_no').val() == '' ||            
-        $('#pword').val() == '' ||            
-        $('#cpword').val() == ''         
+        $('#email').val() == ''        
         ) {
         Swal.fire(
             'All Form',

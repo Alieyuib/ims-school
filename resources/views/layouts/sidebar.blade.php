@@ -120,7 +120,7 @@
                                             <span class="float-left">
                                                 <i class="fa fa-list"></i>
                                             </span>
-                                            Products</a>
+                                            Fees</a>
                                     </span>
                                 </li>
                                 <ul class="dropdown-menu">

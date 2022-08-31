@@ -514,6 +514,7 @@ class ComposerStaticInited0df2dd2a99713d062b638a10793e80
     );
 
     public static $classMap = array (
+        'App\\AccessibleEntities' => __DIR__ . '/../..' . '/app/AccessibleEntities.php',
         'App\\Books' => __DIR__ . '/../..' . '/app/Books.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',

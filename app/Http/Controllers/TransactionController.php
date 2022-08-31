@@ -479,7 +479,7 @@ class TransactionController extends Controller
          }
             $output = '';
             if ($stmt->count() > 0) {
-                $output .= '<table class="table table-striped align-middle table-hover mx-2">
+                $output .= '<table class="table table-bordered table-striped align-middle table-hover mx-2">
                     <thead>
                         <tr>
                             <th>S/N</th>
@@ -499,7 +499,14 @@ class TransactionController extends Controller
                         </tr>';
                     }
 
-                    $output .= '<tr><td><h5>Total Of &#8358;<span id="total_price">'.number_format($totalAll).'</span></h5></td><td><h5 id="discount"></h5></td><tr></tbody></table>';
+                    $output .= '</tbody></table><div class="col-md-12 float-right">
+                    
+                    <dvi class="invoice_footer">
+                    <h6>VAT:&#8358;<span id="total_price">0</span></h6></td><td><h6 id="discount"></h6>
+                    <h6>Tax:&#8358;<span id="total_price">0</span></h6></td><td><h6 id="discount"></h6>
+                    <h5>Total: &#8358;<span id="total_price">'.number_format($totalAll).'</span></h5></td><td><h5 id="discount"></h5>
+                    </div>
+                    </div>';
                     echo $output;
             }else{
                 echo '<h1 class="text-center text-secondary my-5">
@@ -574,7 +581,7 @@ class TransactionController extends Controller
             'totalAll' => $total_discount,
             'discount' => $discount
         ];
-        $pdf = PDF::loadView('template.mypdf', $data);
+        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.mypdf', $data);
 
         Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
         $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());

@@ -81,6 +81,12 @@ Route::get('/dashboard/item/all', 'DashboardController@getItems')->name('dashboa
 Route::get('/dashboard/item/single', 'DashboardController@getItem')->name('dashboard.edit.item');
 Route::post('/dashboard/item/update', 'DashboardController@updateItem')->name('dashboard.update.item');
 Route::post('/dashboard/item/delete', 'DashboardController@deleteItem')->name('dashboard.delete.item');
+Route::get('/dashboard/user/edit/{uid}', 'DashboardController@getEditUser')->name('dashboard.edit.user');
+Route::post('/dashboard/user/edit/{uid}', 'DashboardController@editUser')->name('dashboard.edit.user');
+Route::get('/dashboard/user/delete/{uid}', 'DashboardController@deleteUser')->name('dashboard.delete.user');
+Route::get('/dashboard/user/edit-user-access/{uid}', 'DashboardController@editUserAccess')->name('dashboard.edit.useraccess');
+Route::post('/dashboard/user/assign-user-access/{uid}', 'DashboardController@assignUserRole')->name('dashboard.assign.useraccess');
+Route::post('/dashboard/user/assign-user-entities/{uid}', 'DashboardController@assignUserAccesibleEntities')->name('dashboard.assign.userentities');
 
 // Transaction Routes
 
@@ -106,6 +112,7 @@ Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->na
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
 
 
+
 Route::get('/students', [StudentController::class, 'index']);
 Route::post('/store', [StudentController::class, 'store'])->name('store');
 Route::get('/fetch-all', [StudentController::class, 'fetchAll'])->name('fetchAll');
@@ -113,6 +120,16 @@ Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
 Route::post('/update', [StudentController::class, 'update'])->name('update');
 Route::post('/delete', [StudentController::class, 'delete'])->name('delete');
 Route::get('/studentData', [StudentController::class, 'studentData'])->name('studentData');
+
+Route::get('/dashboard/students/class_one', [StudentController::class, 'classOneStudents'])->name('class_one');
+Route::get('/dashboard/students/class_two', [StudentController::class, 'classTwoStudents'])->name('class_two');
+Route::get('/dashboard/students/class_three', [StudentController::class, 'classThreeStudents'])->name('class_three');
+Route::get('/dashboard/students/class_four', [StudentController::class, 'classFourStudents'])->name('class_four');
+Route::get('/dashboard/students/class_hadaanah', [StudentController::class, 'classHadaanahStudents'])->name('class_hadaanah');
+Route::get('/dashboard/students/class_fashul_hifiz', [StudentController::class, 'classHifizStudents'])->name('class_fashul_hifiz');
+Route::get('/dashboard/students/class_arrauda_thaaniya', [StudentController::class, 'classThaaniyaStudents'])->name('class_arrauda_thaaniya');
+Route::get('/dashboard/students/class_arraudatul_ola', [StudentController::class, 'classOlaStudents'])->name('class_arraudatul_ola');
+
 
 // Registration Routes
 Route::post('/online/register', 'RegistrationController@index')->name('registration.online');

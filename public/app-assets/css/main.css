@@ -12,6 +12,10 @@ html, body{
     float: right;
 }
 
+.invoice_footer{
+    float: right;
+}
+
 .idcard-div{
     margin-left: 130px;
     /* margin-top: 40px; */
@@ -336,7 +340,7 @@ p.forget-password-text a {
 .footer-dashboard{
     height: 70px;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 60px;
     background-color: #d9ba79 !important;
 }
 .user-info{

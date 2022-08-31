@@ -23,12 +23,14 @@ use App\Mail\InvoiceSend;
 use App\Results as Results;
 use App\StudentFamilyAccount;
 use App\User;
+use App\AccessibleEntities;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Mail;
 use LDAP\Result;
 use phpDocumentor\Reflection\Types\Null_;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -43,6 +45,7 @@ class DashboardController extends Controller
         $view_data['total_account'] = $stmt_account->count();
         // $view_data['total_student_adult'] = $stmt_students_adult->count();
         $view_data['loggedInData'] = $request->session()->all();
+        $view_data['userLoggedIn'] = $request->session()->get('loggedInName');
         return view('dashboard.index', $view_data);
     }
 
@@ -481,7 +484,8 @@ class DashboardController extends Controller
 
     public function allUsers(Request $request)
     {
-        return view('dashboard.user_management');
+        $view_data['users_list'] = User::all();
+        return view('dashboard.user_management', $view_data);
     }
 
     public function newUser(Request $request)
@@ -519,9 +523,11 @@ class DashboardController extends Controller
     {
         $stmt = User::all();
         $output = '';
-        // foreach ($stmt->getRoleNames() as $role) {
-        //     $user_role = $role;
-        // }
+        foreach ($stmt as $user) {
+            foreach ($user->getRoleNames() as $role_name) {
+                $role__name = $role_name;
+            }
+        }
         if ($stmt->count() > 0) {
             $output .= '<table class="table table-striped align-middle table-hover">
                 <thead>
@@ -529,7 +535,7 @@ class DashboardController extends Controller
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        // <th>Role</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -539,9 +545,10 @@ class DashboardController extends Controller
                         <td>'.$item->id.'</td>
                         <td>'.$item->name.'</td>
                         <td>'.$item->email.'</td>
-                        <td>'.$item->phone_no.'</td>
+                        <td>'.$role__name.'</td>
                         <td>
-                            <a href="#" id="'.$item->id.'" class="mx-2 assignIcon btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#assignModal">Assign Role</a>
+                            <a href="/dashboard/user/edit/'.$item->id.'" id="'.$item->id.'" class="mx-2 btn btn-ims-orange">Edit</a>
+                            <a href="/dashboard/user/delete/'.$item->id.'" id="'.$item->id.'" class="mx-2 btn btn-danger">Delete</a>
                         </td>
                     </tr>';
                 }
@@ -552,6 +559,139 @@ class DashboardController extends Controller
             echo '<h1 class="text-center text-secondary my-5">
                 No records present in the database
             </h1>';
+        }
+    }
+
+    public function getEditUser(Request $request, $uid)
+    {
+        $user = User::find($uid);
+        $view_data['uid'] = $user->id;
+        $view_data['name'] = $user->name;
+        $view_data['email'] = $user->email;
+        $view_data['password'] = $user->password;
+        return view('dashboard.edit_user', $view_data);
+    }
+
+
+    public function editUser(Request $request, $uid)
+    {
+        $user = User::find($uid);
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'fname' => 'string|max:250|required',
+            ]);
+            if($request->input('email') != $user->email){
+                $request->validate(['email'=> 'unique:users,email|required|email|max:250']);
+            }
+    
+            $user->name = $request->input('fname');
+            $user->email = $request->input('email');
+            
+            if ( $request->filled('password') ) {
+                $user->password = Hash::make($request->input('password'));
+            }
+
+            if($user->save()){
+                $request->session()->flash('status', 'User Updated!');
+                return redirect('/dashboard/users');
+            }
+        }
+
+        $view_data['uid'] = $user->id;
+        $view_data['name'] = $user->name;
+        $view_data['email'] = $user->email;
+        $view_data['password'] = $user->password;
+        return view('dashboard.edit_user', $view_data);
+
+
+    }
+
+    public function deleteUser(Request $request, $uid)
+    {
+        $deleted = User::where('id', $uid)->delete();
+
+        if ($deleted) {
+            $request->session()->flash('status', 'User deleted!');
+            return redirect('dashboard/users');
+        }else{
+            $request->session()->flash('status', 'User not deleted!');
+            return redirect('dashboard/users');
+        }
+    }
+
+    public function editUserAccess(Request $request, $uid)
+    {
+        $user = User::find($uid);
+        // $view_data['user'] = User::find($uid);
+        $view_data['user'] = $user;
+        $view_data['uid'] = $user->id;
+        $view_data['name'] = $user->name;
+        $view_data['roles_list'] = Role::all();
+        $view_data['classes'] = SchoolClasses::all();
+        return view('dashboard.edit_user_access',$view_data);
+    }
+
+    public function assignUserRole(Request $request, $uid)
+    {
+        $user = User::find($uid);
+        if ($request->isMethod('post')) {
+            
+            $request->validate([
+                'user' => 'exists:App\User,id'
+                //todo
+                //check and validate roles before assigning
+            ]);
+
+            
+
+            if( $user->syncRoles($request->input('roles')) ){
+                $request->session()->flash('status', 'Role Assign!');
+            }
+            else{
+                $request->session()->flash('status', 'There was an error assiging roles some ar all may not have been assigned');
+            }
+
+            $view_data['user'] = $user;
+            $view_data['uid'] = $user->id;
+            $view_data['name'] = $user->name;
+            $view_data['roles_list'] = Role::all();
+            $view_data['classes'] = SchoolClasses::all();
+            return view('dashboard.edit_user_access',$view_data);
+        
+        }
+
+        return redirect('/dashboard/user/edit-user-access/'.$user->id);
+    }
+
+    public function assignUserAccesibleEntities(User $user, Request $request)
+    {
+        // $user = User::find($uid);
+        // $view_data['user'] = User::find($uid);
+        $view_data['user'] = $user;
+        $view_data['uid'] = $user->id;
+        $view_data['name'] = $user->name;
+        $view_data['roles_list'] = Role::all();
+        $view_data['classes'] = SchoolClasses::all();
+
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'user' => 'exists:App\User,id'
+                //todo
+                //check and validate roles before assigning
+            ]);
+            $user_accessible_entities = $user->accessibleEntities();
+            
+            $user_accessible_entities->school_classes = $request->input('school_classes','[]');
+            // $user_accessible_entities->locations = $request->input('locations');
+
+            if ($user_accessible_entities->save()) {
+                $request->session()->flash('status', 'Role Assign!');
+            }else{
+                $request->session()->flash('status', 'There was an error assiging roles some ar all may not have been assigned');
+            }
+
+            return view('dashboard.edit_user_access',$view_data);
         }
     }
 

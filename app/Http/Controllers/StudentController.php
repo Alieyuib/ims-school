@@ -168,4 +168,52 @@ public function fetchAll()
         return StudentData::destroy($id);
     }
 
+    public function classOneStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Class 1')->get();
+        return view('dashboard.classes.class_one', $view_data);
+    }
+
+    public function classTwoStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Class 2')->get();
+        return view('dashboard.classes.class_two', $view_data);
+    }
+
+    public function classThreeStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Class 3')->get();
+        return view('dashboard.classes.class_three', $view_data);
+    }
+
+    public function classFourStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Class 4')->get();
+        return view('dashboard.classes.class_four', $view_data);
+    }
+
+    public function classHadaanahStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Hadaanah')->get();
+        return view('dashboard.classes.class_hadaana', $view_data);
+    }
+
+    public function classHifizStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Faslul Hifiz')->get();
+        return view('dashboard.classes.class_hifiz', $view_data);
+    }
+
+    public function classThaaniyaStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Arrauda Ath-thaaniya')->get();
+        return view('dashboard.classes.class_arrauda_ol', $view_data);
+    }
+
+    public function classOlaStudents(StudentData $student)
+    {
+        $view_data['students'] = $student->where('current_class', 'Arraudatul Oola')->get();
+        return view('dashboard.classes.class_arrauda_tha', $view_data);
+    }
+
 }

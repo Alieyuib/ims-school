@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Artisan;
 //     return view('welcome');
 // });
 
+Route::get('/base_path', function(){
+    return base_path();
+});
+
 Route::get('/clear', function() {
 
     Artisan::call('cache:clear');

@@ -30,11 +30,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8" style="text-align: center;">
-        <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 10%">
+        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/logo.jpg'))) }}">
         <h2 class="text-ims-default">THE PRIORITY SCHOOL</h2>
         <h4 class="text-dark">NO: 3 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h4>
-        <h4 class="text-ims-orange"><b>INVOICE TO</b></h4>
-        <h3 class="text-ims-default"><b>Invoice No:{{ $invoice_no }}</b></h3>
+        <h3 class="text-ims-default"><b>Invoice:#{{ $invoice_no }}</b></h3>
         <h4 class="text-ims-default"><b class="text-ims-orange">STUDENT NAME</b>: {{ $student_name }} <b class="text-ims-orange">EMAIL</b>: {{ $student_email }}</h4>
         <h4 class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
         <h4 class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>

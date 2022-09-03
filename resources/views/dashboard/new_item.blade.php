@@ -22,6 +22,15 @@
             <input type="number" class="form-control" name="item_price" placeholder="Item Price" id="item_price">
         </div>
         <div class="form-group col-md-12">
+            <label for="item_type">Item Type</label>
+            <select name="item_type" id="item_type" class="form-control">
+                <option value="" selected disabled>Type</option>
+                <option value="fees">Fee</option>
+                <option value="uniform">Uniform</option>
+                <option value="stationary">Stationary</option>
+            </select>
+        </div>
+        <div class="form-group col-md-12">
             <button class="btn btn-ims-green grade-btn" type="submit" id="save-btn">Add <i class="fa fa-plus-square"></i></button>
         </div>
     </div>
@@ -33,7 +42,8 @@
         const fd = new FormData(this);
         if (        
         $('#item_name').val() == '' ||            
-        $('#item_price').val() == ''         
+        $('#item_price').val() == '' ||      
+        $('#item_type').val() == ''     
         ) {
         Swal.fire(
             'All Form',

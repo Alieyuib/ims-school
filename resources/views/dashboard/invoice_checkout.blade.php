@@ -25,10 +25,9 @@
                                     <label for="item_name">Uniform</label>
                                     <select name="item_selected" id="item_selected" class="form-control">
                                         <option value="">---Select Item---</option>
-                                        <option value="2">Abaya</option>   
-                                        <option value="3">Hijab</option>   
-                                        <option value="5">Cap</option>   
-                                        <option value="4">Jallabiya</option>   
+                                        @foreach ($item_uniform as $item)
+                                            <option value="{{ $item->id }}">{{ $item->item_name }}</option>   
+                                        @endforeach   
                                     </select> 
                                 </div>
                                 {{-- <div class="col-md-4">
@@ -54,13 +53,10 @@
                                 <div class="col-md-6">
                                     <label for="item_name">School Fee</label>
                                     <select name="item_selected" id="item_selected_fee" class="form-control">
-                                        <option value="">---Select Item---</option>
-                                        <option value="10">First Term 2021/2022</option>   
-                                        <option value="11">Second Term 2021/2022</option>   
-                                        <option value="12">Third Term 2021/2022</option>   
-                                        <option value="13">First Term 2022/2023</option>   
-                                        <option value="14">Second Term 2022/2023</option>   
-                                        <option value="15">Third Term 2022/2023</option>   
+                                        <option value="" selected>---Select Item---</option>
+                                        @foreach ($item_fee as $item)
+                                            <option value="{{ $item->id }}">{{ $item->item_name }}</option>   
+                                        @endforeach  
                                     </select>  
                                 </div>
                                 {{-- <div class="col-md-4">
@@ -87,7 +83,9 @@
                                     <label for="item_name">Stationaries</label>
                                     <select name="item_selected" id="item_selected_sta" class="form-control">
                                         <option value="">---Select Item---</option>
-                                        <option value="6">Books</option>     
+                                        @foreach ($item_stationary as $item)
+                                            <option value="{{ $item->id }}">{{ $item->item_name }}</option>   
+                                        @endforeach  
                                     </select>  
                                 </div>
                                 {{-- <div class="col-md-4">

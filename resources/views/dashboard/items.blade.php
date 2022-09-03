@@ -21,6 +21,15 @@ data-bs-backdrop="static" aria-hidden="true">
                         <label for="item_price">Product Price</label>
                         <input type="text" id="item_price" class="form-control" name="item_price" placeholder="Product Price">
                     </div>
+                    <div class="form-group col-md-12">
+                        <label for="item_type">Item Type</label>
+                        <select name="item_type" id="item_type" class="form-control">
+                            <option value="" selected disabled>Type</option>
+                            <option value="fees">Fee</option>
+                            <option value="uniform">Uniform</option>
+                            <option value="stationary">Stationary</option>
+                        </select>
+                    </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-ims-orange" id="upload-book">
                             <i class="fa fa-upload"></i>&nbsp; Update
@@ -117,6 +126,7 @@ data-bs-backdrop="static" aria-hidden="true">
                     console.log(res);
                     $('#item_price').val(res.item_price);
                     $('#item_name').val(res.item_name);
+                    $('#item_type').val(res.type);
                     $('#item_id').val(res.id);
                 }
             })

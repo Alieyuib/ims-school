@@ -423,10 +423,17 @@ class TransactionController extends Controller
      public function invoiceCheckout(Request $request, $id)
      {
         $item_list = Items::all();
+        $item_fee = Items::where('type', 'fees')->get();
+        $item_uniform = Items::where('type', 'uniform')->get();
+        $item_stationary = Items::where('type', 'stationary')->get();
+
         $student_data = StudentData::find($id);
 
         $view_data['student_data'] = $student_data;
         $view_data['item_list'] = $item_list;
+        $view_data['item_fee'] = $item_fee;
+        $view_data['item_uniform'] = $item_uniform;
+        $view_data['item_stationary'] = $item_stationary;
 
         $view_data['order_id'] = sprintf("%06d", mt_rand(1, 999999));
 

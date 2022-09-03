@@ -735,6 +735,7 @@ class DashboardController extends Controller
         $item_data = [
             'item_name' => $request->input('item_name'),
             'item_price' => $request->input('item_price'),
+            'type' => $request->input('item_type'),
         ];
 
         $stmt = Items::create($item_data);
@@ -766,6 +767,7 @@ class DashboardController extends Controller
                         <th>ID</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -775,6 +777,7 @@ class DashboardController extends Controller
                         <td>'.$item->id.'</td>
                         <td>'.$item->item_name.'</td>
                         <td>&#8358;'.$item->item_price.'</td>
+                        <td>'.$item->type.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi-pencil-square text-secondary"></i></a>
                             <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
@@ -807,6 +810,7 @@ class DashboardController extends Controller
         $item_data = [
             'item_name' => $request->input('item_name'),
             'item_price' => $request->input('item_price'),
+            'type' => $request->input('item_type'),
         ];
             
         $final_stmt = Items::where('id', $item_id)->update($item_data);

@@ -124,8 +124,8 @@
                                     </span>
                                 </li>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Product</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Products</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Item</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Items</a></li>
                                     {{-- <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">Edit Invoice</a></li> --}}
                                     {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
                                 </ul>

@@ -131,7 +131,9 @@
                     <input type="hidden" name="student_address" id="student_address" value="{{ $student_data->address }}">
                     <label for="">&#8358; Discount</label>
                     <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
-                    <button class="btn-lg btn-ims-green my-1" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
+                    <label for="student_email_invoice" class="my-1"><b>Email Address</b></label>
+                    <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}">
+                    <button class="btn-lg btn-ims-green my-2" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
                 </form>
             </div>
         </div>

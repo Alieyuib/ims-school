@@ -13,7 +13,8 @@
 <body>
   <div class="container">
     <div class="row">
-      
+      <h3>{{$student_email}}</h3>
+      <h3>Your Invoice: #{{ $invoice_no }}</h3>
     </div>
   </div>
 </body>

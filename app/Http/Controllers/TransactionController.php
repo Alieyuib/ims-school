@@ -564,6 +564,7 @@ class TransactionController extends Controller
         $totalAll = 0;
         $order_id = $request->input('order_id_invoice');
         $student_email = $request->input('student_email');
+        $student_email_invoice = $request->input('student_email_invoice');
         $student_name = $request->input('student_name');
         $student_address = $request->input('student_address');
         $discount = $request->input('discount');
@@ -605,11 +606,14 @@ class TransactionController extends Controller
         $stmt = RecentInvoice::create($invoice_data);
 
         if ($stmt) {
-            // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email, $pdf){
-            //     $m->to($student_email);
-            //     $m->subject('Your Invoice'.$order_id);
-            //     $m->attach($pdf->output());
-            // });
+            
+            Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
+                $m->to($student_email_invoice);
+                $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
+                    'mime' => 'application/pdf',
+                    'as'   => $order_id. '.'.'pdf' 
+                ]);
+            });
             return $pdf->stream($order_id.'.pdf');
         }else{
             return redirect('/dashboard/generate/invoice/');

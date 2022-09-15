@@ -106,6 +106,7 @@ Route::get('/dashboard/finance/logs/data', 'TransactionController@getInvoiceData
 Route::get('/dashboard/account/edit/', 'TransactionController@getAccountBalance')->name('dashboard.edit.account');
 Route::post('/dashboard/account/edit/', 'TransactionController@editAccountBalance')->name('dashboard.edit.account.balance');
 Route::get('/dashboard/generate/invoice/{id}', 'TransactionController@invoiceCheckout')->name('dashboard.invoice.checkout');
+Route::post('/dashboard/item/cart/remove', 'TransactionController@removeCartItem')->name('remove.cart.item');
 Route::get('/dashboard/item/price/', 'TransactionController@getItemPrice')->name('dashboard.item.price');
 Route::post('/dashboard/item/cart/', 'TransactionController@addItemToCart')->name('dashboard.add.item.cart');
 Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name('dashboard.get.cart');

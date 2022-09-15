@@ -444,6 +444,23 @@
             });
             
         });
+        
+        $(document).on('click', '.removeIcon', function(e){
+            e.preventDefault();
+            let id = $(this).attr('id');
+            $.ajax({
+                url: '{{ route('remove.cart.item') }}',
+                method: 'post',
+                data: {
+                    id: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(res){
+                    fetchAllTransactions()
+                }
+            })
+
+        })
 
         $('#checkout_btn').on('click', function(e){
             e.preventDefault();

@@ -493,6 +493,7 @@ class TransactionController extends Controller
                             <th>Description</th>
                             <th>Quantity</th>  
                             <th>Price</th>     
+                            <th>Remove</th>     
                         </tr>
                     </thead>
                     <tbody>';
@@ -502,7 +503,9 @@ class TransactionController extends Controller
                             <td>'.$item->item_name.'</td>  
                             <td>'.$item->quantity.'</td>  
                             <td>&#8358;'.number_format($item->item_price).'</td>    
-                            
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 removeIcon btn btn-danger"><i class="fa fa-times"></i></a>
+                            </td>
                         </tr>';
                     }
 
@@ -520,6 +523,16 @@ class TransactionController extends Controller
                     No records present in the database
                 </h1>';
             }
+     }
+
+     public function removeCartItem(Request $request)
+     {
+        try {
+            ItemCheckout::where('id', $request->id)->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
      }
 
 

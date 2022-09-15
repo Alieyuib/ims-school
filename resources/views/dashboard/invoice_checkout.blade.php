@@ -343,7 +343,7 @@
 
          $('#add_item_form').on('submit', function(e){
             e.preventDefault();
-            $("#add_btn_uni").hide();
+            $("#add_btn_uni").prop('disabled', true);
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
             const fd = new FormData(this);
 
@@ -362,8 +362,8 @@
                             'Added to cart',
                             'success'
                         );
-                        fetchAllTransactions()
-                        $("#add_btn_uni").show();
+                        fetchAllTransactions();
+                        $("#add_btn_uni").prop('disabled', false);
                     }
                 }
             });
@@ -373,7 +373,7 @@
         $('#add_item_form_fee').on('submit', function(e){
             e.preventDefault();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
-            $("#add_btn_fee").hide();
+            $("#add_btn_fee").prop('disabled', true);
             const fd = new FormData(this);
 
             $.ajax({
@@ -391,8 +391,8 @@
                             'Added to cart',
                             'success'
                         );
-                        fetchAllTransactions()
-                        $("#add_btn_fee").show();
+                        fetchAllTransactions();
+                        $("#add_btn_fee").prop('disabled', false);
                     }
                 }
             });
@@ -402,7 +402,7 @@
         $('#add_item_form_sta').on('submit', function(e){
             e.preventDefault();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
-            $("#add_btn_sta").hide();
+            $("#add_btn_sta").prop('disabled', true);
             const fd = new FormData(this);
 
             $.ajax({
@@ -420,8 +420,8 @@
                             'Added to cart',
                             'success'
                         );
-                        fetchAllTransactions()
-                        $("#add_btn_sta").show();
+                        fetchAllTransactions();
+                        $("#add_btn_sta").prop('disabled', false);
                     }
                 }
             });

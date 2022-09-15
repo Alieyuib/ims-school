@@ -13,7 +13,7 @@
             </div>
             <div class="card-body bg-orange text-center" id="show_all_students">
                 <div class="row my-2">
-                    <div class="col-md-12 card p-2">
+                    <div class="col-md-12 card p-4">
                         <form action="" class="add_item_form" method="POST" id="add_item_form">
                             @csrf
                             <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 

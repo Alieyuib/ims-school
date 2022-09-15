@@ -37,7 +37,10 @@
                 @include('layouts.sidebar')  
            @show
        </div>
-       <div class="col-md-10 dashboard-overlay">
+       <div class="col-md-10 p-4 dashboard-overlay">
+        {{-- <div class="container-fluid bg-success">
+            
+        </div> --}}
            @section('content')
        </div>
    </div>

@@ -39,7 +39,7 @@
                                     <input type="text" name="item_quantity" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
-                                <button class="btn btn-ims-orange my-4" id="add_btn"><i class="fa fa-plus-square"></i></button>
+                                <button class="btn btn-ims-orange my-4" id="add_btn_uni"><i class="fa fa-plus-square"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -68,7 +68,7 @@
                                     <input type="text" name="item_quantity" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
-                                <button class="btn btn-ims-orange my-4" id="add_btn"><i class="fa fa-plus-square"></i></button>
+                                <button class="btn btn-ims-orange my-4" id="add_btn_fee"><i class="fa fa-plus-square"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -97,7 +97,7 @@
                                     <input type="text" name="item_quantity" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
-                                <button class="btn btn-ims-orange my-4" id="add_btn"><i class="fa fa-plus-square"></i></button>
+                                <button class="btn btn-ims-orange my-4" id="add_btn_sta"><i class="fa fa-plus-square"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -343,6 +343,7 @@
 
          $('#add_item_form').on('submit', function(e){
             e.preventDefault();
+            $("#add_btn_uni").hide();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
             const fd = new FormData(this);
 
@@ -362,6 +363,7 @@
                             'success'
                         );
                         fetchAllTransactions()
+                        $("#add_btn_uni").show();
                     }
                 }
             });
@@ -371,6 +373,7 @@
         $('#add_item_form_fee').on('submit', function(e){
             e.preventDefault();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            $("#add_btn_fee").hide();
             const fd = new FormData(this);
 
             $.ajax({
@@ -389,6 +392,7 @@
                             'success'
                         );
                         fetchAllTransactions()
+                        $("#add_btn_fee").show();
                     }
                 }
             });
@@ -398,6 +402,7 @@
         $('#add_item_form_sta').on('submit', function(e){
             e.preventDefault();
             // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            $("#add_btn_sta").hide();
             const fd = new FormData(this);
 
             $.ajax({
@@ -416,6 +421,7 @@
                             'success'
                         );
                         fetchAllTransactions()
+                        $("#add_btn_sta").show();
                     }
                 }
             });

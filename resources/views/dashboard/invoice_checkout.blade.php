@@ -36,7 +36,7 @@
                                 </div> --}}
                                 <div class="col-md-4">
                                     <label for="item_name">Quantity</label>
-                                    <input type="text" name="item_quantity" class="form-control"> 
+                                    <input type="text" name="item_quantity" value="{{$count}}" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
                                 <button class="btn btn-ims-orange my-4" id="add_btn_uni"><i class="fa fa-plus-square"></i></button>
@@ -65,7 +65,7 @@
                                 </div> --}}
                                 <div class="col-md-4">
                                     <label for="item_name">Quantity</label>
-                                    <input type="text" name="item_quantity" class="form-control"> 
+                                    <input type="text" name="item_quantity" value="{{$count}}" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
                                 <button class="btn btn-ims-orange my-4" id="add_btn_fee"><i class="fa fa-plus-square"></i></button>
@@ -94,7 +94,7 @@
                                 </div> --}}
                                 <div class="col-md-4">
                                     <label for="item_name">Quantity</label>
-                                    <input type="text" name="item_quantity" class="form-control"> 
+                                    <input type="text" name="item_quantity" value="{{$count}}" class="form-control"> 
                                 </div>
                                 <div class="col-md-2">
                                 <button class="btn btn-ims-orange my-4" id="add_btn_sta"><i class="fa fa-plus-square"></i></button>
@@ -138,7 +138,7 @@
             </div>
         </div>
     </div>
-      <div class="col-md-8">
+      <div class="col-md-8 static-invoice">
         <div class="card shadow student-list-div-3 invoice" id="invoice">
           {{-- <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="text-success">Invoice #{{ $order_id }}</h3>

@@ -427,7 +427,13 @@ class TransactionController extends Controller
         $item_uniform = Items::where('type', 'uniform')->get();
         $item_stationary = Items::where('type', 'stationary')->get();
 
+        // $student_count = StudentData::where('email', $)
+
         $student_data = StudentData::find($id);
+
+        $student_count = StudentData::where('email', $student_data->email)->get();
+
+        $view_data['count'] = $student_count->count();
 
         $view_data['student_data'] = $student_data;
         $view_data['item_list'] = $item_list;

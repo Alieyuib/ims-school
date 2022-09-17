@@ -539,6 +539,16 @@ p.forget-password-text a {
     overflow-x: scroll;
     position: fixed;
 }
+
+.static-invoice{
+    height: 100%;
+    overflow: scroll;
+    overflow-x: scroll;
+    position: fixed;
+    width: 55%;
+    margin-left: 350px;
+}
+
 .student-list-div-3{
     /* margin-left: -30px; */
     height: 100%;

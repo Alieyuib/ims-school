@@ -69,7 +69,7 @@
                     <td>{{$counter++}}</td>
                     <td>{{ $item->item_name }}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>N&nbsp;{{ $item->item_price }}</td>
+                    <td>N&nbsp;{{ number_format($item->item_price) }}</td>
                   </tr>
               @endforeach
               {{-- <tr>
@@ -93,11 +93,11 @@
                 </tr>
                 <tr>
                   <td><b>Discount</b></td>
-                  <td><b>N&nbsp;{{ $discount }}</b></td>
+                  <td><b>N&nbsp;{{number_format($discount)}}</b></td>
                 </tr>
                 <tr>
                   <td><b>Total</b></td>
-                  <td><b>N&nbsp;{{ $totalAll }}</b></td>
+                  <td><b>N&nbsp;{{ number_format($totalAll) }}</b></td>
                 </tr>
               </tbody>
             </table>

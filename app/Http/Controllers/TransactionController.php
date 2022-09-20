@@ -626,13 +626,13 @@ class TransactionController extends Controller
 
         if ($stmt) {
             
-            Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
-                $m->to($student_email_invoice);
-                $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
-                    'mime' => 'application/pdf',
-                    'as'   => $order_id. '.'.'pdf' 
-                ]);
-            });
+            // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
+            //     $m->to($student_email_invoice);
+            //     $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
+            //         'mime' => 'application/pdf',
+            //         'as'   => $order_id. '.'.'pdf' 
+            //     ]);
+            // });
             return $pdf->stream($order_id.'.pdf');
         }else{
             return redirect('/dashboard/generate/invoice/');
@@ -659,6 +659,170 @@ class TransactionController extends Controller
         $view_data['recent_invoice'] = RecentInvoice::all();
         $view_data['counter'] = 1;
         return view('dashboard.recent_invoice', $view_data);
+     }
+
+     public function generateReceipt(Request $request)
+     {
+        $student_account = StudentFamilyAccount::all();
+        $view_data['student_data'] = $student_account;
+
+        return view('dashboard.receipt', $view_data);
+     }
+
+     public function generateReceipts(Request $request, $id)
+     {
+        $item_list = Items::all();
+        $item_fee = Items::where('type', 'fees')->get();
+        $item_uniform = Items::where('type', 'uniform')->get();
+        $item_stationary = Items::where('type', 'stationary')->get();
+
+        // $student_count = StudentData::where('email', $)
+
+        $student_data = StudentData::find($id);
+
+        $student_count = StudentData::where('email', $student_data->email)->get();
+
+        $view_data['count'] = $student_count->count();
+
+        $view_data['student_data'] = $student_data;
+        $view_data['item_list'] = $item_list;
+        $view_data['item_fee'] = $item_fee;
+        $view_data['item_uniform'] = $item_uniform;
+        $view_data['item_stationary'] = $item_stationary;
+
+        $view_data['order_id'] = sprintf("%06d", mt_rand(1, 999999));
+
+        return view('dashboard.receipt_checkout', $view_data);
+     }
+
+     public function generateReceipt__(Request $request)
+     {
+        $totalAll = 0;
+        $order_id = $request->input('order_id_invoice');
+        $student_email = $request->input('student_email');
+        $student_email_invoice = $request->input('student_email_invoice');
+        $student_name = $request->input('student_name');
+        $student_address = $request->input('student_address');
+        $discount = $request->input('discount');
+
+        $stmt = ItemCheckout::where('order_id', $order_id)->get();
+        foreach ($stmt as $key => $value) {
+            $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
+         }
+
+         $total_discount = $totalAll - $discount;
+
+        $cart_items = ItemCheckout::where('order_id', $order_id)->get();
+
+        $data = [
+            'status'=>'My Invoice',
+            'invoice_no' => $order_id,
+            'student_email' => $student_email,
+            'student_name' => $student_name,
+            'student_address' => $student_address,
+            'cart_items' => $cart_items,
+            'counter' => 1,
+            'totalAll' => $total_discount,
+            'discount' => $discount
+        ];
+        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.receipt', $data);
+
+        Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        Storage::put($path, $pdf->output());
+
+        // return $pdf->stream($order_id.'.pdf');
+
+        $invoice_data = [
+            'invoice_id' => $order_id,
+            'invoice' => $order_id.'.pdf',
+            'student_email' => $student_email
+        ];
+
+        $stmt = RecentInvoice::create($invoice_data);
+
+        if ($stmt) {
+            
+            // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
+            //     $m->to($student_email_invoice);
+            //     $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
+            //         'mime' => 'application/pdf',
+            //         'as'   => $order_id. '.'.'pdf' 
+            //     ]);
+            // });
+            $request->session()->flash('status', 'Receipt Generated');
+            return $pdf->stream($order_id.'.pdf');
+
+            // return redirect('finance/transaction/generate-receipt');
+
+        }else{
+            $request->session()->flash('status', 'Error while generating.');
+            return redirect('finance/transaction/generate-receipt');
+        }
+     }
+
+     public function sendReceipt(Request $request)
+     {
+        $totalAll = 0;
+        $order_id = $request->input('order_id_invoice');
+        $student_email = $request->input('student_email');
+        $student_email_invoice = $request->input('student_email_invoice');
+        $student_name = $request->input('student_name');
+        $student_address = $request->input('student_address');
+        $discount = $request->input('discount');
+
+        $stmt = ItemCheckout::where('order_id', $order_id)->get();
+        foreach ($stmt as $key => $value) {
+            $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
+         }
+
+         $total_discount = $totalAll - $discount;
+
+        $cart_items = ItemCheckout::where('order_id', $order_id)->get();
+
+        $data = [
+            'status'=>'My Invoice',
+            'invoice_no' => $order_id,
+            'student_email' => $student_email,
+            'student_name' => $student_name,
+            'student_address' => $student_address,
+            'cart_items' => $cart_items,
+            'counter' => 1,
+            'totalAll' => $total_discount,
+            'discount' => $discount
+        ];
+        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.receipt', $data);
+
+        Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        Storage::put($path, $pdf->output());
+
+        // return $pdf->stream($order_id.'.pdf');
+
+        $invoice_data = [
+            'invoice_id' => $order_id,
+            'invoice' => $order_id.'.pdf',
+            'student_email' => $student_email
+        ];
+
+        $stmt = RecentInvoice::create($invoice_data);
+
+        if ($stmt) {
+            
+            Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
+                $m->to($student_email_invoice);
+                $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
+                    'mime' => 'application/pdf',
+                    'as'   => $order_id. '.'.'pdf' 
+                ]);
+            });
+            $request->session()->flash('status', 'Receipt Sent!');
+            return redirect('finance/transaction/generate-receipt');
+
+        }else{
+            $request->session()->flash('status', 'Error while sending.');
+            return redirect('finance/transaction/generate-receipt');
+        }
      }
  
 }

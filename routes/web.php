@@ -115,6 +115,9 @@ Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')-
 Route::get('/dashboard/invoice/recent/', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
 Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->name('dashboard.send.invoice');
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
+Route::get('/dashboard/receipt/{id}', 'TransactionController@generateReceipts')->name('dashboard.receipt.generate');
+Route::post('/dashboard/receipt/generate', 'TransactionController@generateReceipt__')->name('dashboard.receipt.generate');
+Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->name('dashboard.send.receipt');
 
 
 
@@ -199,6 +202,8 @@ Route::get('/student/portal/transaction/history', 'TransactionController@transac
 Route::get('/student/portal/transaction/histories', 'TransactionController@transactionHistory')->name('portal.transaction.histories');
 Route::get('/student/portal/invoice/', 'TransactionController@getInvoice')->name('portal.transaction.invoice');
 Route::get('/student/portal/transaction/{id}', 'TransactionController@viewInvoice')->name('portal.transaction.invoice.view');
+Route::get('/finance/transaction/generate-receipt', 'TransactionController@generateReceipt')->name('dashboard.transaction.receipt.view');
+Route::get('/finance/transaction/recent-receipt', 'TransactionController@recentReceipt')->name('dashboard.transaction.recent.receipt');
 
 // Pdf Routes
 Route::get('generate-pdf', 'PdfController@index')->name('download.invoice.pdf');

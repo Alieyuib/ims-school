@@ -48,7 +48,7 @@
         <h2 style="color: #145251; float: right" class="text-ims-default">THE PRIORITY SCHOOL</h2>
         <h4 style="color: #d9ba79; margin-top: 40px; position: absolute; left: 200;"  class="text-dark">NO: 2 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h4>
         <div style="margin-top: 200px">
-        <h3 style="color: #145251;" class="text-ims-default"><b>Invoice:#{{ $invoice_no }}</b></h3>
+        <h3 style="color: #145251;" class="text-ims-default"><b>Receipt:#{{ $invoice_no }}</b></h3>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">STUDENT NAME</b>: {{ $student_name }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>

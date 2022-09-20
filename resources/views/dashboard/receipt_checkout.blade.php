@@ -9,7 +9,7 @@
     <div class="col-md-4 generate-receipt" id="add_items">
         <div class="card shadow">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <h3 class="text-success">Add Items</h3>
+              <h3 class="text-success">Generate Receipt</h3>
             </div>
             <div class="card-body bg-orange text-center" id="show_all_students">
                 <div class="row my-2">
@@ -123,7 +123,7 @@
                 </div>
                 {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button> --}}
                 {{-- <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button> --}}
-                <form action="{{ route('dashboard.send.invoice') }}" method="POST">
+                <form action="{{ route('dashboard.receipt.generate') }}" method="POST">
                     @csrf
                     <input type="hidden" name="order_id_invoice" id="order_id_invoice" value="{{ $order_id }}">
                     <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">
@@ -133,7 +133,8 @@
                     <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
                     {{-- <label for="student_email_invoice" class="my-1"><b>Email Address</b></label> --}}
                     {{-- <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}"> --}}
-                    <button class="btn-lg btn-ims-green my-2" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
+                    {{-- <button class="btn-lg btn-ims-orange my-3" style="width: 100%" type="submit"><i class="fa fa-send"></i>&nbsp;Email Receipt</button> --}}
+                    <button class="btn-lg btn-ims-green my-3" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Receipt</button>
                 </form>
                 <form action="{{ route('dashboard.send.receipt') }}" method="POST">
                     @csrf
@@ -145,7 +146,7 @@
                     {{-- <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount"> --}}
                     <label for="student_email_invoice" class="my-1"><b>Email Address</b></label>
                     <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}">
-                    <button class="btn-lg btn-ims-orange my-3" style="width: 100%" type="submit"><i class="fa fa-send"></i>&nbsp;Email Invoice</button>
+                    <button class="btn-lg btn-ims-orange my-3" style="width: 100%" type="submit"><i class="fa fa-send"></i>&nbsp;Email Receipt</button>
                     {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Receipt</button> --}}
                 </form>
             </div>
@@ -167,8 +168,8 @@
                     <h6 class="text-dark">NO: 2 Bilyaminu Street off Ebituukiwe, Jabi Abuja</h6>
                 </div>
                 <div class="col-md-12" style="margin-top: 20px">
-                    <h6 class="text-dark"><b class="text-dark">Invoice</b>: #{{ $order_id }}</h6>
-                    <h6 class="text-dark"><b class="text-dark">Invoice Date</b>: {{ date('d/m/y') }}</h6>
+                    <h6 class="text-dark"><b class="text-dark">Receipt</b>: #{{ $order_id }}</h6>
+                    <h6 class="text-dark"><b class="text-dark">Receipt Date</b>: {{ date('d/m/y') }}</h6>
                 </div>
             </div>
               <h6 class="text-dark"><b class="text-dark">Name</b>: {{ $student_data->name }}</h6>

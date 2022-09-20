@@ -117,7 +117,11 @@ Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->na
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
 Route::get('/dashboard/receipt/{id}', 'TransactionController@generateReceipts')->name('dashboard.receipt.generate');
 Route::post('/dashboard/receipt/generate', 'TransactionController@generateReceipt__')->name('dashboard.receipt.generate');
+Route::post('/dashboard/receipt/generate/family', 'TransactionController@generateFamilyReceipt__')->name('dashboard.receipt.generate.family');
 Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->name('dashboard.send.receipt');
+Route::post('/dashboard/receipt/family/send', 'TransactionController@sendFamilyReceipt')->name('dashboard.send.receipt.family');
+Route::get('/dashboard/receipt/family/generate', 'TransactionController@generateFamilyInvoice')->name('dashboard.family.receipt');
+Route::get('/dashboard/receipt/family/{id}', 'TransactionController@generateFamilyReceipt')->name('dashboard.generate.family.receipt');
 
 
 

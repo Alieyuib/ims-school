@@ -91,6 +91,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a></li>
                                     <li><a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a></li>
                                     {{-- <li><a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a></li> --}}
                                     <li><a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a></li>
                                     <li><a class="dropdown-item" href="{{ route('dashboard.transaction.recent.receipt') }}">Recent Receipt</a></li>

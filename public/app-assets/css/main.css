@@ -553,10 +553,10 @@ p.forget-password-text a {
 }
 .student-list{
     height: 100%;
-    /* width: 100%; */
+    width: 80%;
     overflow: scroll;
     overflow-x: scroll;
-    /* position: fixed; */
+    position: fixed;
 }
 .student-list-div{
     margin-left: -30px;

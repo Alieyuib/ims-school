@@ -83,14 +83,14 @@
           <div class="col-md-12">
             <table class="invoice_table" border="1" style="width: 100%; margin-top: 30px">
               <tbody>
-                <tr>
+                {{-- <tr>
                   <td><b>Tax</b></td>
                   <td><h4><b>N&nbsp;0</b></h4></td>
                 </tr>
                 <tr>
                   <td><b>Vat</b></td>
                   <td><b>N&nbsp;0</b></td>
-                </tr>
+                </tr> --}}
                 <tr>
                   <td><b>Discount</b></td>
                   <td><b>N&nbsp;{{number_format($discount)}}</b></td>

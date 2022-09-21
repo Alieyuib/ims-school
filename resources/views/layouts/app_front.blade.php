@@ -65,22 +65,22 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light py-2" id="mainNav">
             <div class="container-fluid px-4 px-lg-5">
-                <a class="navbar-brand" href="{{ route('front.page') }}">
+                <a class="navbar-brand text-ims-default" href="{{ route('front.page') }}">
                     <img src="{{asset('images/logo.jpg')}}" alt="">
                     The Priority School
                 </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#management">Our Management</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('front.online.registration') }}">Online Registration</a></li>
+                    <ul class="navbar-nav ms-auto text-ims-default my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#services">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="{{ route('front.online.registration') }}">Online Registration</a></li>
                         {{-- <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li> --}}
                         <div class="dropdown">
-                        <button class="dropbtn">Portals</button>
+                        <li class="dropbtn nav-item"><a href="#" class="nav-link text-ims-default">Portals</a></li>
                             <div class="dropdown-content" style="margin-left: -100px; width: 100%">
 
                                 {{-- <a class="nav-link" href="{{ route('portal.index') }}">Student/Family Portal</a>
@@ -108,28 +108,61 @@
             </div>
         </header>
         <!-- Portfolio-->
-        <div id="management">
+        <div id="gallery">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-lg-12 mngdiv">
-                        <h2 class="text-center py-10 mngtext">Our Management Team</h2>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 teamdiv">
-                        <div class="row p-0">
-                            <div class="col-lg-12 avatar-team">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 teamdiv">
-                        
-                    </div>
-                    <div class="col-lg-3 col-sm-6 teamdiv">
-                        
-                    </div>
-                    <div class="col-lg-3 col-sm-6 teamdiv">
-                        
-                    </div>
+                    <h2 class="text-center text-ims-default p-2">Our Gallery</h2>
+                    <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}">
+                          <img src="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}" alt="Cinque Terre" width="600" height="400">
+                        </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(1).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(1).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(6).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(6).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(4).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(4).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(10).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(10).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(3).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(3).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
+                      <div class="gallery col-md-3">
+                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(2).jpg')}}">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(2).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                          </a>
+                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                      </div>
                 </div>
             </div>
         </div>

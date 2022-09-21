@@ -941,6 +941,9 @@ class TransactionController extends Controller
         $student_address = $request->input('student_address');
         $discount = $request->input('discount');
 
+        $family_members = StudentData::where('email', $request->input('student_email'))->get();
+
+
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
         foreach ($stmt as $key => $value) {
             $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
@@ -960,6 +963,7 @@ class TransactionController extends Controller
             'cart_items' => $cart_items,
             'counter' => 1,
             'totalAll' => $total_discount,
+            'family_members' => $family_members,
             'discount' => $discount
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_receipt', $data);

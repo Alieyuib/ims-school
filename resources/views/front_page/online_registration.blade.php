@@ -19,22 +19,74 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ asset('app-assets/css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
+        <style>
+            /* Dropdown Button */
+.dropbtn {
+ background-color: transparent;
+ color: white;
+ /* padding: 5px; */
+ font-size: 16px;
+ border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+ position: relative;
+ display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: #f1f1f1;
+ min-width: 160px;
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+ color: black;
+ padding: 12px 16px;
+ text-decoration: none;
+ display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #414141;} 
+       </style>
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{{ route('front.page') }}">
+        <nav class="navbar navbar-expand-lg navbar-light py-2" id="mainNav">
+            <div class="container-fluid px-4 px-lg-5">
+                <a class="navbar-brand text-ims-default" href="{{ route('front.page') }}">
                     <img src="{{asset('images/logo.jpg')}}" alt="">
                     The Priority School
                 </a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Online Registration</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li>
+                    <ul class="navbar-nav ms-auto text-ims-default my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#services">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="#gallery">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link text-ims-default" href="{{ route('front.online.registration') }}">Online Registration</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('portal.index') }}">Student Portal</a></li> --}}
+                        <div class="dropdown">
+                        <li class="dropbtn nav-item"><a href="#" class="nav-link text-ims-default">Portals</a></li>
+                            <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+
+                                {{-- <a class="nav-link" href="{{ route('portal.index') }}">Student/Family Portal</a>
+                                <a class="nav-link" href="{{ route('portal.teacher.index') }}">Teachers Portal</a> --}}
+                                <a class="nav-link" href="{{ route('login') }}">Administrative Portal</a>
+                            </div>
+                        </div> 
                     </ul>
                 </div>
             </div>

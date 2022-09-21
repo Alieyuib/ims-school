@@ -1,4 +1,51 @@
 @section('sidebar')
+<style>
+    /* Dropdown Button */
+.dropbtn {
+background-color: transparent;
+color: white !important;
+/* padding: 5px; */
+font-size: 16px;
+border: none;
+}
+
+.dropbtn a {
+    color: #f1f1f1 !important;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+margin-left: 0px !important;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn a {background-color: none; color: #d9ba79 !important;} 
+</style>
     <div class="ims-sidebar">
                 <div class="sidebar-header">
                     <h5>The Priority School</h5>
@@ -79,59 +126,53 @@
                                 </span>
                             </li>
                             <div class="dropdown">
-                                <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <li class="dropbtn nav-item">
                                     <span class="link-name">
-                                        <a href="">
+                                        <a href="#" class="nav-link text-ims-default">
                                             <span class="float-left">
                                                 <i class="fa fa-money"></i>
                                             </span>
                                             Finance</a>
                                     </span>
                                 </li>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a></li>
-                                    {{-- <li><a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a></li> --}}
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.transaction.recent.receipt') }}">Recent Receipt</a></li>
-                                    {{-- <li><a class="dropdown-item" href="{{ route('dashboard.finance.edit') }}">Student/Family Account</a></li> --}}
-                                    {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
-                                </ul>
+                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                    <a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a>
+                                    {{--<a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a> --}}
+                                    <a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.transaction.recent.receipt') }}">Recent Receipt</a>
+                                </div>
                             </div>
                             <div class="dropdown">
-                                <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <li class="dropbtn nav-item">
                                     <span class="link-name">
-                                        <a href="">
+                                        <a href="#" class="nav-link text-ims-default">
                                             <span class="float-left">
                                                 <i class="fa fa-users"></i>
                                             </span>
                                             User Management</a>
                                     </span>
                                 </li>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.new.user') }}">Create new user</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">All users</a></li>
-                                    {{-- <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">Edit Invoice</a></li> --}}
-                                    {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
-                                </ul>
+                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                    <a class="dropdown-item" href="{{ route('dashboard.new.user') }}">Create new user</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.all.users') }}">All users</a>
+                                </div>
                             </div>
                             <div class="dropdown">
-                                <li class="list-group-item dropdown-toggle" data-bs-toggle="dropdown">
+                                <li class="dropbtn nav-item">
                                     <span class="link-name">
-                                        <a href="">
+                                        <a href="#" class="nav-link text-ims-default">
                                             <span class="float-left">
                                                 <i class="fa fa-list"></i>
                                             </span>
                                             Fees</a>
                                     </span>
                                 </li>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Item</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Items</a></li>
-                                    {{-- <li><a class="dropdown-item" href="{{ route('dashboard.all.users') }}">Edit Invoice</a></li> --}}
-                                    {{-- <li><a class="dropdown-item" href="#">Link 3</a></li> --}}
-                                </ul>
+                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                    <a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Item</a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Items</a>
+                                </div>
                             </div>
                             <li class="list-group-item">
                                 <span class="link-name">

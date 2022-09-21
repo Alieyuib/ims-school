@@ -68,7 +68,7 @@ data-bs-backdrop="static" aria-hidden="true">
 {{-- edit student modal end --}}
   <div class="container">
     <div class="row my-1">
-      <div class="col-lg-12 student-list-div">
+      <div class="col-lg-12 student-list">
         <div class="card shadow">
           <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="text-success">All Awaiting Students (تسجيل جميع الطلاب)</h3>

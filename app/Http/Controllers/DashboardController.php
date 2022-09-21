@@ -390,10 +390,7 @@ class DashboardController extends Controller
                         <th>ID</th>
                         <th>Avatar</th>
                         <th>Name</th>
-                        <th>POB</th>
-                        <th>DOB</th>
                         <th>Email</th>
-                        <th>Sickness/Allergy</th>
                         <th>Phone Number</th>
                         <th>Family Name</th>
                         <th>Status</th>
@@ -408,10 +405,7 @@ class DashboardController extends Controller
                             <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
                         </td>
                         <td> '.$item->name.' </td>
-                        <td>'.$item->pob.'</td>
-                        <td>'.$item->dob.'</td>
                         <td>'.$item->email.'</td>
-                        <td>'.$item->sickness_allergy.'</td>
                         <td>'.$item->phone_no.'</td>
                         <td>'.$item->ffname.'</td>
                         <td>'.$item->status.'</td>

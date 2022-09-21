@@ -189,7 +189,7 @@ class TransactionController extends Controller
      public function generateTransactionHistoryAdmin(Request $request)
      {
         // $ffname = $request->session()->get('loggedInFamilyName');
-        $stmt = StudentFamilyAccount::all();
+        $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
             $output .= '<table class="table table-striped align-middle table-hover">
@@ -206,7 +206,7 @@ class TransactionController extends Controller
                 foreach ($stmt as $item) {
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
-                        <td>'.$item->account_name.'</td>
+                        <td>'.$item->name.'</td>
                         <td>'.$item->phone_no.'</td>
                         <td>'.$item->email.'</td>
                         <td>
@@ -302,7 +302,7 @@ class TransactionController extends Controller
      public function getInvoiceData(Request $request)
      {
         $id = $request->id;
-        $stmt = StudentFamilyAccount::find($id);
+        $stmt = StudentData::find($id);
 
         $stmt_student = StudentData::where('email', $stmt->email)->get();
 
@@ -337,7 +337,7 @@ class TransactionController extends Controller
      public function getAccountBalance(Request $request)
      {
         $id = $request->id;
-        $stmt = StudentFamilyAccount::find($id);
+        $stmt = StudentData::find($id);
         return response()->json($stmt);
      }
 
@@ -663,7 +663,7 @@ class TransactionController extends Controller
 
      public function generateReceipt(Request $request)
      {
-        $student_account = StudentFamilyAccount::all();
+        $student_account = StudentData::all();
         $view_data['student_data'] = $student_account;
 
         return view('dashboard.receipt', $view_data);
@@ -827,7 +827,7 @@ class TransactionController extends Controller
 
      public function generateFamilyInvoice(Request $request)
      {
-        $student_account = StudentFamilyAccount::all();
+        $student_account = StudentData::all();
         $view_data['student_data'] = $student_account;
 
         return view('dashboard.receipt_family', $view_data);

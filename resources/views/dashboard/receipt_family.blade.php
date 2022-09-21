@@ -27,7 +27,7 @@
                     @foreach ($student_data as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->account_name }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>  
                             <td>
                                 <a href="/dashboard/receipt/family/{{$item->id}}" class="btn btn-success">Generate</a>

@@ -192,7 +192,7 @@ class TransactionController extends Controller
         $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-striped align-middle table-hover">
+            $output .= '<table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -518,8 +518,6 @@ class TransactionController extends Controller
                     $output .= '</tbody></table><div class="col-md-12 float-right">
                     
                     <dvi class="invoice_footer">
-                    <h6>VAT:&#8358;<span id="total_price">0</span></h6></td><td><h6 id="discount"></h6>
-                    <h6>Tax:&#8358;<span id="total_price">0</span></h6></td><td><h6 id="discount"></h6>
                     <h5>Total: &#8358;<span id="total_price">'.number_format($totalAll).'</span></h5></td><td><h5 id="discount"></h5>
                     </div>
                     </div>';

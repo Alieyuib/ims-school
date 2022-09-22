@@ -68,17 +68,15 @@ data-bs-backdrop="static" aria-hidden="true">
 {{-- edit student modal end --}}
   <div class="container">
     <div class="row my-1">
-      <div class="col-lg-12 student-list">
-        <div class="card shadow">
-          <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="col-lg-12 student-list-div-main">
+          <div class="d-flex justify-content-between align-items-center">
             <h3 class="text-success">All Awaiting Students (تسجيل جميع الطلاب)</h3>
           </div>
-          <div class="card-body bg-orange" id="show_all_students">
+          <div class="bg-orange" id="show_all_students">
             <h1 class="text-center text-secondary my-5">
                 <img src="{{asset('images/Hourglass.gif')}}" alt="" srcset="">
             </h1>
           </div>
-        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="#" method="POST" id="add_student_form" enctype="multipart/form-data" class="reg-form col-md-10 card">
+<form action="#" method="POST" id="add_student_form" enctype="multipart/form-data" class="reg-form col-md-8">
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">
@@ -10,7 +10,7 @@
         </div>
     </div>
     @csrf
-    <div class="modal-body p-4 bg-light">
+    <div class="">
         <div class="row">
             <div class="form-group col-md-12">
                 <label for="firstname">Fullname</label>

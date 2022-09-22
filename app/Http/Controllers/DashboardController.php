@@ -264,7 +264,7 @@ class DashboardController extends Controller
         $stmt = RegisteredCourses::all();
             $output = '';
             if ($stmt->count() > 0) {
-                $output .= '<table class="table table-striped align-middle table-hover">
+                $output .= '<table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -316,7 +316,7 @@ class DashboardController extends Controller
         $stmt = Books::all();
             $output = '';
             if ($stmt->count() > 0) {
-                $output .= '<table class="table table-striped align-middle table-hover">
+                $output .= '<table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -384,7 +384,7 @@ class DashboardController extends Controller
         $stmt = StudentData::where('status', 'Awaiting')->get();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-striped align-middle table-hover">
+            $output .= '<table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -755,7 +755,7 @@ class DashboardController extends Controller
         $stmt = Items::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-striped align-middle table-hover">
+            $output .= '<table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>

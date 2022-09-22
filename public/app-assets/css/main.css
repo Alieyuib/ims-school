@@ -1,8 +1,13 @@
-
 html, body{
     height: 100%;
     margin: 0;
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+form label {
+    color: #d9ba79 !important;
+}
+form input {
+    background-color: #f1f1f1 !important;
 }
 .invoice-header{
     margin-top: 70px;
@@ -558,6 +563,22 @@ p.forget-password-text a {
     overflow-x: scroll;
     position: fixed;
 }
+.student-list-div-main{
+    /* margin-left: -30px; */
+    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%;
+    width: 80%;
+    overflow: scroll;
+    /* overflow-x: scroll; */
+    position: fixed;
+}
+.student-list-div-main table{
+    width: 100% !important;
+    padding: 20px;
+
+}
 .student-list-div{
     margin-left: -30px;
     height: 100%;
@@ -578,21 +599,30 @@ p.forget-password-text a {
 }
 
 .static-invoice{
+    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    border-radius: 20px;
+    padding: 10px;
     height: 100%;
     overflow: scroll;
     overflow-x: scroll;
     position: fixed;
-    width: 55%;
-    margin-left: 350px;
+    width: 54%;
+    margin-left: 362px;
 }
 
 .generate-receipt{
+    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    border-radius: 20px;
     height: 100%;
     width: 28%;
     overflow-y: scroll;
     overflow-x: scroll;
     position: fixed;
-    margin-left: -20px;
+    margin-left: -30px;
+}
+.generate-receipt form label{
+    color: #d9ba79;
+
 }
 
 .student-list-div-3{
@@ -710,12 +740,19 @@ a.paginate_button.current {
     position: fixed;
     overflow: scroll;
     height: 100%;
-    width: 80%;
-    margin: 20px;
+    /* border: 2px solid #145251; */
+    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    border-radius: 10px;
+    /* width: 80%; */
+    /* margin: 20px; */
+    margin-left: 100px;
     padding: 20px;
 }
 .reg-form label{
     text-transform: uppercase;
+    font-size: 14px;
+    color: #d9ba79;
+    font-weight: bolder;
 }
 
 .reg-modal-form input.form-control, .reg-modal-form select.form-control{
@@ -738,6 +775,10 @@ a.paginate_button.current {
 }
 .grade-form{
     padding: 50px;
+}
+.grade-form label{
+    color: #d9ba79;
+    padding: 10px;
 }
 .grade-form input.form-control, .grade-form select.form-control{
     height: 45px;

@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row my-1">
-        <div class="col-md-12 card shadow student-list-div-default">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="col-md-12 student-list-div-main">
+            <div class="d-flex justify-content-between align-items-center">
                 <h3 class="text-success">Generate ID Card For Students(تسجيل جميع الطلاب)</h3>
             </div>
-            <div class="card-body" id="show_all_students">
+            <div id="show_all_students">
                 <table class="table table-bordered table-striped align-middle table-hover mx-1">
                     <thead>
                         <tr>

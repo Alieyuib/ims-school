@@ -3,18 +3,18 @@
 @section('content')
 <div class="container">
     <div class="row my-1">
-      <div class="col-lg-12" id="invoice">
-        <div class="card shadow student-list-div-default">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="text-success">Generate Receipt</h3>
+      <div class="col-lg-12 student-list-div-main" id="invoice">
+        <div class="">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="text-ims-default">Generate Receipt</h3>
             @if (session()->has('status'))
               <div class="alert alert-success my-2">
                   {{  session('status') }}
               </div>
             @endif
           </div>
-          <div class="card-body bg-orange text-center" id="show_all_students">
-            <table class="table table-bordered table-striped align-middle table-hover mx-1">
+          <div class="bg-orange" id="show_all_students">
+            <table class="table table-bordered table-hover mx-1">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -30,7 +30,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>  
                             <td>
-                                <a href="/dashboard/receipt/{{$item->id}}" class="btn btn-success">Generate</a>
+                                <a href="/dashboard/receipt/{{$item->id}}" class="btn btn-ims-green">Generate</a>
                             </td>
                         </tr>
                     @endforeach

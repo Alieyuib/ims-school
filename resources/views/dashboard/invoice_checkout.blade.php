@@ -6,14 +6,14 @@
 </style>
 <div class="container">
     <div class="row my-1">
-    <div class="col-md-4 generate-receipt" id="add_items">
-        <div class="card shadow">
-            <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="col-md-4 generate-receipt p-4" id="add_items">
+        <div>
+            <div class="d-flex justify-content-between align-items-center">
               <h3 class="text-success">Add Items</h3>
             </div>
-            <div class="card-body bg-orange text-center" id="show_all_students">
+            <div class="bg-orange text-center" id="show_all_students">
                 <div class="row my-2">
-                    <div class="col-md-12 card p-4">
+                    <div class="col-md-12 p-4">
                         <form action="" class="add_item_form" method="POST" id="add_item_form">
                             @csrf
                             <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
@@ -152,12 +152,12 @@
         </div>
     </div>
       <div class="col-md-8 static-invoice">
-        <div class="card shadow student-list-div-3 invoice" id="invoice">
+        <div id="invoice">
           {{-- <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="text-success">Invoice #{{ $order_id }}</h3>
             <input type="hidden" id="order_id_invoice" value="{{ $order_id }}">
           </div> --}}
-          <div class="card-body bg-orange" id="show_all_students">
+          <div class="bg-orange" id="show_all_students">
             <div class="row">
                 <div class="col-md-3">
                     <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 80%;">

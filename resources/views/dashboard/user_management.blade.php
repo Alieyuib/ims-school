@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12 my-4 mx-4 card student-list-div-default">
+    <div class="col-md-12 my-4 mx-4 card student-list-div-main">
         @if (session()->has('status'))
             <div class="alert alert-success my-2">
                 {{  session('status') }}
             </div>
         @endif
-        <div class="shadow">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="text-success">All System Users(تسجيل جميع الطلاب)</h3>
+        <div class="">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="text-ims-default">All System Users(تسجيل جميع الطلاب)</h3>
         </div>
-        <div class="card-body bg-orange" id="">
+        <div class="bg-orange" id="">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>

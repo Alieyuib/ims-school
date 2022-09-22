@@ -57,17 +57,14 @@ public function fetchAll()
         $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-striped align-middle table-hover">
+            $output .= '<table class="table table-bordered my-4 table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Avatar</th>
                         <th>Name</th>
-                        <th>POB</th>
                         <th>DOB</th>
-                        <th>Email</th>
                         <th>Sickness/Allergy</th>
-                        <th>Phone Number</th>
                         <th>Family Name</th>
                         <th>Action</th>
                     </tr>
@@ -80,11 +77,8 @@ public function fetchAll()
                             <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
                         </td>
                         <td> '.$item->name.' </td>
-                        <td>'.$item->pob.'</td>
                         <td>'.$item->dob.'</td>
-                        <td>'.$item->email.'</td>
                         <td>'.$item->sickness_allergy.'</td>
-                        <td>'.$item->phone_no.'</td>
                         <td>'.$item->ffname.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>

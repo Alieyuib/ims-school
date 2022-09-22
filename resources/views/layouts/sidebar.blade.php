@@ -43,7 +43,7 @@ display: block;
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
+/* Change the background color of the dropdown button when the dropdown contenbbt is shown */
 .dropdown:hover .dropbtn a {background-color: none; color: #d9ba79 !important;} 
 </style>
     <div class="ims-sidebar">

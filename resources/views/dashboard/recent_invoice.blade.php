@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12 card student-list-div-default">
+    <div class="col-md-12 student-list-div-main">
         <div class="col-lg-12">
-            <div class="shadow">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="text-success">Recent Invoice(تسجيل جميع الطلاب)</h3>
+            <div class="">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="text-ims-default">Recent Invoice(تسجيل جميع الطلاب)</h3>
             </div>
-            <div class="card-body bg-orange" id="show_all_students">
-                <table class="table table-bordered mx-1">
+            <div class="bg-orange" id="show_all_students">
+                <table class="table table-bordered table-hover mx-1">
                     <thead>
                         <tr>
                             <th>S/N</th>

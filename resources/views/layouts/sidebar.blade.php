@@ -132,6 +132,21 @@ display: block;
                                             <span class="float-left">
                                                 <i class="fa fa-money"></i>
                                             </span>
+                                            Expenses</a>
+                                    </span>
+                                </li>
+                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                    <a class="dropdown-item" href="{{ route('expense.create') }}">New Expense</a>
+                                    <a class="dropdown-item" href="{{ route('recent.expenses') }}">View Expenses</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <li class="dropbtn nav-item">
+                                    <span class="link-name">
+                                        <a href="#" class="nav-link text-ims-default">
+                                            <span class="float-left">
+                                                <i class="fa fa-money"></i>
+                                            </span>
                                             Finance</a>
                                     </span>
                                 </li>

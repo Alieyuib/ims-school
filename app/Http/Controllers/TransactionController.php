@@ -10,6 +10,7 @@ use App\Mail\InvoiceSend;
 use App\ItemCheckout;
 use App\Items;
 use App\RecentInvoice;
+use App\RecentReceipt;
 use App\StudentFamilyAccount as StudentFamilyAccount;
 use App\StudentData;
 use Illuminate\Support\Facades\Mail;
@@ -659,6 +660,13 @@ class TransactionController extends Controller
         return view('dashboard.recent_invoice', $view_data);
      }
 
+     public function recentReceipt()
+     {
+        $view_data['recent_receipts'] = RecentReceipt::all();
+        $view_data['counter'] = 1;
+        return view('dashboard.recent_receipt', $view_data);
+     }
+
      public function generateReceipt(Request $request)
      {
         $student_account = StudentData::all();
@@ -732,12 +740,12 @@ class TransactionController extends Controller
         // return $pdf->stream($order_id.'.pdf');
 
         $invoice_data = [
-            'invoice_id' => $order_id,
-            'invoice' => $order_id.'.pdf',
+            'receipt_id' => $order_id,
+            'receipt' => $order_id.'.pdf',
             'student_email' => $student_email
         ];
 
-        $stmt = RecentInvoice::create($invoice_data);
+        $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
             
@@ -798,12 +806,12 @@ class TransactionController extends Controller
         // return $pdf->stream($order_id.'.pdf');
 
         $invoice_data = [
-            'invoice_id' => $order_id,
-            'invoice' => $order_id.'.pdf',
+            'receipt_id' => $order_id,
+            'receipt' => $order_id.'.pdf',
             'student_email' => $student_email
         ];
 
-        $stmt = RecentInvoice::create($invoice_data);
+        $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
             
@@ -901,12 +909,12 @@ class TransactionController extends Controller
         // return $pdf->stream($order_id.'.pdf');
 
         $invoice_data = [
-            'invoice_id' => $order_id,
-            'invoice' => $order_id.'.pdf',
+            'receipt_id' => $order_id,
+            'receipt' => $order_id.'.pdf',
             'student_email' => $student_email
         ];
 
-        $stmt = RecentInvoice::create($invoice_data);
+        $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
             
@@ -973,12 +981,12 @@ class TransactionController extends Controller
         // return $pdf->stream($order_id.'.pdf');
 
         $invoice_data = [
-            'invoice_id' => $order_id,
-            'invoice' => $order_id.'.pdf',
+            'receipt_id' => $order_id,
+            'receipt' => $order_id.'.pdf',
             'student_email' => $student_email
         ];
 
-        $stmt = RecentInvoice::create($invoice_data);
+        $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
             

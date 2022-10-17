@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StudentController;
 use App\Teachers;
@@ -51,6 +52,8 @@ Route::group(['middleware' => ['auth']], function() {
    Route::get('/', function () {
     return view('layouts.app');
 });
+
+
 
 Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/add/picture', 'DashboardController@addPictures')->name('dashboard.add.pictures');
@@ -126,6 +129,13 @@ Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->nam
 Route::post('/dashboard/receipt/family/send', 'TransactionController@sendFamilyReceipt')->name('dashboard.send.receipt.family');
 Route::get('/dashboard/receipt/family/generate', 'TransactionController@generateFamilyInvoice')->name('dashboard.family.receipt');
 Route::get('/dashboard/receipt/family/{id}', 'TransactionController@generateFamilyReceipt')->name('dashboard.generate.family.receipt');
+
+
+Route::get('/dashboard/create/expense', [ExpenseController::class, 'newExpense'])->name('expense.create');
+Route::post('/dashboard/add/expense', [ExpenseController::class, 'addExpense'])->name('expense.add');
+Route::get('/dashboard/view/expense', [ExpenseController::class, 'recentExpenses'])->name('recent.expenses');
+Route::get('/dashboard/approve/expense/{id}', [ExpenseController::class, 'approveExpenses'])->name('approve.expenses');
+Route::get('/dashboard/decline/expense/{id}', [ExpenseController::class, 'declineExpenses'])->name('decline.expenses');
 
 
 

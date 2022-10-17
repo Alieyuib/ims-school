@@ -9,7 +9,7 @@ class FrontPageController extends Controller
     //front page
     public function index()
     {
-        return view('front_page.index');
+        return view('layouts.app_front');
     }
 
     // online registration

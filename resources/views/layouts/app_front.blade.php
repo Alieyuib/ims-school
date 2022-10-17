@@ -97,75 +97,64 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for learning <b><span class="text-ims-default">Islamic</span> knowledge</b></h1>
+                        <h1 class="text-white font-weight-bold">Your Favorite Place for learning <b><span class="text-ims-orange">Islamic</span> knowledge</b></h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-light mb-5">Your Favorite Place for learning <b>Islamic knowledge</b> Click the button below to enroll</p>
+                        <p class="text-light mb-5">Your Favorite Place for learning <b>Islamic knowledge</b> Click the button below to Register your child</p>
                         <a class="btn btn-ims-orange btn-xl" href="{{ route('front.online.registration') }}">Register Now</a>
                     </div>
                 </div>
             </div>
         </header>
         <!-- Portfolio-->
-        <div id="gallery">
+        <section id="gallery" class="ims-bg-gradient">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <h2 class="text-center text-ims-default p-2">Our Gallery</h2>
-                    <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}">
-                          <img src="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}" alt="Cinque Terre" width="600" height="400">
-                        </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(1).jpg')}}">
+                    {{-- <h1 class="text-center text-ims-orange p-2 mt-2">Our Gallery</h1> --}}
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}" alt="Cinque Terre" width="600" height="400">
+                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                <h5>First slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                              </div>
+                          </div>
+                          <div class="carousel-item">
                             <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(1).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(6).jpg')}}">
+                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                <h5>Second slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                              </div>
+                          </div>
+                          <div class="carousel-item">
                             <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(6).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}">
+                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                <h5>Third slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                              </div>
+                          </div>
+                          <div class="carousel-item">
                             <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(4).jpg')}}">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(4).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(10).jpg')}}">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(10).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(3).jpg')}}">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(3).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
-                      </div>
-                      <div class="gallery col-md-3">
-                        <a target="_blank" href="{{asset('images/PHOTO-2022-09-03-22-46-53(2).jpg')}}">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(2).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                          </a>
-                        {{-- <div class="desc">Add a description of the image here</div> --}}
+                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                <h5>Fourth slide label</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                              </div>
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                       </div>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- About-->
         {{-- <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">

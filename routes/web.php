@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard/add/picture', 'DashboardController@addPictures')->name('dashboard.add.pictures');
+Route::post('/dashboard/add/picture', 'DashboardController@addPicture')->name('dashboard.add.picture');
+Route::get('/dashboard/delete/pictures', 'DashboardController@deletePictures')->name('dashboard.delete.pictures');
+Route::get('/dashboard/delete/picture/{id}', 'DashboardController@deletePicture')->name('dashboard.delete.picture');
 // Route::any('/dashboard/students', 'DashboardController@viewStudents')->name('view.students');
 Route::post('/dashboard/student/enroll', 'DashboardController@enrollStudent')->name('enroll.student');
 Route::get('/dashboard/students', 'DashboardController@fetchStudents')->name('fetch.students');

@@ -519,6 +519,7 @@ class ComposerStaticInited0df2dd2a99713d062b638a10793e80
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Finance' => __DIR__ . '/../..' . '/app/Finance.php',
+        'App\\Gallery' => __DIR__ . '/../..' . '/app/Gallery.php',
         'App\\Http\\Controllers\\Authentication' => __DIR__ . '/../..' . '/app/Http/Controllers/Authentication.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',

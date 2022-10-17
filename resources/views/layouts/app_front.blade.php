@@ -114,34 +114,22 @@
                     {{-- <h1 class="text-center text-ims-orange p-2 mt-2">Our Gallery</h1> --}}
                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53.jpg')}}" alt="Cinque Terre" width="600" height="400">
-                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                              </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(1).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                              </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(6).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                              </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}" alt="Cinque Terre" width="600" height="400">
-                            <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
-                                <h5>Fourth slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                              </div>
-                          </div>
+                            <div class="carousel-item active">
+                                <img src="{{asset('images/PHOTO-2022-09-03-22-46-53(8).jpg')}}" alt="Cinque Terre" width="600" height="400">
+                                <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                    <h5>The Priority School</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                          @foreach ($images as $item)
+                            <div class="carousel-item">
+                                <img src="../storage/gallery/{{$item->img_file}}" alt="Cinque Terre" width="600" height="400">
+                                <div class="carousel-caption d-none d-md-block ims-bg-gradient m-4">
+                                    <h5>{{$item->caption_img}}</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                          @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

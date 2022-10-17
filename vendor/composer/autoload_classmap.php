@@ -11,6 +11,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Finance' => $baseDir . '/app/Finance.php',
+    'App\\Gallery' => $baseDir . '/app/Gallery.php',
     'App\\Http\\Controllers\\Authentication' => $baseDir . '/app/Http/Controllers/Authentication.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',

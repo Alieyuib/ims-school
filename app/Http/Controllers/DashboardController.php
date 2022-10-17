@@ -24,6 +24,7 @@ use App\Results as Results;
 use App\StudentFamilyAccount;
 use App\User;
 use App\AccessibleEntities;
+use App\Gallery;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -827,4 +828,59 @@ class DashboardController extends Controller
         // return $stmt;
         return Items::destroy($id);
     }
+
+    public function addPictures(Request $request)
+    {
+        return view('dashboard.add_picture');
+    }
+
+    public function addPicture(Request $request)
+    {
+        $file = $request->file('upld_img');
+        $fileName = time(). ".". $file->getClientOriginalExtension();
+        $file->storeAs('public/gallery', $fileName);
+
+        $caption_img = $request->input('img_caption');
+
+        $book_data = [
+            'caption_img' => $caption_img,
+            'img_file' => $fileName
+        ];
+
+        $stmt = Gallery::create($book_data);
+
+        if ($stmt) {
+            return response()->json([
+                'status' => 200
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+    }
+
+    public function deletePictures(Request $request)
+    {
+        $view_data['images'] = Gallery::all();
+
+        // $images = $view_data['images'];
+
+        return view('dashboard.delete_pictures', $view_data);
+    }
+
+    public function deletePicture(Request $request, $id)
+    {
+        $stmt = Gallery::destroy($id);
+
+        if ($stmt) {
+            $request->session()->flash('status', 'Image Deleted!');
+        }else{
+            $request->session()->flash('status', 'Image not Deleted!');
+        }
+
+        return redirect(route('dashboard.delete.pictures'));
+    }
+
+    
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Gallery;
 use Illuminate\Http\Request;
 
 class FrontPageController extends Controller
@@ -9,7 +10,8 @@ class FrontPageController extends Controller
     //front page
     public function index()
     {
-        return view('layouts.app_front');
+        $view_data['images'] = Gallery::all();
+        return view('layouts.app_front', $view_data);
     }
 
     // online registration

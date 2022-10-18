@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row card grade-form">
+<div class="row">
     <div class="col-md-12 student-list-div-default">
-        <form action="/dashboard/user/assign-user-access/{{$uid}}" method="POST" enctype="multipart/form-data" class="col-md-12"> 
+        <form action="/dashboard/user/assign-user-access/{{$uid}}" method="POST" enctype="multipart/form-data" class="col-md-12 p-4"> 
             <div class="row">
                 <div class="col-md-12 text-center">
                     <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">

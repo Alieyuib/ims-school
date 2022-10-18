@@ -107,6 +107,85 @@ display: block;
                                             Student Result</a>
                                     </span>
                                 </li>
+                                <div class="dropdown">
+                                    <li class="dropbtn nav-item">
+                                        <span class="link-name">
+                                            <a href="#" class="nav-link text-ims-default">
+                                                <span class="float-left">
+                                                    <i class="fa fa-money"></i>
+                                                </span>
+                                                Expenses</a>
+                                        </span>
+                                    </li>
+                                    <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                        <a class="dropdown-item" href="{{ route('expense.create') }}">New Expense</a>
+                                        <a class="dropdown-item" href="{{ route('recent.expenses') }}">View Expenses</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn nav-item">
+                                        <span class="link-name">
+                                            <a href="#" class="nav-link text-ims-default">
+                                                <span class="float-left">
+                                                    <i class="fa fa-money"></i>
+                                                </span>
+                                                Finance</a>
+                                        </span>
+                                    </li>
+                                    <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                        <a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a>
+                                        {{--<a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a> --}}
+                                        <a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.transaction.recent.receipt') }}">Recent Receipt</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn nav-item">
+                                        <span class="link-name">
+                                            <a href="#" class="nav-link text-ims-default">
+                                                <span class="float-left">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                User Management</a>
+                                        </span>
+                                    </li>
+                                    <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                        <a class="dropdown-item" href="{{ route('dashboard.new.user') }}">Create new user</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.all.users') }}">All users</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn nav-item">
+                                        <span class="link-name">
+                                            <a href="#" class="nav-link text-ims-default">
+                                                <span class="float-left">
+                                                    <i class="fa fa-list"></i>
+                                                </span>
+                                                Fees</a>
+                                        </span>
+                                    </li>
+                                    <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                        <a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Item</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Items</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <li class="dropbtn nav-item">
+                                        <span class="link-name">
+                                            <a href="#" class="nav-link text-ims-default">
+                                                <span class="float-left">
+                                                    <i class="fa fa-file-photo-o"></i>
+                                                </span>
+                                                Pictures</a>
+                                        </span>
+                                    </li>
+                                    <div class="dropdown-content" style="margin-left: -100px; width: 100%">
+                                        <a class="dropdown-item" href="{{ route('dashboard.add.pictures') }}">Add Picture</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard.delete.pictures') }}">Delete Pictures</a>
+                                    </div>
+                                </div>
                             <li class="list-group-item">
                                 <span class="link-name">
                                     <a href="{{ route('dashboard.books') }}">
@@ -125,85 +204,6 @@ display: block;
                                         Generate ID Card</a>
                                 </span>
                             </li>
-                            <div class="dropdown">
-                                <li class="dropbtn nav-item">
-                                    <span class="link-name">
-                                        <a href="#" class="nav-link text-ims-default">
-                                            <span class="float-left">
-                                                <i class="fa fa-money"></i>
-                                            </span>
-                                            Expenses</a>
-                                    </span>
-                                </li>
-                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
-                                    <a class="dropdown-item" href="{{ route('expense.create') }}">New Expense</a>
-                                    <a class="dropdown-item" href="{{ route('recent.expenses') }}">View Expenses</a>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <li class="dropbtn nav-item">
-                                    <span class="link-name">
-                                        <a href="#" class="nav-link text-ims-default">
-                                            <span class="float-left">
-                                                <i class="fa fa-money"></i>
-                                            </span>
-                                            Finance</a>
-                                    </span>
-                                </li>
-                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
-                                    <a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a>
-                                    {{--<a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a> --}}
-                                    <a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.transaction.recent.receipt') }}">Recent Receipt</a>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <li class="dropbtn nav-item">
-                                    <span class="link-name">
-                                        <a href="#" class="nav-link text-ims-default">
-                                            <span class="float-left">
-                                                <i class="fa fa-users"></i>
-                                            </span>
-                                            User Management</a>
-                                    </span>
-                                </li>
-                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
-                                    <a class="dropdown-item" href="{{ route('dashboard.new.user') }}">Create new user</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.all.users') }}">All users</a>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <li class="dropbtn nav-item">
-                                    <span class="link-name">
-                                        <a href="#" class="nav-link text-ims-default">
-                                            <span class="float-left">
-                                                <i class="fa fa-list"></i>
-                                            </span>
-                                            Fees</a>
-                                    </span>
-                                </li>
-                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
-                                    <a class="dropdown-item" href="{{ route('dashboard.new.item') }}">Add new Item</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.all.item') }}">All Items</a>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <li class="dropbtn nav-item">
-                                    <span class="link-name">
-                                        <a href="#" class="nav-link text-ims-default">
-                                            <span class="float-left">
-                                                <i class="fa fa-file-photo-o"></i>
-                                            </span>
-                                            Pictures</a>
-                                    </span>
-                                </li>
-                                <div class="dropdown-content" style="margin-left: -100px; width: 100%">
-                                    <a class="dropdown-item" href="{{ route('dashboard.add.pictures') }}">Add Picture</a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.delete.pictures') }}">Delete Pictures</a>
-                                </div>
-                            </div>
                             <li class="list-group-item">
                                 <span class="link-name">
                                     <a href="{{ route('logout') }}">

@@ -37,6 +37,11 @@ text-decoration: none;
 display: block;
 }
 
+.dropdown-item:hover{
+    color: #d9ba79;
+    background-color: rgba(0, 73, 73, 0.6) !important;
+}
+
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd;}
 

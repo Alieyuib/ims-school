@@ -101,6 +101,7 @@
                                 </div>
                             </div>
                         </form>
+                        <button class="btn-ims-green my-1" style="width: 100%" id="btn_add_discont">Add Discount</button>
                         {{-- <form action="" class="add_item_form" method="POST" id="add_item_form_discount">
                             @csrf
                             <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
@@ -122,15 +123,16 @@
                     </div>
                 </div>
                 {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button> --}}
-                {{-- <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button> --}}
                 <form action="{{ route('dashboard.send.invoice') }}" method="POST">
                     @csrf
                     <input type="hidden" name="order_id_invoice" id="order_id_invoice" value="{{ $order_id }}">
                     <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">
                     <input type="hidden" name="student_name" id="student_name" value="{{ $student_data->name }}">
                     <input type="hidden" name="student_address" id="student_address" value="{{ $student_data->address }}">
-                    <label for="">&#8358; Discount</label>
-                    <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
+                    <div id="discount_div">
+                        <label for="">&#8358; Discount</label>
+                        <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
+                    </div>
                     {{-- <label for="student_email_invoice" class="my-1"><b>Email Address</b></label> --}}
                     {{-- <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}"> --}}
                     <button class="btn-lg btn-ims-green my-2" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
@@ -203,6 +205,12 @@
         //     });
         //     jsPDF().save('invoice_the_priority_school.pdf');
         // });
+
+        $('#discount_div').hide();
+
+        $('#btn_add_discont').on('click', function(){
+            $('#discount_div').slideToggle();
+        })
 
         function fetchAllTransactions() {
             let order_id = $('#order_id').val();

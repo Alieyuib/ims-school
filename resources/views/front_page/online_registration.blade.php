@@ -100,7 +100,7 @@
                         <h3 class="text-ims-orange">The Priority School</h3>
                         <h4 class="text-ims-default">Online Registration</h4>
                         <h6 class="text-ims-default">Please ensure that the form is properly completed and all information given therein is correct to the best of your knowledge.</h6>
-                        <form action="#" method="POST" enctype="multipart/form-data" class="online-form col-md-12" id="online-form">
+                        <form action="#" method="POST" enctype="multipart/form-data" class="online-form col-md-12 p-3" id="online-form">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-12">
@@ -108,43 +108,43 @@
                                     {{-- <input type="hidden" class="form-control" name="status" id="status" value="0"> --}}
                                     <input type="text" class="form-control" name="fname" placeholder="Firstname" id="fname">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="familyname">Family Name</label>
                                     <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="ffname">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="dob">DOB</label>
                                     <input type="date" class="form-control" name="dob" placeholder="DOB" id="dob">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="pob">POB</label>
                                     <input type="text" class="form-control" name="pob" placeholder="Place of Birth" id="pob">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="sickness">Sickness/Allergy</label>
                                     <input type="text" class="form-control" name="sickness" placeholder="Sickness/Allergy" id="sickness">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="guard">Guardian/Husband</label>
-                                    <input type="text" class="form-control" name="guard" placeholder="Guardian/Husband" id="guard">
+                                <div class="form-group col-md-4 p-2">
+                                    <label for="guard">Parent/Guardian/Husband</label>
+                                    <input type="text" class="form-control" name="guard" placeholder="Parent/Guardian/Husband" id="guard">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="phone">Phone Number</label>
                                     <input type="text" class="form-control" name="phone" placeholder="Phone Number" id="phone">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="school">Name of School</label>
                                     <input type="text" class="form-control" name="school" placeholder="Name of School" id="school">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="subject">Subject Learned</label>
                                     <input type="text" class="form-control" name="subject" placeholder="Subject Learned" id="subject">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="email">Email Address</label>
                                     <input type="text" class="form-control" name="email" placeholder="Email Address" id="email">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-4 p-2">
                                     <label for="passport">Passport</label>
                                     <input type="file" name="avatar" class="form-control" id="passport">
                                 </div>
@@ -156,10 +156,10 @@
                                     <label for="address">Term & Condition</label>
                                     <input type="checkbox" class="form-control" name="address" placeholder="Address" id="address">
                                 </div> --}}
-                                <button type="submit" id="add_student_btn" class="btn btn-ims-orange">Register</button>
+                                <button type="submit" id="add_student_btn" class="btn btn-ims-orange m-1">Register</button>
                             </div>
                         </form>
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-center p-3">
                             <button class="pdf-format btn">
                                 <i class="fa fa-file-pdf-o fa-3x text-ims-default"></i>
                             </button>

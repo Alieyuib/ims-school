@@ -129,6 +129,8 @@
                     <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">
                     <input type="hidden" name="student_name" id="student_name" value="{{ $student_data->name }}">
                     <input type="hidden" name="student_address" id="student_address" value="{{ $student_data->address }}">
+                    <label for="">Remarks</label>
+                    <textarea name="invoice_remarks" id="invoice_remarks" cols="" rows="" class="form-control mb-2"></textarea>
                     <div id="discount_div">
                         <label for="">&#8358; Discount</label>
                         <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">

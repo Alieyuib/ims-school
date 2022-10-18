@@ -586,6 +586,7 @@ class TransactionController extends Controller
         $student_name = $request->input('student_name');
         $student_address = $request->input('student_address');
         $discount = $request->input('discount');
+        $invoice_remarks = $request->input('invoice_remarks');
 
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
         foreach ($stmt as $key => $value) {
@@ -605,7 +606,8 @@ class TransactionController extends Controller
             'cart_items' => $cart_items,
             'counter' => 1,
             'totalAll' => $total_discount,
-            'discount' => $discount
+            'discount' => $discount,
+            'invoice_remarks' => $invoice_remarks
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.mypdf', $data);
 

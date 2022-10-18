@@ -38,8 +38,8 @@
                 <input type="text" class="form-control" name="sickness" placeholder="Sickness/Allergy" id="sickness">
             </div>
             <div class="form-group col-md-4">
-                <label for="guard">Guardian/Husband</label>
-                <input type="text" class="form-control" name="guard" placeholder="Guardian/Husband" id="guard">
+                <label for="guard">Parent/Guardian/Husband</label>
+                <input type="text" class="form-control" name="guard" placeholder="Parent/Guardian/Husband" id="guard">
             </div>
             <div class="form-group col-md-4">
                 <label for="phone">Phone Number</label>

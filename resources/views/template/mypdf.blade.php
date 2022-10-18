@@ -91,6 +91,10 @@
                   <td><b>Vat</b></td>
                   <td><b>N&nbsp;0</b></td>
                 </tr> --}}
+                {{-- <tr>
+                  <td><b>Remarks</b></td>
+                  <td><b></b></td>
+                </tr> --}}
                 <tr>
                   <td><b>Discount</b></td>
                   <td><b>N&nbsp;{{number_format($discount)}}</b></td>
@@ -103,6 +107,8 @@
             </table>
           </div>
           <div class="col-md-12 payment">
+              <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Remarks:</b></h4>
+              <h5 style="color: #145251; text-align: center; text-transform:uppercase"><b>{{$invoice_remarks}}</b></h5>
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
           </div>
         </div>

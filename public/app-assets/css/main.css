@@ -7,6 +7,12 @@ html, body{
     width: 100%;
     height: 600px;
 }
+span.float-left i.fa {
+    color: #d9ba79 !important;
+    font-weight: bolder;
+    font-size: 16px;
+    /* margin-left: 10px; */
+}
 form label {
     color: #d9ba79 !important;
 }

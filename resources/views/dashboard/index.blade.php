@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="col-md-8 card-text">
                                     <p class="number-text">
-                                        Active Studentss <br>
+                                        Active Students <br>
                                         (الطلاب النشطاء)
                                     </p>
                                     <p class="number-total">

@@ -331,7 +331,7 @@ class DashboardController extends Controller
                     foreach ($stmt as $item) {
                         $output .= '<tr>
                             <td>'.$item->id.'</td>
-                            <td> <a href="../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
+                            <td> <a href="../../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
                             <td>'.$item->created_at.'</td>  
                             <td>
                                 <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
@@ -404,7 +404,7 @@ class DashboardController extends Controller
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
                         <td>
-                            <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
+                            <img src="../../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
                         </td>
                         <td> '.$item->name.' </td>
                         <td>'.$item->email.'</td>

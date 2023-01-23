@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>
-                                    <img src="../storage/images/{{$item->passport}}" width="50" class="img-thumbnail rounded-circle" />
+                                    <img src="../../storage/images/{{$item->passport}}" width="50" class="img-thumbnail rounded-circle" />
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->passport == '')

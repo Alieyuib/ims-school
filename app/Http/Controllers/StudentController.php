@@ -74,7 +74,7 @@ public function fetchAll()
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
                         <td>
-                            <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
+                            <img src="../../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
                         </td>
                         <td> '.$item->name.' </td>
                         <td>'.$item->dob.'</td>

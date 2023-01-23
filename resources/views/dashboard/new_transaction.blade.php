@@ -8,30 +8,27 @@
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">
             <h4 class="text-ims-default">THE PRIORITY SCHOOL</h4>
             <h4 class="text-ims-orange">المدرسة ذات الأولوية</h4>
-            <h6 class="text-ims-default">Add Product</h6>
+            <h6 class="text-ims-default">New Transaction</h6>
         </div>
     </div>
     @csrf
     <div class="row">
         <div class="form-group col-md-12">
-            <label for="item_name">Prpduct Name</label>
-            <input type="text" class="form-control" name="item_name" placeholder="Item Name" id="item_name">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" name="amount" placeholder="Amount" id="amount">
+            <input type="hidden" class="form-control" name="sid" value="{{$sid}}">
+            <input type="hidden" class="form-control" name="email" value="{{$email}}">
         </div>
         <div class="form-group col-md-12">
-            <label for="item_price">Product Price</label>
-            <input type="number" class="form-control" name="item_price" placeholder="Item Price" id="item_price">
+            <label for="remarks">Remarks</label>
+            <input type="text" class="form-control" name="remarks" placeholder="Remarks" id="remarks">
         </div>
         <div class="form-group col-md-12">
-            <label for="item_type">Item Type</label>
-            <select name="item_type" id="item_type" class="form-control">
-                <option value="" selected disabled>Type</option>
-                <option value="fees">Fee</option>
-                <option value="uniform">Uniform</option>
-                <option value="stationary">Stationary</option>
-            </select>
+            <label for="trans-id">Teller no/Ref</label>
+            <input type="text" class="form-control" name="trans-id" placeholder="Teller no/Ref" id="trans-d">
         </div>
         <div class="form-group col-md-12">
-            <button class="btn btn-ims-green grade-btn" type="submit" id="save-btn">Add <i class="fa fa-plus-square"></i></button>
+            <button class="btn btn-ims-green grade-btn" type="submit" id="save-btn">Add <i class="fa fa-plus"></i></button>
         </div>
     </div>
 </form>
@@ -40,10 +37,9 @@
         e.preventDefault();
         // var myModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
         const fd = new FormData(this);
-        if (        
-        $('#item_name').val() == '' ||            
-        $('#item_price').val() == '' ||      
-        $('#item_type').val() == ''     
+        if (
+        $('#amount').val() == '' ||            
+        $('#trans-id').val() == ''        
         ) {
         Swal.fire(
             'All Form',
@@ -52,18 +48,19 @@
         )
     }else{
 
-        $('#save-btn').text('Adding item...');
+        $('#save-btn').text('Adding transaction...');
         $.ajax({
-            url: '{{ route('dashboard.add.item') }}',
+            url: '{{ route('dashboard.add.transaction') }}',
             method: 'post',
             data: fd,
             cache: false,
             processData: false,
             contentType: false,
             success: function(res){
+                console.log(res);
                 if (res.status == 200) {
                     Swal.fire(
-                        'Item',
+                        'Transaction',
                         'Added Sucessfully',
                         'success'
                     );
@@ -71,8 +68,8 @@
                     $('#save-btn').text('Add');
                 }else if (res.status == 300) {
                     Swal.fire(
-                        'Item',
-                        'Not Added Sucessfully',
+                        'Transaction',
+                        'Error',
                         'error'
                     )
                 } 

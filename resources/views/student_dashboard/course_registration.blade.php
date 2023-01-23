@@ -1,7 +1,7 @@
 @extends('layouts.app_student')
 
 @section('content')
-<form action="#" method="POST" id="course_student_form" enctype="multipart/form-data" class="col-md-8 grading-container grade-form"> 
+<form action="#" method="POST" id="course_student_form" enctype="multipart/form-data" class="card shadow grading-container grade-form"> 
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">
@@ -16,6 +16,7 @@
         <div class="form-group col-md-12">
             <label for="student_id">STUDENT NAME</label>
             <select name="student_id" id="student_id" class="form-control">
+                    <option selected disabled>Select student</option>
                 @foreach ($students as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach

@@ -4,11 +4,10 @@
 <style>
     
 </style>
-<div class="container">
-    <div class="row my-1">
-    <div class="col-md-4 generate-receipt p-4" id="add_items">
-        <div>
-            <div class="d-flex justify-content-between align-items-center">
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow generate-receipt p-4" id="add_items">
+            <div class="">
               <h3 class="text-success">Add Items</h3>
             </div>
             <div class="bg-orange text-center" id="show_all_students">
@@ -101,7 +100,7 @@
                                 </div>
                             </div>
                         </form>
-                        <button class="btn-ims-green my-1" style="width: 100%" id="btn_add_discont">Add Discount</button>
+                        <button class="btn-ims-green btn my-1" style="width: 100%" id="btn_add_discont">Add Discount</button>
                         {{-- <form action="" class="add_item_form" method="POST" id="add_item_form_discount">
                             @csrf
                             <input type="hidden" name="student_id" class="form-control" value="{{ $student_data->id }}"> 
@@ -137,7 +136,7 @@
                     </div>
                     {{-- <label for="student_email_invoice" class="my-1"><b>Email Address</b></label> --}}
                     {{-- <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}"> --}}
-                    <button class="btn-lg btn-ims-green my-2" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
+                    <button class="btn btn-ims-green my-2" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Invoice</button>
                 </form>
                 <form action="{{ route('dashboard.send.receipt') }}" method="POST">
                     @csrf
@@ -149,48 +148,49 @@
                     {{-- <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount"> --}}
                     <label for="student_email_invoice" class="my-1"><b>Email Address</b></label>
                     <input type="email"class='form-control' name="student_email_invoice" id="student_email_invoice" value="{{ $student_data->email }}">
-                    <button class="btn-lg btn-ims-orange my-3" style="width: 100%" type="submit"><i class="fa fa-send"></i>&nbsp;Email Invoice</button>
+                    <button class="btn btn-ims-orange my-3" style="width: 100%" type="submit"><i class="fa fa-send"></i>&nbsp;Email Invoice</button>
                     {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" type="submit"><i class="fa fa-print"></i>&nbsp;Print Receipt</button> --}}
                 </form>
             </div>
         </div>
     </div>
-      <div class="col-md-8 static-invoice">
-        <div id="invoice">
-          {{-- <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="text-success">Invoice #{{ $order_id }}</h3>
-            <input type="hidden" id="order_id_invoice" value="{{ $order_id }}">
-          </div> --}}
-          <div class="bg-orange" id="show_all_students">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 80%;">
+    <div class="col-md-8">
+        <div class="card shadow static-invoice">
+            <div id="invoice">
+            {{-- <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="text-success">Invoice #{{ $order_id }}</h3>
+                <input type="hidden" id="order_id_invoice" value="{{ $order_id }}">
+            </div> --}}
+            <div class="bg-orange" id="show_all_students">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="" style="width: 80%;">
+                    </div>
+                    <div class="col-md-8 invoice-header">
+                        <h4 class="text-ims-default">THE PRIORITY SCHOOL</h4>
+                        <h6 class="text-dark">NO: 2 Bilyaminu Street off Ebituukiwe, Jabi Abuja</h6>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px">
+                        <h6 class="text-dark"><b class="text-dark">Invoice</b>: #{{ $order_id }}</h6>
+                        <h6 class="text-dark"><b class="text-dark">Invoice Date</b>: {{ date('d/m/y') }}</h6>
+                    </div>
                 </div>
-                <div class="col-md-8 invoice-header">
-                    <h4 class="text-ims-default">THE PRIORITY SCHOOL</h4>
-                    <h6 class="text-dark">NO: 2 Bilyaminu Street off Ebituukiwe, Jabi Abuja</h6>
-                </div>
-                <div class="col-md-12" style="margin-top: 20px">
-                    <h6 class="text-dark"><b class="text-dark">Invoice</b>: #{{ $order_id }}</h6>
-                    <h6 class="text-dark"><b class="text-dark">Invoice Date</b>: {{ date('d/m/y') }}</h6>
+                <h6 class="text-dark"><b class="text-dark">Name</b>: {{ $student_data->name }}</h6>
+                <h6 class="text-dark"><b class="text-dark">Email</b>: {{ $student_data->email }}</h6>
+                <h6 class="text-dark"><b class="text-dark">Address</b>: {{ $student_data->address }}</h6>
+                    <div id="show_cart_items">
+
+                    </div>
+                <div class="row my-5">
+                    <div class="col-md-12 payment text-center">
+                        <h5><b>Signature/Date</b></h5>
+                    </div>
                 </div>
             </div>
-              <h6 class="text-dark"><b class="text-dark">Name</b>: {{ $student_data->name }}</h6>
-              <h6 class="text-dark"><b class="text-dark">Email</b>: {{ $student_data->email }}</h6>
-              <h6 class="text-dark"><b class="text-dark">Address</b>: {{ $student_data->address }}</h6>
-                <div id="show_cart_items">
-
-                </div>
-              <div class="row my-5">
-                <div class="col-md-12 payment text-center">
-                    <h5><b>Signature/Date</b></h5>
-                </div>
-              </div>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script>
         // window.jsPDF = window.jspdf.jsPDF;

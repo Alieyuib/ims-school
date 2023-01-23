@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12 my-4 mx-4 card student-list-div-main">
+    <div class="card shadow student-list-div-main">
         @if (session()->has('status'))
             <div class="alert alert-success my-2">
                 {{  session('status') }}
@@ -13,9 +12,9 @@
             <h3 class="text-ims-default">All System Users(تسجيل جميع الطلاب)</h3>
         </div>
         <div class="bg-orange" id="">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-ims-default">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -35,8 +34,8 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="/dashboard/user/edit/{{$user->id}}" class="mx-2 btn btn-ims-orange">Edit</a>
-                                <a href="/dashboard/user/delete/{{$user->id}}" class="mx-2 btn btn-danger">Delete</a>
+                                <a href="/dashboard/user/edit/{{$user->id}}" class="mx-2 btn btn-sm btn-ims-orange">Edit</a>
+                                <a href="/dashboard/user/delete/{{$user->id}}" class="mx-2 btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach
@@ -45,7 +44,6 @@
         </div>
         </div>
     </div>
-</div>
     <script>
         $('table').DataTable({
             order: [0, 'asc'],

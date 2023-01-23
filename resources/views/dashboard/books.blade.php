@@ -35,11 +35,10 @@ data-bs-backdrop="static" aria-hidden="true">
     </div>
 </div>
 {{-- edit student modal end --}}
-<div class="row">
-    <div class="col-lg-12 student-list-div-main mx-3">
+    <div class="card shadow student-list-div-main">
         <div class="">
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-success">All Uploaded Books(تسجيل جميع الطلاب)</h3>
+            <h3 class="text-ims-default">All Uploaded Books(تسجيل جميع الطلاب)</h3>
             <button class="btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#uploadBookModal">
                 Upload New Book <i class="fa fa-upload"></i>
             </button>
@@ -51,7 +50,6 @@ data-bs-backdrop="static" aria-hidden="true">
         </div>
         </div>
     </div>
-</div>
     <script>
         // Fetch All Employee
         setTimeout(() => {

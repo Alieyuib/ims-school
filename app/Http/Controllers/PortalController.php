@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use LDAP\Result;
 
 use App\Finance as Finance;
+use App\Transactions;
 
 class PortalController extends Controller
 {
@@ -73,14 +74,14 @@ class PortalController extends Controller
     {
 
         $family_email = $request->session()->get('loggedInEmail');
-        $stmt = StudentFamilyAccount::where('email', $family_email)->first();
+        $stmt = StudentData::where('email', $family_email)->first();
 
         $userLoggedIn = $request->session()->get('loggedInUser');
         $student_data = StudentData::find($userLoggedIn);
 
-        $view_data['current_class'] = $student_data->current_class;
+        // $view_data['current_class'] = $student_data->current_class;
 
-        $view_data['balance'] = $stmt->balance;
+        // $view_data['balance'] = $stmt->balance;
 
         $userLoggedId = $request->session()->get('loggedInEmail');
         $member_count = StudentData::where('email', $userLoggedId)->get();
@@ -96,6 +97,14 @@ class PortalController extends Controller
         // $view_data['student_id'] = $student_bio->id;
         // $view_data['student_name'] = $student_bio->fname;
         return view('student_dashboard.student_bio_data', $view_data);
+    }
+
+    public function viewProfile($sid)
+    {
+        $view_data['student_bio'] = StudentData::where('id', $sid)->get(); 
+        $transaction_list = Transactions::where('sid', $sid)->get();
+        $view_data['transaction_list'] = $transaction_list;
+        return view('dashboard.student_profile', $view_data);
     }
 
     //result

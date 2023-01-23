@@ -48,13 +48,34 @@ data-bs-backdrop="static" aria-hidden="true">
                         @endforeach
                     </select>
                 </div>
-                {{-- <div class="form-group col-md-12">
-                    <label for="familyname"></label>
-                    <input type="text" class="form-control" name="ffname" placeholder="Family Name" id="familyname">
-                </div> --}}
-                {{-- <div class="form-group col-md-12">
-                    <button class="btn btn-success" type="submit" id="save-btn">Save <i class="fa fa-save"></i></button>
-                </div> --}}
+                <div class="form-group col-md-12">
+                    <label for="academic_session"></label>
+                    <input type="text" class="form-control" name="academic_session" placeholder="Academic session" id="academic_session">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="academic_term"></label>
+                    <input type="text" class="form-control" name="academic_term" placeholder="Academic term" id="academic_term">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="al-quran">AL-QUR'AN (القرأن)</label>
+                    <input type="text" name="al-quran" class="form-control" id="al-quran"  value="القرأن">
+                    <input type="hidden" name="al_quran" value="al-quran">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="al-azkar">AL-AZKAR (الازكار)</label>
+                    <input type="text" name="al-azkar" class="form-control" id="al-azkar" value="الازكار">
+                    <input type="hidden" name="al_azkar" value="al-azkar">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="al-huruf">AL-HURUF (الحروف)</label>
+                    <input type="text" name="al-huruf" class="form-control" id="al-huruf" value="الحروف">
+                    <input type="hidden" name="al_huruf" value="al-huruf">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="al-arabiyya">AL-ARABIYYA (العربية)</label>
+                    <input type="text" name="al-arabiyya" class="form-control" id="al-arabiyya" value="العربية">
+                    <input type="hidden" name="al_arabiyya" value="al-arabiyya">
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -66,20 +87,14 @@ data-bs-backdrop="static" aria-hidden="true">
     </div>
 </div>
 {{-- edit student modal end --}}
-  <div class="container">
-    <div class="row my-1">
-      <div class="col-lg-12 student-list-div-main">
-          <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-success">All Awaiting Students (تسجيل جميع الطلاب)</h3>
-          </div>
-          <div class="bg-orange" id="show_all_students">
+    <div class="card shadow p-2 student-list-div-main">
+        <h3 class="text-ims-default">All Awaiting Students <span class="text-warning">(تسجيل جميع الطلاب)</span></h3>
+        <div class="bg-orange" id="show_all_students">
             <h1 class="text-center text-secondary my-5">
                 <img src="{{asset('images/Hourglass.gif')}}" alt="" srcset="">
             </h1>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>

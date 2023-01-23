@@ -58,13 +58,13 @@ class TeachersController extends Controller
                 'msg'   => $validator->getMessageBag()
             ]);
         }else{
-            $user = SystemUsers::where('email', $request->email)->first();
+            $user = Teachers::where('email', $request->email)->first();
             if ($user) {
-                if (Hash::check($request->token, $user->password)) {
+                if (Hash::check($request->token, $user->token)) {
                     $request->session()->put('loggedInUser', $user->id);
                     $request->session()->put('loggedInTeacher', $user->fname);
                     $request->session()->put('loggedInEmail', $user->email);
-                    $request->session()->put('loggedInSubject', $user->role);
+                    $request->session()->put('loggedInSubject', $user->teaching_subject);
                     $userLoggedIn = $request->session()->get('loggedInTeacher');
                     return response()->json([
                         'status' => 200,
@@ -103,10 +103,52 @@ class TeachersController extends Controller
         return view('teachers.grade_student', $view_data);
     }
 
+    public function filterCourseByClass(Request $request)
+    {
+        $class = $request->get('class_name');
+        $stmt = RegisteredCourses::where('student_class', $class)->get();
+        $output = '';
+            if ($stmt->count() > 0) {
+                $output .= '<table class="table table-striped align-middle table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Student Class</th>
+                            <th>Academic Term</th>
+                            <th>Academic Session</th>
+                            <th>Subject Scores</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    foreach ($stmt as $item) {
+                        $output .= '<tr>
+                            <td>'.$item->id.'</td>
+                            <td> '.$item->student_name.'</td>
+                            <td>'.$item->student_class.'</td>
+                            <td>'.$item->academic_term.' Term</td>
+                            <td>'.$item->academic_session.'</td>  
+                            <td>'.$item->sub_one_scores.'</td>  
+                            <td>
+                                <a href="#" id="'.$item->id.'" class="mx-2 gradeIcon" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"><i class="fa fa-bookmark text-secondary"></i>GRADE</a>
+                            </td>
+                        </tr>';
+                    }
+
+                    $output .= '</tbody></table>';
+                    echo $output;
+            }else{
+                echo '<h1 class="text-center text-secondary my-5">
+                    No records present in the database
+                </h1>';
+            }
+    }
+
     public function fetchAllStudentCourse(Request $request)
     {
         $loggedInSubject = $request->session()->get('loggedInSubject');
-        if ($loggedInSubject == 'Al-Quran') {
+        if ($loggedInSubject == 'al-quran') {
             $stmt = RegisteredCourses::where('sub_one', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -146,7 +188,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Azkar') {
+        if ($loggedInSubject == 'al-azkar') {
             $stmt = RegisteredCourses::where('sub_two', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -186,7 +228,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Huruf') {
+        if ($loggedInSubject == 'al-huruf') {
             $stmt = RegisteredCourses::where('sub_three', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -226,7 +268,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Arabiyya') {
+        if ($loggedInSubject == 'al-arabiyya') {
             $stmt = RegisteredCourses::where('sub_four', $loggedInSubject)->get();
             $output = '';
             if ($stmt->count() > 0) {
@@ -629,7 +671,7 @@ class TeachersController extends Controller
     {
         $loggedInSubject = $request->session()->get('loggedInSubject');
         $subject_id = $request->input('subject_id');
-        if ($loggedInSubject == 'Al-Quran') {
+        if ($loggedInSubject == 'al-quran') {
             $scores_data = [
                 'sub_one_scores' => $request->input('subject_marks'),
             ];
@@ -647,7 +689,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Azkar') {
+        if ($loggedInSubject == 'al-azkar') {
             $scores_data = [
                 'sub_two_scores' => $request->input('subject_marks'),
             ];
@@ -665,7 +707,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Huruf') {
+        if ($loggedInSubject == 'al-huruf') {
             $scores_data = [
                 'sub_three_scores' => $request->input('subject_marks'),
             ];
@@ -683,7 +725,7 @@ class TeachersController extends Controller
             }
         }
 
-        if ($loggedInSubject == 'Al-Arabiyya') {
+        if ($loggedInSubject == 'al-arabiyya') {
             $scores_data = [
                 'sub_four_scores' => $request->input('subject_marks'),
             ];

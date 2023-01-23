@@ -1,21 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row my-1">
-        <div class="col-md-12 student-list-div-main">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-success">Gallery Images (تسجيل جميع الطلاب)</h3>
-                @if (session()->has('status'))
-                    <div class="alert alert-info my-2">
-                        {{  session('status') }}
-                    </div>
-                @endif
-            </div>
+        <div class="card shadow student-list-div-main">
+            <h3 class="text-ims-default">Gallery Images (تسجيل جميع الطلاب)</h3>
+            @if (session()->has('status'))
+                <div class="alert alert-info my-2">
+                    {{  session('status') }}
+                </div>
+            @endif
             <div id="show_all_students">
-                <table class="table table-bordered table-striped align-middle table-hover mx-1">
+                <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-ims-default">
                             <th>ID</th>
                             <th>Images</th>
                             <th>Caption</th>
@@ -39,8 +35,6 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
     <script>
         $('table').DataTable({
             order: [0, 'asc'],

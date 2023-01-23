@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="/dashboard/user/edit/{{$uid}}" method="POST" enctype="multipart/form-data" class="col-md-8 grading-container grade-form"> 
+<form action="/dashboard/user/edit/{{$uid}}" method="POST" enctype="multipart/form-data" class="card shadow grading-container grade-form"> 
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">

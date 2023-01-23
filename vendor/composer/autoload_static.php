@@ -325,8 +325,8 @@ class ComposerStaticInitb702649fc522a105e3d55ad2e866ed34
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -531,6 +531,7 @@ class ComposerStaticInitb702649fc522a105e3d55ad2e866ed34
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\RecentInvoice' => __DIR__ . '/../..' . '/app/RecentInvoice.php',
         'App\\RecentReceipt' => __DIR__ . '/../..' . '/app/RecentReceipt.php',
+        'App\\RecentTransaction' => __DIR__ . '/../..' . '/app/RecentTransaction.php',
         'App\\RegisteredCourses' => __DIR__ . '/../..' . '/app/RegisteredCourses.php',
         'App\\Results' => __DIR__ . '/../..' . '/app/Results.php',
         'App\\SchoolClasses' => __DIR__ . '/../..' . '/app/SchoolClasses.php',
@@ -541,6 +542,7 @@ class ComposerStaticInitb702649fc522a105e3d55ad2e866ed34
         'App\\StudentFamilyAccount' => __DIR__ . '/../..' . '/app/StudentFamilyAccount.php',
         'App\\Subjects' => __DIR__ . '/../..' . '/app/Subjects.php',
         'App\\Teachers' => __DIR__ . '/../..' . '/app/Teachers.php',
+        'App\\Transactions' => __DIR__ . '/../..' . '/app/Transactions.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\systemUsers' => __DIR__ . '/../..' . '/app/systemUsers.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',

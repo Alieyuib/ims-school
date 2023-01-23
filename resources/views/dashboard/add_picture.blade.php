@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="#" method="POST" id="upload_form" enctype="multipart/form-data" class="reg-form col-md-8">
+<form action="#" method="POST" id="upload_form" enctype="multipart/form-data" class="grade-form grading-container card shadow">
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">
@@ -10,24 +10,21 @@
         </div>
     </div>
     @csrf
-    <div class="">
         <div class="row">
             <div class="form-group col-md-12">
                 <label for="firstname">Image Caption</label>
                 {{-- <input type="hidden" class="form-control" name="status" id="status" value="1"> --}}
                 <input type="text" class="form-control" name="img_caption" placeholder="Image Caption" id="img_caption">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-12">
                 <label for="passport">Image</label>
                 <input type="file" name="upld_img" class="form-control" id="upld_img">
             </div>
             <div class="mt-2" id="img"></div>
         </div>
-    </div>
-    <div class="modal-footer">
-        {{-- <button type="button" class="btn btn-ims-orange" data-bs-dismiss="modal">Close</button> --}}
-        <button type="submit" id="upload_btn" class="btn btn-ims-green">Upload</button>
-    </div>
+        <div class="col-md-12">
+            <button type="submit" style="width: 100%" id="upload_btn" class="btn btn-ims-green">Upload</button>
+        </div>
     </form>
     <script>
         // Adding New student

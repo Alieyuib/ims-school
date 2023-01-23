@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="#" method="POST" id="expenses_form" enctype="multipart/form-data" class="col-md-8 grading-container grade-form"> 
+<form action="#" method="POST" id="expenses_form" enctype="multipart/form-data" class="grading-container grade-form card shadow"> 
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">

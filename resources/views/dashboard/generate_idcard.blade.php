@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row my-1">
-        <div class="col-md-12 student-list-div-main">
+        <div class="card shadow student-list-div-main">
             <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-success">Generate ID Card For Students(تسجيل جميع الطلاب)</h3>
+                <h3 class="text-ims-default">Generate ID Card For Students(تسجيل جميع الطلاب)</h3>
             </div>
             <div id="show_all_students">
-                <table class="table table-bordered table-striped align-middle table-hover mx-1">
+                <table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-ims-default">
                             <th>ID</th>
                             <th>Passport</th>
                             <th>Student Name</th>
@@ -31,7 +29,7 @@
                                     </td>
                                 @else
                                     <td>
-                                        <a href="/students/idcard/{{$item->id}}" class="btn btn-success">Generate</a>
+                                        <a href="/students/idcard/{{$item->id}}" class="btn btn-ims-green">Generate</a>
                                     </td>
                                 @endif
                             </tr>
@@ -40,8 +38,6 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
     <script>
         $('table').DataTable({
             order: [0, 'asc'],

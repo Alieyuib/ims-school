@@ -4,8 +4,8 @@
                     <h5>The Priority School</h5>
                 </div>
                 <div class="sidebar-links">
-                    <ul class="list-group bg-success">
-                        <li class="list-group-item">
+                    <ul class="list-group" style="margin-left: 20px">
+                        {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.dashboard') }}">
                                     <span class="float-left">
@@ -13,7 +13,7 @@
                                     </span>
                                     &nbsp;Dashboard</a>
                             </span>
-                        </li>
+                        </li> --}}
                         {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.results') }}">
@@ -23,7 +23,7 @@
                                     &nbsp;Check Result</a>
                             </span>
                         </li> --}}
-                        <li class="list-group-item">
+                        {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.biodata') }}">
                                     <span class="float-left">
@@ -31,7 +31,7 @@
                                     </span>
                                     &nbsp;Members</a>
                             </span>
-                        </li>
+                        </li> --}}
                         <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.course.registration') }}">
@@ -50,7 +50,7 @@
                                     &nbsp;Learning Books</a>
                             </span>
                         </li>
-                        <li class="list-group-item">
+                        {{-- <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.finance') }}">
                                     <span class="float-left">
@@ -58,7 +58,7 @@
                                     </span>
                                     &nbsp;Finance</a>
                             </span>
-                        </li>
+                        </li> --}}
                         <li class="list-group-item">
                             <span class="link-name">
                                 <a href="{{ route('portal.logout') }}">

@@ -166,22 +166,29 @@ data-bs-backdrop="static" aria-hidden="true">
     </div>
 </div>
 {{-- edit student modal end --}}
-  <div class="container">
-    <div class="row my-1">
-      <div class="col-lg-12 student-list-div">
-        <div class="card shadow">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="text-success">All Students {{ $loggedInSubject }} (تسجيل جميع الطلاب)</h3>
-          </div>
-          <div class="card-body bg-orange" id="show_all_students">
-            <h1 class="text-center text-secondary my-5">
-                <img src="{{asset('images/Hourglass.gif')}}" alt="" srcset="">
-            </h1>
-          </div>
-        </div>
-      </div>
+<div class="card shadow student-list-div-main">
+    <h3 class="text-ims-default">All Students {{ $loggedInSubject }} (تسجيل جميع الطلاب)</h3>
+    <form method="post" class="p-2">
+        <p>
+           <select name="class_name" class="form-control" id="class_name" style="width: 100%; border: 1px solid #dedede">
+                <option value="#" disabled selected>Filter by class</option>
+                <option value="class 1">Class 1</option>
+                <option value="class 2">Class 2</option>
+                <option value="class 3">Class 3</option>
+                <option value="class 4">Class 4</option>
+                <option value="hadaanah">Hadaanah</option>
+                <option value="Faslul Hifiz">Faslul Hifiz</option>
+                <option value="Arraudatul Ola">Arraudatul Ola</option>
+                <option value="Arrauda Ath-thaaniya">Arrauda ath thaaniya</option>
+            </select>
+        </p>
+    </form>
+    <div class="" id="show_all_students">
+    <h1 class="text-center text-secondary my-5">
+        <img src="{{asset('images/Hourglass.gif')}}" alt="" srcset="">
+    </h1>
     </div>
-  </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.js"></script>
@@ -334,6 +341,27 @@ data-bs-backdrop="static" aria-hidden="true">
                 }
             })
 
+        })
+
+        $('#class_name').on('change', function(e){
+            e.preventDefault();
+            let class_name = $(this).val();
+            $.ajax({
+                url: '{{ route('teacher.filter.course') }}',
+                method: 'get',
+                data:{
+                    class_name: class_name,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    // console.log(res);
+                    $('#show_all_students').html(res);
+                    $('table').DataTable({
+                        order: [0, 'asc'],
+                    });
+                }
+            })
         })
 
 

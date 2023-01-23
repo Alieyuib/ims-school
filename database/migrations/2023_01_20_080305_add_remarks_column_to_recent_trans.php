@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStudentEmailToInvoice extends Migration
+class AddRemarksColumnToRecentTrans extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddStudentEmailToInvoice extends Migration
      */
     public function up()
     {
-        Schema::table('recent_invoices', function (Blueprint $table) {
-            //
-            $table->string('student_email')->nullable();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->string('remarks')->nullable(true);
         });
     }
 
@@ -26,7 +25,7 @@ class AddStudentEmailToInvoice extends Migration
      */
     public function down()
     {
-        Schema::table('recent_invoices', function (Blueprint $table) {
+        Schema::table('Transactions', function (Blueprint $table) {
             //
         });
     }

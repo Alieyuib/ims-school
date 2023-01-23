@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="#" method="POST" id="add_student_form" enctype="multipart/form-data" class="reg-form col-md-8">
+<form action="#" method="POST" id="add_student_form" enctype="multipart/form-data" class="reg-form card p-2 shadow">
     <div class="row">
         <div class="col-md-12 text-center">
             <img src="{{ asset('images/logo.jpg') }}" alt="" class="logo-gradeform">
@@ -71,8 +71,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-ims-orange" data-bs-dismiss="modal">Close</button>
-        <button type="submit" id="add_student_btn" class="btn btn-ims-green">Enroll</button>
+        <button type="button" class="btn btn-ims-orange my-2" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="add_student_btn" class="my-3 btn btn-ims-green">Enroll</button>
     </div>
     </form>
     <script>

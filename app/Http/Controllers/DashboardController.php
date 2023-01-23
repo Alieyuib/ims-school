@@ -260,14 +260,15 @@ class DashboardController extends Controller
         return view('dashboard.subject_records');
     }
 
-    public function subjectRecords()
+    public function subjectRecords(Request $request)
     {
-        $stmt = RegisteredCourses::all();
+        $class = $request->get('class_name');
+        $stmt = RegisteredCourses::where('student_class', $class)->get();
             $output = '';
             if ($stmt->count() > 0) {
-                $output .= '<table class="table table-bordered table-hover">
+                $output .= '<table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-ims-default">
                             <th>ID</th>
                             <th>Student Name</th>
                             <th>Student Class</th>
@@ -293,7 +294,7 @@ class DashboardController extends Controller
                             <td>'.$item->sub_three_scores.'</td>  
                             <td>'.$item->sub_four_scores.'</td>  
                             <td>
-                                <a href="#" id="'.$item->id.'" class="btn btn-ims-orange mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"></i>Send Result</a>
+                                <a href="#" id="'.$item->id.'" class="btn btn-sm btn-ims-orange mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"></i>Send Result</a>
                             </td>
                         </tr>';
                     }
@@ -317,9 +318,9 @@ class DashboardController extends Controller
         $stmt = Books::all();
             $output = '';
             if ($stmt->count() > 0) {
-                $output .= '<table class="table table-bordered table-hover">
+                $output .= '<table class="table table-hover">
                     <thead>
-                        <tr>
+                        <tr class="text-ims-default">
                             <th>ID</th>
                             <th>Book Name</th>
                             <th>Uploaded On</th>
@@ -385,7 +386,7 @@ class DashboardController extends Controller
         $stmt = StudentData::where('status', 'Awaiting')->get();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-bordered table-hover">
+            $output .= '<table class="table table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -411,7 +412,7 @@ class DashboardController extends Controller
                         <td>'.$item->ffname.'</td>
                         <td>'.$item->status.'</td>
                         <td>
-                            <a href="#" id="'.$item->id.'" class="mx-2 editIcon btn btn-ims-green" data-bs-toggle="modal" data-bs-target="#editStudentModal">Enroll Student</a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 editIcon btn btn-sm btn-ims-green" data-bs-toggle="modal" data-bs-target="#editStudentModal">Enroll Student</a>
                         </td>
                     </tr>';
                 }
@@ -466,10 +467,29 @@ class DashboardController extends Controller
             
         $final_stmt = StudentData::where('id', $student_id)->update($student_data);
         if ($final_stmt) {
-            Mail::to($email_to_send)->send(new InvoiceSend($password, $email_to_send, $to_who));
-            return response()->json([
-                'status' => 200
-            ]);
+
+            $student_course_data = [
+                'student_name' => $stmt->name,
+                'student_id' => $stmt->id,
+                'student_class' => $current_class,
+                'academic_session' => $request->input('academic_session'),
+                'academic_term' => $request->input('academic_term'),
+                'sub_one' => $request->input('al_quran'),
+                'sub_two' => $request->input('al_azkar'),
+                'sub_three' => $request->input('al_huruf'),
+                'sub_four' => $request->input('al_arabiyya'),
+                'sub_one_scores' => 0,
+                'sub_two_scores' => 0,
+                'sub_three_scores' => 0,
+                'sub_four_scores' => 0,
+            ];
+            $course_registration = RegisteredCourses::create($student_course_data);
+            if($course_registration){
+                return response()->json([
+                    'status' => 200
+                ]);
+            }
+            // Mail::to($email_to_send)->send(new InvoiceSend($password, $email_to_send, $to_who));
         }else {
             return response()->json([
                 'status' => 300
@@ -756,9 +776,9 @@ class DashboardController extends Controller
         $stmt = Items::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-striped table-bordered table-hover">
+            $output .= '<table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-ims-default">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Price</th>

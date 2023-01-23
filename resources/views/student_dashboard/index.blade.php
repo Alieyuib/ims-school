@@ -63,7 +63,7 @@
                            if (res.status == 200 && res.msg == 'success') {
                                showMessage(res.msg, res.msg2);
                                setTimeout(() => {
-                                   window.location = '{{ route('portal.dashboard') }}'
+                                   window.location = '{{ route('portal.course.registration') }}'
                                }, 1000);
                            }
                        }

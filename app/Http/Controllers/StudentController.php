@@ -57,8 +57,8 @@ public function fetchAll()
         $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-bordered my-4 table-hover">
-                <thead>
+            $output .= '<table class="table table-hover">
+                <thead class="text-ims-default">
                     <tr>
                         <th>ID</th>
                         <th>Avatar</th>
@@ -96,6 +96,50 @@ public function fetchAll()
         }
     }
 
+    public function filter_by_class(Request $request)
+    {
+        $class = $request->get('class_name');
+        $stmt = StudentData::where('current_class', $class)->get();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-hover">
+                <thead class="text-ims-default">
+                    <tr>
+                        <th>ID</th>
+                        <th>Avatar</th>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>Sickness/Allergy</th>
+                        <th>Family Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>
+                            <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
+                        </td>
+                        <td> '.$item->name.' </td>
+                        <td>'.$item->dob.'</td>
+                        <td>'.$item->sickness_allergy.'</td>
+                        <td>'.$item->ffname.'</td>
+                        <td>
+                            <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+    }
     // handle edit ajax
 
     public function edit(Request $request)

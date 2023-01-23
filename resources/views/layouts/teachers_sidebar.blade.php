@@ -4,7 +4,7 @@
             <h5>The Priority School</h5>
         </div>
         <div class="sidebar-links">
-            <ul class="list-group bg-success">
+            <ul class="list-group" style="margin-left: 20px">
                 <li class="list-group-item">
                     <span class="link-name">
                         <a href="{{ route('portal.dashboard') }}">

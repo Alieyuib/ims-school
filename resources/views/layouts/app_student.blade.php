@@ -35,7 +35,7 @@
                 @include('layouts.student_sidebar')  
            @show
        </div>
-       <div class="col-md-10 dashboard-overlay">
+       <div class="col-md-10 p-4 dashboard-overlay">
            @section('content') 
        </div>
    </div>

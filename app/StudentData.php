@@ -30,5 +30,6 @@ class StudentData extends Model
         'ffname',
         'Subject_learned',
         'pob',
+        'balance'
     ];
 }

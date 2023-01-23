@@ -3,6 +3,25 @@ html, body{
     margin: 0;
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #145251;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d9ba79;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00550a;
+  }
 .carousel-item img{
     width: 100%;
     height: 600px;
@@ -242,7 +261,7 @@ div.hero-text{
     position: absolute;
     width: 30%;
     opacity: 0.6;
-    left: 250px;
+    left: 200px;
     top: 170px;
 }
 .background-img-gradeform{
@@ -450,7 +469,7 @@ p.forget-password-text a {
     background-color: #145251;
     /* border-right: 2px solid #00ac4d; */
     padding-right: 0 !important;
-    /* margin-left: -12px; */
+    margin-left: -12px;
     /* border-top-right-radius: 30px; */
 }
 .ims-dashboard {
@@ -470,7 +489,7 @@ p.forget-password-text a {
 }
 .sidebar-links {
     height: auto;
-    width: auto;
+    width: 100%;
     display: block;
 }
 
@@ -481,7 +500,13 @@ p.forget-password-text a {
     background-color: #145251 !important;
     /* text-align: center; */
     border-radius: 0 !important;
-    margin-left: 10px;
+    /* margin-left: -10px; */
+}
+
+.sidebar-links div.dropdown{
+    margin-left: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .sidebar-links ul li {
@@ -493,7 +518,7 @@ p.forget-password-text a {
     background-color: #145251;
     color: #fff;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .sidebar-links ul li span.link-name a {
@@ -569,6 +594,10 @@ p.forget-password-text a {
     box-shadow: 0 4px 8px 0 rgba(255, 191, 94, 0.2), 0 6px 20px 0 rgba(255, 161, 73, 0.19);
     cursor: pointer;
 }
+.transactions{
+    overflow: auto;
+    max-height: 100vh;
+}
 .student-list{
     height: 100%;
     width: 80%;
@@ -578,17 +607,14 @@ p.forget-password-text a {
 }
 .student-list-div-main{
     /* margin-left: -30px; */
-    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */
     border-radius: 10px;
     padding: 10px;
-    height: 100%;
-    width: 80%;
-    overflow: scroll;
-    /* overflow-x: scroll; */
-    position: fixed;
+    overflow: auto;
+    max-height: 100vh;
 }
 .student-list-div-main table{
-    width: 100% !important;
+    margin-top: 20px;
     padding: 20px;
 
 }
@@ -612,26 +638,23 @@ p.forget-password-text a {
 }
 
 .static-invoice{
-    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */
     border-radius: 20px;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
     padding: 10px;
-    height: 100%;
-    overflow: scroll;
-    overflow-x: scroll;
-    position: fixed;
-    width: 54%;
-    margin-left: 362px;
 }
 
 .generate-receipt{
-    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */
     border-radius: 20px;
-    height: 100%;
-    width: 28%;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    position: fixed;
-    margin-left: -30px;
+    max-height: 100vh;
+    overflow: auto;
+    width: 100%;
+    /* position: fixed; */
+    /* margin-left: -30px; */
 }
 .generate-receipt form label{
     color: #d9ba79;
@@ -750,16 +773,9 @@ a.paginate_button.current {
 }
 
 .reg-form{
-    position: fixed;
-    overflow: scroll;
-    height: 100%;
-    /* border: 2px solid #145251; */
-    box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19);
+    overflow: auto;
+    max-height: 100vh;
     border-radius: 10px;
-    /* width: 80%; */
-    /* margin: 20px; */
-    margin-left: 100px;
-    padding: 20px;
 }
 .reg-form label{
     text-transform: uppercase;
@@ -786,9 +802,11 @@ a.paginate_button.current {
 .reg-form .btn {
     width: 100%;
 }
-.grade-form{
+/* .grade-form{
     padding: 50px;
-}
+    max-height: 100vh;
+    overflow-y: auto;
+} */
 .grade-form label{
     color: #d9ba79;
     padding: 10px;
@@ -845,14 +863,13 @@ div.modal {
     margin-left: 400px;
 }
 .grading-container{
-    position: fixed;
     padding: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-left: 120px;
-    margin-top: 20px;
-    overflow-y: scroll;
-    height: 100%;
-    z-index: 999;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* margin-left: 120px; */
+    /* margin-top: 20px; */
+    overflow-y: auto;
+    max-height: 100vh;
+    /* z-index: 999; */
     /* display: none; */
 }
 .logo-gradeform{
@@ -944,10 +961,12 @@ h6 span{
     overflow: auto !important;
 }
 .bio-data-div{
-    padding: 20px;;
-    margin-top: 10px;
+    /* padding: 20px; */
+    /* margin-top: 10px; */
+    max-height: 100hv;
+    /* overflow: auto; */
     /* margin-left: 180px; */
-    box-shadow: 0 4px 8px 0 rgba(16, 160, 153, 0.1), 0 6px 20px 0 rgba(16, 166, 153, 0.2);
+    /* box-shadow: 0 4px 8px 0 rgba(16, 160, 153, 0.1), 0 6px 20px 0 rgba(16, 166, 153, 0.2); */
 }
 .bio-data-div div h6{
     color: #145251;
@@ -995,14 +1014,15 @@ h6 span{
     margin-top: -30px;
 }
 .name-bio h3{
-    font-weight: bolder;
+    font-weight: bold;
     color: #145251;
     text-transform: uppercase;
     margin-top: 90px;
 }
 .name-bio h5{
-    /* font-weight: bold; */
-    color: #000;
+    font-weight: bold;
+    color: #145251;
+    font-stretch: wider;
     text-transform: uppercase;
     margin-top: 90px;
 }

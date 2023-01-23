@@ -48,6 +48,53 @@ Route::get('/migrate', function(){
     return 'Linked';
 });
 
+// Students Routes
+Route::get('/student/portal', 'PortalController@index')->name('portal.index');
+Route::post('/student/portal/login', 'PortalController@portalLogin')->name('portal.login');
+Route::get('/student/portal/dashboard', 'PortalController@dashboard')->name('portal.dashboard');
+Route::get('/student/portal/logout', 'PortalController@logout')->name('portal.logout');
+
+// Student Check Result
+Route::get('/student/portal/myresults', 'PortalController@resultView')->name('portal.results');
+Route::get('/student/portal/result', 'PortalController@viewResult')->name('portal.result');
+Route::get('/student/portal/myresult', 'PortalController@getResults')->name('portal.get.result');
+Route::get('/student/portal/myresult/signle', 'PortalController@getResultSingle')->name('portal.result.single');
+
+Route::get('/student/portal/finance', 'PortalController@financeView')->name('portal.finance');
+Route::get('/student/portal/finance/print-fee', 'PortalController@printFee')->name('portal.finance.view');
+Route::get('/student/portal/finance/view-receipt', 'PortalController@viewReceipt')->name('portal.receipt');
+Route::get('/student/portal/bio-data', 'PortalController@viewBioData')->name('portal.biodata');
+Route::get('/dashboard/student/profile/{sid}/{email}', 'PortalController@viewProfile')->name('portal.profile');
+Route::get('/student/portal/bio-data/get', 'PortalController@getBioData')->name('portal.biodata.get');
+Route::post('/student/portal/bio-data/update', 'PortalController@updateBioData')->name('portal.biodata.update');
+Route::get('/student/portal/course-registration', 'PortalController@courseRegistration')->name('portal.course.registration');
+Route::post('/student/portal/course-registration', 'PortalController@coursesRegistration')->name('portal.courses.registration');
+Route::get('/student/portal/get-books', 'PortalController@getBooks')->name('portal.get.books');
+Route::get('/student/portal/get-book', 'PortalController@loadBook')->name('portal.all.books');
+Route::get('/student/portal/subject-record', 'PortalController@subjectRecord')->name('portal.subject.record');
+Route::get('/student/portal/subject-records', 'PortalController@subjectRecordView')->name('portal.subject.records');
+
+// portal.course.registration
+// portal.course.registrationportal.course.registration
+
+// Route::any('/students', [StudentController::class, 'index'])->name('students');
+// Route::any('/dashboard/student/new/add', [DashboardController::class, 'addStudent'])->name('newstudent');
+// Route::any('/student/add', [StudentController::class, 'store'])->name('newStudent');
+
+// Teachers Routes
+
+Route::get('/teacher/portal', 'TeachersController@index')->name('portal.teacher.index');
+Route::post('/teacher/portal/login', 'TeachersController@portalLogin')->name('portal.teacher.login');
+Route::get('/teacher/portal/dashboard', 'TeachersController@dashboardView')->name('portal.teacher.dashboard');
+Route::get('/teacher/portal/grade-students', 'TeachersController@gradeView')->name('portal.teacher.grade');
+Route::get('/teacher/portal/grade-student', 'TeachersController@fetchAllStudentCourse')->name('portal.teacher.grades');
+Route::get('/teacher/portal/class-student', 'TeachersController@fetchAllStudent')->name('portal.teacher.class');
+Route::get('/teacher/portal/subject-data', 'TeachersController@getSubjectData')->name('portal.teacher.subject');
+Route::post('/teacher/portal/update-scores', 'TeachersController@updateScores')->name('portal.teacher.scores');
+Route::post('/teacher/portal/results', 'TeachersController@getResults')->name('portal.teacher.results')->middleware('can:get_results');
+Route::get('/teacher/portal/logout', 'TeachersController@logout')->name('teacher.logout');
+Route::get('/teacher/filter/course/class', 'TeachersController@filterCourseByClass')->name('teacher.filter.course');
+
 Route::group(['middleware' => ['auth']], function() {
    Route::get('/', function () {
     return view('layouts.app');
@@ -107,6 +154,7 @@ Route::get('/dashboard/finance/generate', 'TransactionController@indexGenerate')
 Route::get('/dashboard/finance/edit', 'TransactionController@indexEdit')->name('dashboard.finance.edit');
 Route::get('/dashboard/finance/logs', 'TransactionController@transactionHistoryAdmin')->name('dashboard.logs');
 Route::get('/dashboard/finance/logs/generate', 'TransactionController@generateTransactionHistoryAdmin')->name('dashboard.logs.generate');
+Route::get('/dashboard/finance/logs/filter-class', 'TransactionController@invoiceFilterByClass')->name('dashboard.filter.class');
 Route::get('/dashboard/finance/logs/edit', 'TransactionController@editTransactionHistoryAdmin')->name('dashboard.logs.edit');
 Route::post('/dashboard/finance/logs/confirm', 'TransactionController@confirmTransaction')->name('dashboard.confirm.transaction');
 Route::get('/dashboard/finance/logs/data', 'TransactionController@getInvoiceData')->name('get.invoice.data');
@@ -119,7 +167,7 @@ Route::post('/dashboard/item/cart/', 'TransactionController@addItemToCart')->nam
 Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name('dashboard.get.cart');
 Route::get('/dashboard/items/carts/', 'TransactionController@generateInvoice2')->name('dashboard.invoice');
 Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')->name('dashboard.add.invoice');
-Route::get('/dashboard/invoice/recent/', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
+Route::get('/dashboard/invoice/recent/{mail}', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
 Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->name('dashboard.send.invoice');
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
 Route::get('/dashboard/receipt/{id}', 'TransactionController@generateReceipts')->name('dashboard.receipt.generate');
@@ -129,6 +177,10 @@ Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->nam
 Route::post('/dashboard/receipt/family/send', 'TransactionController@sendFamilyReceipt')->name('dashboard.send.receipt.family');
 Route::get('/dashboard/receipt/family/generate', 'TransactionController@generateFamilyInvoice')->name('dashboard.family.receipt');
 Route::get('/dashboard/receipt/family/{id}', 'TransactionController@generateFamilyReceipt')->name('dashboard.generate.family.receipt');
+Route::get('/dashboard/new/transaction/{sid}/{mail}', 'TransactionController@new_transaction')->name('dashboard.new.transaction');
+Route::post('/dashboard/new/transaction/', 'TransactionController@add_transaction')->name('dashboard.add.transaction');
+Route::post('/dashboard/new/balance/', 'TransactionController@new_balance')->name('dashboard.new.balance');
+Route::get('/dashboard/edit/balance/{mail}', 'TransactionController@edit_balance')->name('dashboard.edit.balance');
 
 
 Route::get('/dashboard/create/expense', [ExpenseController::class, 'newExpense'])->name('expense.create');
@@ -142,6 +194,7 @@ Route::get('/dashboard/decline/expense/{id}', [ExpenseController::class, 'declin
 Route::get('/students', [StudentController::class, 'index']);
 Route::post('/store', [StudentController::class, 'store'])->name('store');
 Route::get('/fetch-all', [StudentController::class, 'fetchAll'])->name('fetchAll');
+Route::get('/filter-by-class', [StudentController::class, 'filter_by_class'])->name('dashboard.class.filter');
 Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
 Route::post('/update', [StudentController::class, 'update'])->name('update');
 Route::post('/delete', [StudentController::class, 'delete'])->name('delete');
@@ -165,51 +218,6 @@ Route::post('/online/register', 'RegistrationController@index')->name('registrat
 Route::get('/dashboard/grade-student', 'DashboardController@gradeStudents')->name('dashboard.grade.students');
 Route::post('/dashboard/grade-students', 'DashboardController@gradeStudent')->name('dashboard.grade.student');
 
-
-// Students Routes
-Route::get('/student/portal', 'PortalController@index')->name('portal.index');
-Route::post('/student/portal/login', 'PortalController@portalLogin')->name('portal.login');
-Route::get('/student/portal/dashboard', 'PortalController@dashboard')->name('portal.dashboard');
-Route::get('/student/portal/logout', 'PortalController@logout')->name('portal.logout');
-
-// Student Check Result
-Route::get('/student/portal/myresults', 'PortalController@resultView')->name('portal.results');
-Route::get('/student/portal/result', 'PortalController@viewResult')->name('portal.result');
-Route::get('/student/portal/myresult', 'PortalController@getResults')->name('portal.get.result');
-Route::get('/student/portal/myresult/signle', 'PortalController@getResultSingle')->name('portal.result.single');
-
-Route::get('/student/portal/finance', 'PortalController@financeView')->name('portal.finance');
-Route::get('/student/portal/finance/print-fee', 'PortalController@printFee')->name('portal.finance.view');
-Route::get('/student/portal/finance/view-receipt', 'PortalController@viewReceipt')->name('portal.receipt');
-Route::get('/student/portal/bio-data', 'PortalController@viewBioData')->name('portal.biodata');
-Route::get('/student/portal/bio-data/get', 'PortalController@getBioData')->name('portal.biodata.get');
-Route::post('/student/portal/bio-data/update', 'PortalController@updateBioData')->name('portal.biodata.update');
-Route::get('/student/portal/course-registration', 'PortalController@courseRegistration')->name('portal.course.registration');
-Route::post('/student/portal/course-registration', 'PortalController@coursesRegistration')->name('portal.courses.registration');
-Route::get('/student/portal/get-books', 'PortalController@getBooks')->name('portal.get.books');
-Route::get('/student/portal/get-book', 'PortalController@loadBook')->name('portal.all.books');
-Route::get('/student/portal/subject-record', 'PortalController@subjectRecord')->name('portal.subject.record');
-Route::get('/student/portal/subject-records', 'PortalController@subjectRecordView')->name('portal.subject.records');
-
-// portal.course.registration
-// portal.course.registrationportal.course.registration
-
-// Route::any('/students', [StudentController::class, 'index'])->name('students');
-// Route::any('/dashboard/student/new/add', [DashboardController::class, 'addStudent'])->name('newstudent');
-// Route::any('/student/add', [StudentController::class, 'store'])->name('newStudent');
-
-// Teachers Routes
-
-Route::get('/teacher/portal', 'TeachersController@index')->name('portal.teacher.index');
-Route::post('/teacher/portal/login', 'TeachersController@portalLogin')->name('portal.teacher.login');
-Route::get('/teacher/portal/dashboard', 'TeachersController@dashboardView')->name('portal.teacher.dashboard');
-Route::get('/teacher/portal/grade-students', 'TeachersController@gradeView')->name('portal.teacher.grade');
-Route::get('/teacher/portal/grade-student', 'TeachersController@fetchAllStudentCourse')->name('portal.teacher.grades');
-Route::get('/teacher/portal/class-student', 'TeachersController@fetchAllStudent')->name('portal.teacher.class');
-Route::get('/teacher/portal/subject-data', 'TeachersController@getSubjectData')->name('portal.teacher.subject');
-Route::post('/teacher/portal/update-scores', 'TeachersController@updateScores')->name('portal.teacher.scores');
-Route::post('/teacher/portal/results', 'TeachersController@getResults')->name('portal.teacher.results')->middleware('can:get_results');
-Route::get('/teacher/portal/logout', 'TeachersController@logout')->name('teacher.logout');
 
 // Transaction route
 

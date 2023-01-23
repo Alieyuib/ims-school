@@ -13,6 +13,7 @@ use App\RecentInvoice;
 use App\RecentReceipt;
 use App\StudentFamilyAccount as StudentFamilyAccount;
 use App\StudentData;
+use App\Transactions;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -193,9 +194,9 @@ class TransactionController extends Controller
         $stmt = StudentData::all();
         $output = '';
         if ($stmt->count() > 0) {
-            $output .= '<table class="table table-bordered table-hover">
+            $output .= '<table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-ims-default">
                         <th>ID</th>
                         <th>Account Name</th>
                         <th>Phone Number</th>
@@ -211,7 +212,45 @@ class TransactionController extends Controller
                         <td>'.$item->phone_no.'</td>
                         <td>'.$item->email.'</td>
                         <td>
-                            <a href="/dashboard/generate/invoice/'.$item->id.'" id="'.$item->id.'" class="mx-2 btn btn-ims-green">Generate Invoice</a>
+                            <a href="/dashboard/student/profile/'.$item->id.'/'.$item->email.'" id="'.$item->id.'" class="btn-sm btn btn-ims-green">View profile</a>
+                        </td>
+                    </tr>';
+                }
+
+                $output .= '</tbody></table>';
+                echo $output;
+        }else{
+            echo '<h1 class="text-center text-secondary my-5">
+                No records present in the database
+            </h1>';
+        }
+     }
+
+     public function invoiceFilterByClass(Request $request)
+     {
+        $class_name = $request->get('class_name');
+        $stmt = StudentData::where('current_class', $class_name)->get();
+        $output = '';
+        if ($stmt->count() > 0) {
+            $output .= '<table class="table table-hover">
+                <thead>
+                    <tr class="text-ims-default">
+                        <th>ID</th>
+                        <th>Account Name</th>
+                        <th>Phone Number</th>
+                        <th>Email Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                foreach ($stmt as $item) {
+                    $output .= '<tr>
+                        <td>'.$item->id.'</td>
+                        <td>'.$item->name.'</td>
+                        <td>'.$item->phone_no.'</td>
+                        <td>'.$item->email.'</td>
+                        <td>
+                            <a href="/dashboard/student/profile/'.$item->id.'/'.$item->email.'" id="'.$item->id.'" class="btn-sm btn btn-ims-green">View profile</a>
                         </td>
                     </tr>';
                 }
@@ -655,9 +694,9 @@ class TransactionController extends Controller
          ]);
      }
 
-     public function recentInvoice()
+     public function recentInvoice($mail)
      {
-        $view_data['recent_invoice'] = RecentInvoice::all();
+        $view_data['recent_invoice'] = RecentInvoice::where('student_email', $mail)->get();
         $view_data['counter'] = 1;
         return view('dashboard.recent_invoice', $view_data);
      }
@@ -1006,6 +1045,73 @@ class TransactionController extends Controller
             $request->session()->flash('status', 'Error while sending.');
             return redirect('dashboard/receipt/family/generate');
         }
+     }
+
+     public function new_transaction($sid, $email)
+     {
+        $view_data['sid'] = $sid;
+        $view_data['email'] = $email;
+        return view('dashboard.new_transaction', $view_data);
+     }
+
+     public function add_transaction(Request $request)
+     {
+        $amount_to_pay = $request->get('amount');
+        $trans_id = $request->get('trans-id');
+        $remarks = $request->get('remarks');
+        $sid = $request->get('sid');
+        $email = $request->get('email');
+
+        $new_transaction = Transactions::create([
+            'amount' => $amount_to_pay,
+            'trans_id' => $trans_id,
+            'sid' => $sid,
+            'remarks' => $remarks,
+            'email' => $email,
+        ]);
+
+        if ($new_transaction) {
+            $student_data = StudentData::find($sid);
+            $new_balance = $student_data->balance - $amount_to_pay;
+            $update_balance = StudentData::where('email', $email)->update([
+                'balance' => $new_balance
+            ]);
+            if ($update_balance) {
+                return response()->json([
+                    'status' => 200
+                ]);
+            }
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        };
+
+     }
+
+     public function edit_balance($email)
+     {
+        $view_data['email'] = $email;
+        return view('dashboard.edit_balance', $view_data);
+     }
+
+     public function new_balance(Request $request)
+     {
+        $email = $request->get('email');
+        $amount = $request->get('amount');
+        $stmt = StudentData::where('email', $email)->update([
+            'balance' => $amount
+        ]);
+
+        if ($stmt) {
+            return response()->json([
+                'status' => 200,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        };
      }
  
 }

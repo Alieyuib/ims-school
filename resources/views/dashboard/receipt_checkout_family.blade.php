@@ -4,12 +4,11 @@
 <style>
     
 </style>
-<div class="container">
-    <div class="row my-1">
-    <div class="col-md-4 generate-receipt p-4" id="add_items">
-        <div class="">
+<div class="row">
+    <div class="col-md-4 generate-receipt" id="add_items">
+        <div class="card shadow p-2">
             <div class="d-flex justify-content-between align-items-center">
-              <h3 class="text-success">Generate Receipt</h3>
+              <h3 class="text-ims-default">Generate Receipt</h3>
             </div>
             <div class="bg-orange text-center" id="show_all_students">
                 <div class="row my-2">
@@ -158,7 +157,7 @@
             </div>
         </div>
     </div>
-      <div class="col-md-8 static-invoice">
+    <div class="card col-md-8 shadow static-invoice">
         <div id="invoice">
           {{-- <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="text-success">Invoice #{{ $order_id }}</h3>
@@ -203,9 +202,8 @@
               </div>
           </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script>
         // window.jsPDF = window.jspdf.jsPDF;

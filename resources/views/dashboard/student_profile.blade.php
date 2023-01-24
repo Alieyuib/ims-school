@@ -14,7 +14,7 @@
             <div class="row bio-data-img">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 text-center img-bio">
-                    <img src="{{asset('images/avatar.jpg')}}" alt="">
+                    <img src="../../../../storage/images/{{ $item->passport }}" alt="">
                 </div>
                 <div class="col-md-3"></div>
             </div>

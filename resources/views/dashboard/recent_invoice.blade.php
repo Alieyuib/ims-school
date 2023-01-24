@@ -19,7 +19,7 @@
                     <tr>
                         <td>{{ $counter++ }}</td>
                         <td>{{ $item->invoice_id }}</td>
-                        <td><a href="../../storage/invoice/{{ $item->invoice }}">{{ $item->invoice }}</a></td>
+                        <td><a href="../../../storage/invoice/{{ $item->invoice }}">{{ $item->invoice }}</a></td>
                         <td>{{ $item->student_email }}</td>
                         <td>{{ $item->created_at }}</td>
                     </tr>

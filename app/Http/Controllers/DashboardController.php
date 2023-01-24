@@ -324,7 +324,6 @@ class DashboardController extends Controller
                             <th>ID</th>
                             <th>Book Name</th>
                             <th>Uploaded On</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>';
@@ -333,10 +332,6 @@ class DashboardController extends Controller
                             <td>'.$item->id.'</td>
                             <td> <a href="../../storage/books/'.$item->book_file.'">'.$item->book_name.'</a> </td>
                             <td>'.$item->created_at.'</td>  
-                            <td>
-                                <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
-                                <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
-                            </td>
                         </tr>';
                     }
 

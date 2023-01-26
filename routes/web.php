@@ -65,6 +65,7 @@ Route::get('/student/portal/finance/print-fee', 'PortalController@printFee')->na
 Route::get('/student/portal/finance/view-receipt', 'PortalController@viewReceipt')->name('portal.receipt');
 Route::get('/student/portal/bio-data', 'PortalController@viewBioData')->name('portal.biodata');
 Route::get('/dashboard/student/profile/{sid}/{email}', 'PortalController@viewProfile')->name('portal.profile');
+Route::get('/dashboard/family/profile/{sid}', 'DashboardController@familyProfile')->name('dashboard.family.profile');
 Route::get('/student/portal/bio-data/get', 'PortalController@getBioData')->name('portal.biodata.get');
 Route::post('/student/portal/bio-data/update', 'PortalController@updateBioData')->name('portal.biodata.update');
 Route::get('/student/portal/course-registration', 'PortalController@courseRegistration')->name('portal.course.registration');
@@ -151,6 +152,7 @@ Route::post('/dashboard/user/assign-user-entities/{uid}', 'DashboardController@a
 
 Route::get('/dashboard/accounts/', 'TransactionController@index')->name('dashboard.finance');
 Route::get('/dashboard/finance/generate', 'TransactionController@indexGenerate')->name('dashboard.finance.generate');
+Route::get('/dashboard/family/invoice', 'TransactionController@familyInvoice')->name('dashboard.family.invoice');
 Route::get('/dashboard/finance/edit', 'TransactionController@indexEdit')->name('dashboard.finance.edit');
 Route::get('/dashboard/finance/logs', 'TransactionController@transactionHistoryAdmin')->name('dashboard.logs');
 Route::get('/dashboard/finance/logs/generate', 'TransactionController@generateTransactionHistoryAdmin')->name('dashboard.logs.generate');
@@ -177,6 +179,7 @@ Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->nam
 Route::post('/dashboard/receipt/family/send', 'TransactionController@sendFamilyReceipt')->name('dashboard.send.receipt.family');
 Route::get('/dashboard/receipt/family/generate', 'TransactionController@generateFamilyInvoice')->name('dashboard.family.receipt');
 Route::get('/dashboard/receipt/family/{id}', 'TransactionController@generateFamilyReceipt')->name('dashboard.generate.family.receipt');
+Route::get('/dashboard/invoice/family/{sid}', 'TransactionController@generateFamilyInvoiceProfile')->name('dashboard.generate.family.invoice');
 Route::get('/dashboard/new/transaction/{sid}/{mail}', 'TransactionController@new_transaction')->name('dashboard.new.transaction');
 Route::post('/dashboard/new/transaction/', 'TransactionController@add_transaction')->name('dashboard.add.transaction');
 Route::post('/dashboard/new/balance/', 'TransactionController@new_balance')->name('dashboard.new.balance');

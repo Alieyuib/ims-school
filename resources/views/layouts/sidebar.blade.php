@@ -139,7 +139,7 @@ display: block;
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
                                         <a class="dropdown-item" href="{{ route('dashboard.finance.generate') }}">Generate Invoice</a>
-                                        {{-- <a class="dropdown-item" href="{{ route('dashboard.recent.invoice') }}">Recent Invoice</a> --}}
+                                        <a class="dropdown-item" href="{{ route('dashboard.family.invoice') }}">Generate family invoice</a>
                                         <a class="dropdown-item" href="{{ route('dashboard.family.receipt') }}">Generate Family Receipt</a>
                                         {{--<a class="dropdown-item" href="{{ route('dashboard.finance') }}">Edit Balance</a> --}}
                                         <a class="dropdown-item" href="{{ route('dashboard.transaction.receipt.view') }}">Generate Receipt</a>

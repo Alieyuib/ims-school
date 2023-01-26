@@ -650,6 +650,15 @@ p.forget-password-text a {
     width: 100%;
     padding: 10px;
 }
+.family-profile{
+    /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */
+    border-radius: 20px;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    padding: 10px;
+}
 
 .generate-receipt{
     /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */

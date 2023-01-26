@@ -25,6 +25,7 @@ use App\StudentFamilyAccount;
 use App\User;
 use App\AccessibleEntities;
 use App\Gallery;
+use App\Transactions;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -895,6 +896,16 @@ class DashboardController extends Controller
         }
 
         return redirect(route('dashboard.delete.pictures'));
+    }
+
+    public function familyProfile($sid)
+    {
+        $view_data['students_bio'] = StudentData::where('email', $sid)->get(); 
+        $student_bio = StudentData::where('email', $sid)->first();
+        $view_data['student_bio'] = $student_bio;
+        $transaction_list = Transactions::where('email', $sid)->orderBy('id', 'desc')->get();
+        $view_data['transaction_list'] = $transaction_list;
+        return view('dashboard.family_profile', $view_data);
     }
 
     

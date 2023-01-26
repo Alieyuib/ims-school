@@ -880,6 +880,46 @@ class TransactionController extends Controller
         return view('dashboard.receipt_family', $view_data);
      }
 
+     public function familyInvoice(Request $request)
+     {
+        $student_account = StudentData::select(\DB::raw('COUNT(email) as count'), 'email')
+        ->groupBy('email')
+        ->having('count', '>', 1)
+        ->get();
+        $view_data['counter'] = 1;
+        // $student_account = StudentData::all();
+        // $result = $student_account->groupBy('email');
+        $view_data['student_data'] = $student_account;
+
+        return view('dashboard.family_invoice', $view_data);
+     }
+
+     public function generateFamilyInvoiceProfile(Request $request, $sid)
+     {
+        $item_list = Items::all();
+        $item_fee = Items::where('type', 'fees')->get();
+        $item_uniform = Items::where('type', 'uniform')->get();
+        $item_stationary = Items::where('type', 'stationary')->get();
+
+        // $student_count = StudentData::where('email', $)
+
+        $student_data = StudentData::where('email', $sid)->first();
+
+        $student_count = StudentData::where('email', $sid)->get();
+        $view_data['family_members'] = StudentData::where('email', $sid)->get();
+        $view_data['count'] = $student_count->count();
+
+        $view_data['student_data'] = $student_data;
+        $view_data['item_list'] = $item_list;
+        $view_data['item_fee'] = $item_fee;
+        $view_data['item_uniform'] = $item_uniform;
+        $view_data['item_stationary'] = $item_stationary;
+
+        $view_data['order_id'] = sprintf("%06d", mt_rand(1, 999999));
+
+        return view('dashboard.generate_family_invoice', $view_data);
+     }
+
      public function generateFamilyReceipt(Request $request, $id)
      {
         $item_list = Items::all();
@@ -889,10 +929,10 @@ class TransactionController extends Controller
 
         // $student_count = StudentData::where('email', $)
 
-        $student_data = StudentData::find($id);
+        $student_data = StudentData::where('email', $id)->first();
 
-        $student_count = StudentData::where('email', $student_data->email)->get();
-        $view_data['family_members'] = StudentData::where('email', $student_data->email)->get();
+        $student_count = StudentData::where('email', $id)->get();
+        $view_data['family_members'] = StudentData::where('email', $id)->get();
         $view_data['count'] = $student_count->count();
 
         $view_data['student_data'] = $student_data;

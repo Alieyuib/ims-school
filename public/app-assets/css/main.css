@@ -359,7 +359,7 @@ span.input-group-text {
 }
 .login-logo{
     width: 30% !important;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     margin-bottom: 10px;
 }
 .btn-login {
@@ -391,6 +391,10 @@ p.forget-password-text a {
 }
 .assign-role-form div.form-group{
     margin-bottom: 30px;
+}
+
+.dash-img{
+    display: none;
 }
 
 .dashboard-overlay {
@@ -649,6 +653,7 @@ p.forget-password-text a {
     overflow-x: hidden;
     width: 100%;
     padding: 10px;
+    /* color: #145251 */
 }
 .family-profile{
     /* box-shadow: 0 4px 8px 0 rgba(0, 78, 59, 0.5), 0 6px 20px 0 rgba(0, 78, 59, 0.19); */

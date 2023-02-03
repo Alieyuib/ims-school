@@ -20,6 +20,43 @@
         <link rel="stylesheet" href="{{ asset('app-assets/css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
         <style>
+
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        [class*="col-"] {
+            width: 100%;
+            /* background-color:; */
+        }
+        /* .login-div{
+            margin-top: 180px !important;
+        } */
+        body{
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        }
+        .navbar-brand{
+            text-align: center;
+        }
+        .navbar-brand img{
+            display: none;
+        }
+        #gallery{
+            display: none;
+        }
+        .dropdown-content{
+            margin-left: 0px !important;
+            padding: 10px;
+            border-radius: 8px;
+            color: #414141;
+        }
+        .dropdown-content a:hover{
+            color: #145251;
+        }
+    }
              /* Dropdown Button */
 .dropbtn {
   background-color: transparent;
@@ -71,7 +108,9 @@
                     <img src="{{asset('images/logo.jpg')}}" alt="">
                     The Priority School
                 </a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <p class="text-center">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                </p>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto text-ims-default my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link text-ims-default" href="#about">About</a></li>

@@ -15,7 +15,7 @@
     {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/favicon/favicon-32x32.') }}png"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
+    <link rel="stylesheet" media="screen" href="{{ asset('app-assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('app-assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type = "text/css" media="screen" href="{{ asset('app-assets/css/print.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
@@ -28,6 +28,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <style>
+        @media only screen and (max-width: 768px) {
+
+        .sidebar-div{
+            width: 20% !important;
+        }
+        .dashboard-overlay{
+            width: 80% !important;
+            margin-left: -10px;
+            /* border: 1px solid #ddd; */
+            /* padding: 10px; */
+            overflow-y: scroll;
+            overflow-x: hidden;
+            background-color: #fff;
+            max-height: 100vh;
+        }
+    }
+    </style>
 </head>
 <!-- END: Head-->
 

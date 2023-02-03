@@ -1,5 +1,40 @@
 @section('sidebar')
 <style>
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+        /* background-color:; */
+    }
+    .ims-sidebar{
+        /* width: 15%; */
+        text-align: center;
+    }
+    .ims-sidebar span.link{
+        display: none;
+    }
+    .ims-sidebar ul li{
+        margin-bottom: 10px;
+        /* font-size: 18px; */
+    }
+    .ims-sidebar li.nav-item{
+        margin-left: -15px;
+    }
+    .sidebar-header h5{
+        display: none;
+    }
+    .sidebar-header img.dash-img{
+        display: block;
+        width: 55px;
+        height: 55px;
+        left: 8px;
+        top: 5px;
+        position: absolute;
+        /* margin: 20px; */
+    }
+
+}
     /* Dropdown Button */
 .dropbtn {
 background-color: transparent;
@@ -54,6 +89,7 @@ display: block;
     <div class="ims-sidebar">
                 <div class="sidebar-header">
                     <h5>The Priority School</h5>
+                    <img src="{{ asset('images/logo.jpg') }}" alt="" class="dash-img">
                 </div>
                 <div class="sidebar-links">
                     @role('super_admin')
@@ -64,7 +100,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-dashboard"></i>
                                         </span>
-                                        Dashboard</a>
+                                        <span class="link">Dashboard</span></a>
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -73,7 +109,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-users"></i>
                                         </span>
-                                        Students</a>
+                                        <span class="link">Students</span></a>
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -82,7 +118,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-user-plus"></i>
                                         </span>
-                                        Student Registration</a>
+                                        <span class="link">Student Registration</span></a>
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -91,7 +127,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-user-plus"></i>
                                         </span>
-                                        Student Enrollment</a>
+                                        <span class="link">Student Enrollment</span></a>
                                 </span>
                             </li>
                             {{-- <li class="list-group-item">
@@ -109,7 +145,7 @@ display: block;
                                             <span class="float-left">
                                                 <i class="fa fa-bar-chart"></i>
                                             </span>
-                                            Student Result</a>
+                                            <span class="link">Student Result</span></a>
                                     </span>
                                 </li>
                                 <div class="dropdown">
@@ -119,7 +155,7 @@ display: block;
                                                 <span class="float-left">
                                                     <i class="fa fa-money"></i>
                                                 </span>
-                                                Expenses</a>
+                                                <span class="link">Expenses</span></a>
                                         </span>
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
@@ -134,7 +170,7 @@ display: block;
                                                 <span class="float-left">
                                                     <i class="fa fa-money"></i>
                                                 </span>
-                                                Finance</a>
+                                                <span class="link">Finance</span></a>
                                         </span>
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
@@ -153,7 +189,7 @@ display: block;
                                                 <span class="float-left">
                                                     <i class="fa fa-users"></i>
                                                 </span>
-                                                User Management</a>
+                                                <span class="link">User Management</span></a>
                                         </span>
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
@@ -168,7 +204,7 @@ display: block;
                                                 <span class="float-left">
                                                     <i class="fa fa-list"></i>
                                                 </span>
-                                                Fees</a>
+                                                <span class="link">Fees</span></a>
                                         </span>
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
@@ -183,7 +219,7 @@ display: block;
                                                 <span class="float-left">
                                                     <i class="fa fa-file-photo-o"></i>
                                                 </span>
-                                                Pictures</a>
+                                                <span class="link">Pictures</span></a>
                                         </span>
                                     </li>
                                     <div class="dropdown-content" style="margin-left: -100px; width: 100%">
@@ -197,7 +233,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-book"></i>
                                         </span>
-                                        Books</a>
+                                        <span class="link">Books</span></a>
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -206,7 +242,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-vcard"></i>
                                         </span>
-                                        Generate ID Card</a>
+                                        <span class="link">Generate ID Card</span></a>
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -215,7 +251,7 @@ display: block;
                                         <span class="float-left">
                                             <i class="fa fa-sign-out"></i>
                                         </span>
-                                        Logout</a>
+                                        <span class="link">Logout</span></a>
                                 </span>
                             </li>
                         </ul>

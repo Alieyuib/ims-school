@@ -170,6 +170,7 @@ Route::get('/dashboard/items/cart/', 'TransactionController@getCartItem')->name(
 Route::get('/dashboard/items/carts/', 'TransactionController@generateInvoice2')->name('dashboard.invoice');
 Route::post('/dashboard/add/invoice/', 'TransactionController@generateInvoice')->name('dashboard.add.invoice');
 Route::get('/dashboard/invoice/recent/{mail}', 'TransactionController@recentInvoice')->name('dashboard.recent.invoice');
+Route::get('/dashboard/receipt/recent/{mail}', 'TransactionController@recentReceiptProfile')->name('dashboard.recent.receipt');
 Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->name('dashboard.send.invoice');
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
 Route::get('/dashboard/receipt/{id}', 'TransactionController@generateReceipts')->name('dashboard.receipt.generate');

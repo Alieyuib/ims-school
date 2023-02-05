@@ -95,10 +95,14 @@
                   <td><b>Remarks</b></td>
                   <td><b></b></td>
                 </tr> --}}
-                <tr>
-                  <td><b>Discount</b></td>
-                  <td><b>N&nbsp;{{number_format($discount)}}</b></td>
-                </tr>
+                @if ($discount == 0)
+                    <tr></tr>
+                @else
+                  <tr>
+                    <td><b>Discount</b></td>
+                    <td><b>N&nbsp;{{number_format($discount)}}</b></td>
+                  </tr>
+                @endif
                 <tr>
                   <td><b>Total</b></td>
                   <td><b>N&nbsp;{{ number_format($totalAll) }}</b></td>

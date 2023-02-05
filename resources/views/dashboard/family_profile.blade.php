@@ -24,6 +24,9 @@
                             <a href="/dashboard/invoice/recent/{{$student_bio->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
                                 View recent invoice
                             </a>
+                            <a href="/dashboard/receipt/recent/{{$item->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
+                                View recent receipt
+                            </a>
                         </div>
                     </div> 
                 {{-- @endforeach --}}

@@ -48,7 +48,7 @@
         <h2 style="color: #145251; float: right" class="text-ims-default">THE PRIORITY SCHOOL</h2>
         <h4 style="color: #d9ba79; margin-top: 40px; position: absolute; left: 200;"  class="text-dark">NO: 2 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h4>
         <div style="margin-top: 200px">
-        <h3 style="color: #145251;" class="text-ims-default"><b>Receipt:#{{ $invoice_no }}</b></h3>
+        <h3 style="color: #145251;" class="text-ims-default"><b>Invoice:#{{ $invoice_no }}</b></h3>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">FAMILY NAME</b>: {{ $student_ffname }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>
@@ -111,10 +111,14 @@
                   <td><b>Vat</b></td>
                   <td><b>N&nbsp;0</b></td>
                 </tr> --}}
-                <tr>
-                  <td><b>Discount</b></td>
-                  <td><b>N&nbsp;{{number_format($discount)}}</b></td>
-                </tr>
+                @if ($discount == 0)
+                    <tr></tr>
+                @else
+                  <tr>
+                    <td><b>Discount</b></td>
+                    <td><b>N&nbsp;{{number_format($discount)}}</b></td>
+                  </tr>
+                @endif
                 <tr>
                   <td><b>Total</b></td>
                   <td><b>N&nbsp;{{ number_format($totalAll) }}</b></td>

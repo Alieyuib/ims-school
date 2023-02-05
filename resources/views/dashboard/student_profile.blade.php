@@ -24,7 +24,7 @@
             {{-- <div class="col-md-12 bio-footer"></div> --}}
         </div>
     </div>
-    <div class="col-md-7 bio-data-div card" id="bio-data" style="height: 550px">
+    <div class="col-md-7 bio-data-div card" id="bio-data" style="height: 650px !important">
         <img src="{{ asset('images/logo.jpg') }}" alt="" class="background-img-biodata">
         <div class="row">
             <div class="col-md-6">
@@ -52,6 +52,9 @@
                     </a>
                     <a href="/dashboard/invoice/recent/{{$item->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
                         View recent invoice
+                    </a>
+                    <a href="/dashboard/receipt/recent/{{$item->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
+                        View recent receipt
                     </a>
                 </div>
             </div>

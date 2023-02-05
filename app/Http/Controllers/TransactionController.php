@@ -708,6 +708,13 @@ class TransactionController extends Controller
         return view('dashboard.recent_receipt', $view_data);
      }
 
+     public function recentReceiptProfile($mail)
+     {
+        $view_data['recent_receipts'] = RecentReceipt::where('student_email', $mail)->get();
+        $view_data['counter'] = 1;
+        return view('dashboard.recent_receipt_profile', $view_data);
+     }
+
      public function generateReceipt(Request $request)
      {
         $student_account = StudentData::all();
@@ -1101,6 +1108,15 @@ class TransactionController extends Controller
         $remarks = $request->get('remarks');
         $sid = $request->get('sid');
         $email = $request->get('email');
+        $order_id = sprintf("%06d", mt_rand(1, 999999));
+
+        // $invoice_data = [
+        //     'receipt_id' => $order_id,
+        //     'receipt' => $order_id.'.pdf',
+        //     'student_email' => $email
+        // ];
+
+        // RecentReceipt::create($invoice_data);
 
         $new_transaction = Transactions::create([
             'amount' => $amount_to_pay,

@@ -46,7 +46,7 @@
                     <div class="col-sm-8 card-text">
                         <p class="number-text">
                             Adult Students <br>
-                            (الطلاب الكبار)
+                            (الطلاب الكبار)`
                         </p>
                         <p class="number-total">
                             <span>{{ $total_student_adult }}</span>

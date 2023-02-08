@@ -1110,13 +1110,7 @@ class TransactionController extends Controller
         $email = $request->get('email');
         $order_id = sprintf("%06d", mt_rand(1, 999999));
 
-        // $invoice_data = [
-        //     'receipt_id' => $order_id,
-        //     'receipt' => $order_id.'.pdf',
-        //     'student_email' => $email
-        // ];
-
-        // RecentReceipt::create($invoice_data);
+        $student_data = StudentData::where('email', $email)->first();
 
         $new_transaction = Transactions::create([
             'amount' => $amount_to_pay,
@@ -1127,6 +1121,30 @@ class TransactionController extends Controller
         ]);
 
         if ($new_transaction) {
+            $data = [
+                'status'=>'My Receipt',
+                'invoice_no' => $order_id,
+                'student_email' => $email,
+                'amount_paid' => $amount_to_pay,
+                'student_ffname' => $student_data->ffname,
+                'student_address' => $student_data->address,
+                'remarks' => $remarks,
+                'trans_id' => $trans_id,
+                'counter' => 1,
+            ];
+            $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.payment', $data);
+    
+            Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+            $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+            Storage::put($path, $pdf->output());
+    
+            $invoice_data = [
+                'receipt_id' => $order_id,
+                'receipt' => $order_id.'.pdf',
+                'student_email' => $email
+            ];
+    
+            RecentReceipt::create($invoice_data);
             $student_data = StudentData::find($sid);
             $new_balance = $student_data->balance - $amount_to_pay;
             $update_balance = StudentData::where('email', $email)->update([

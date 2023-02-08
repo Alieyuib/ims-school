@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ $counter++ }}</td>
                                 <td>{{ $item->receipt_id }}</td>
-                                <td><a href="../../storage/invoice/{{ $item->receipt }}">{{ $item->receipt }}</a></td>
+                                <td><a href="../../../storage/invoice/{{ $item->receipt }}">{{ $item->receipt }}</a></td>
                                 <td>{{ $item->student_email }}</td>
                                 <td>{{ $item->created_at }}</td>
                             </tr>

@@ -50,22 +50,44 @@
         <div style="margin-top: 200px">
         <h3 style="color: #145251;" class="text-ims-default"><b>Receipt:#{{ $invoice_no }}</b></h3>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">FAMILY NAME</b>: {{ $student_ffname }}</h4>
+        <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">EMAIL</b>: {{ $student_email }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>
         </div>
         <div id="show_cart_items">
+          <h3 style="color: #145251;">Due Balance: -N&nbsp;{{ number_format($balance) }}</h3>
+          @if ($family_members->count() > 0)
+            <table class="invoice_table table-bordered table-striped" border="1" style="margin-bottom: 20px">
+              <thead>
+                <tr>
+                  {{-- <th>S/N</th> --}}
+                  <th>Student name</th>
+                </tr>
+              </thead>
+              <tbody style="padding: 20px">
+              @foreach ($family_members as $item)
+                <tr>
+                  {{-- <td>{{$counter++}}</td> --}}
+                  <td>{{$item->name}}</td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          @else
+              
+          @endif
           <table class="invoice_table table-bordered table-striped" border="1">
             <thead>
               <tr>
                 <th>S/N</th>
-                <th>Remarks</th>
+                <th>Description</th>
                 <th>Amount paid</th>
                 <th>Transaction Id</th>
               </tr>
             </thead>
             <tbody style="padding: 20px">
               <tr>
-                <td>{{$counter}}</td>
+                <td>{{$counter++}}</td>
                 <td>{{$remarks}}</td>
                 <td>N&nbsp;{{ number_format($amount_paid) }}</td>
                 <td>{{$trans_id}}</td>
@@ -79,6 +101,8 @@
           </div>
           <div class="col-md-12 payment">
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+              <h4 style="color: #000; text-align: center; text-transform:uppercase"><b>The priority school administrator</b></h4>
+              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

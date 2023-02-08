@@ -52,18 +52,19 @@
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">FAMILY NAME</b>: {{ $student_ffname }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>
+        <h3 style="color: #145251;">Due Balance: -N&nbsp;{{ number_format($balance) }}</h3>
         </div>
         <table class="invoice_table table-bordered table-striped" border="1" style="margin-bottom: 20px">
             <thead>
               <tr>
-                <th>S/N</th>
+                {{-- <th>S/N</th> --}}
                 <th>Students</th>
               </tr>
             </thead>
             <tbody style="padding: 20px">
               @foreach ($family_members as $item)
                   <tr>
-                    <td>{{$counter++}}</td>
+                    {{-- <td>{{$counter++}}</td> --}}
                     <td>{{ $item->name }}</td>
                   </tr>
               @endforeach
@@ -86,7 +87,7 @@
             <tbody style="padding: 20px">
               @foreach ($cart_items as $item)
                   <tr>
-                    <td>{{$counter++}}</td>
+                    <td>{{$counter_2++}}</td>
                     <td>{{ $item->item_name }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>N&nbsp;{{ number_format($item->item_price) }}</td>
@@ -128,6 +129,8 @@
           </div>
           <div class="col-md-12 payment">
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+              <h4 style="color: #000; text-align: center; text-transform:uppercase"><b>The priority school administrator</b></h4>
+              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row my-1">
-      <div class="col-lg-12 student-list-div-main" id="invoice">
+      <div class="card shadow col-lg-12 student-list-div-main" id="invoice">
         <div class="">
           <div class="d-flex justify-content-between align-items-center">
             <h3 class="text-ims-default">Generate Receipt</h3>

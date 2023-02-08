@@ -50,6 +50,9 @@
                     <a href="/dashboard/generate/invoice/{{$item->id}}" class="text-uppercase btn btn-ims-green">
                         Generate invoice
                     </a>
+                    <a href="/dashboard/receipt/{{$item->id}}" class="text-uppercase mt-2 btn btn-ims-green">
+                        Generate Receipt
+                    </a>
                     <a href="/dashboard/invoice/recent/{{$item->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
                         View recent invoice
                     </a>

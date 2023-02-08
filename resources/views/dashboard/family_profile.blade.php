@@ -21,6 +21,9 @@
                             <a href="/dashboard/invoice/family/{{$student_bio->email}}" class="text-uppercase btn btn-ims-green">
                                 Generate invoice
                             </a>
+                            <a href="/dashboard/receipt/family/{{$student_bio->email}}" class="text-uppercase mt-2 btn btn-ims-green">
+                                Generate Receipt
+                            </a>
                             <a href="/dashboard/invoice/recent/{{$student_bio->email}}" class="text-uppercase mt-2 btn btn-ims-orange">
                                 View recent invoice
                             </a>

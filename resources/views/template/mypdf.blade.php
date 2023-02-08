@@ -114,6 +114,8 @@
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Remarks:</b></h4>
               <h5 style="color: #145251; text-align: center; text-transform:uppercase"><b>{{$invoice_remarks}}</b></h5>
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+              <h4 style="color: #000; text-align: center; text-transform:uppercase"><b>The priority school administrator</b></h4>
+              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

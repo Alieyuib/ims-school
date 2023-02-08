@@ -54,6 +54,7 @@
         <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>
         </div>
         <div id="show_cart_items">
+          <h3 style="color: #145251;">Due Balance: -N&nbsp;{{ number_format($balance) }}</h3>
           <table class="invoice_table table-bordered table-striped" border="1">
             <thead>
               <tr>
@@ -108,6 +109,8 @@
           </div>
           <div class="col-md-12 payment">
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+              <h4 style="color: #000; text-align: center; text-transform:uppercase"><b>The priority school administrator</b></h4>
+              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

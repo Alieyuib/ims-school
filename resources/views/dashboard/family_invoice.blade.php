@@ -8,7 +8,7 @@
           <thead>
             <tr class="text-ims-default">
                 <th>ID</th>
-                {{-- <th>Account Name</th> --}}
+                <th>Student Name</th>
                 <th>Email Address</th>
                 <th>Action</th>
             </tr>
@@ -17,7 +17,7 @@
               @foreach ($student_data as $item)
                   <tr>
                       <td>{{ $counter++ }}</td>
-                      {{-- <td>{{ $item->ffname }}</td> --}}
+                      <td>{{ $item->name }}</td>
                       <td class="text-uppercase">{{ $item->email }}</td>  
                       <td>
                           <a href="/dashboard/family/profile/{{$item->email}}" class="btn btn-ims-green">View profile</a>

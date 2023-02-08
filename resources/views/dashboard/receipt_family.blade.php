@@ -7,8 +7,8 @@
       <table class="table table-hover">
           <thead>
             <tr>
-                <th>ID</th>
-                <th>Account Name</th>
+                {{-- <th>ID</th> --}}
+                <th>Student Name</th>
                 <th>Email Address</th>
                 <th>Action</th>
             </tr>
@@ -16,11 +16,11 @@
           <tbody>
               @foreach ($student_data as $item)
                   <tr>
-                      <td>{{ $item->id }}</td>
+                      {{-- <td>{{ $item->id }}</td> --}}
                       <td>{{ $item->name }}</td>
                       <td>{{ $item->email }}</td>  
                       <td>
-                          <a href="/dashboard/receipt/family/{{$item->id}}" class="btn btn-ims-green">Generate</a>
+                          <a href="/dashboard/receipt/family/{{$item->email}}" class="btn btn-ims-green">Generate</a>
                       </td>
                   </tr>
               @endforeach
@@ -28,7 +28,7 @@
       </table>
   </div>
 </div>
-<div class="container">
+{{-- <div class="container">
     <div class="row my-1">
       <div class="col-lg-12 student-list-div-main" id="invoice">
         <div class="">
@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
     <script>
 
         $('table').DataTable({

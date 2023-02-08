@@ -759,6 +759,8 @@ class TransactionController extends Controller
         $student_address = $request->input('student_address');
         $discount = $request->input('discount');
 
+        $student_data = StudentData::where('email', $student_email)->first();
+
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
         foreach ($stmt as $key => $value) {
             $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
@@ -777,7 +779,8 @@ class TransactionController extends Controller
             'cart_items' => $cart_items,
             'counter' => 1,
             'totalAll' => $total_discount,
-            'discount' => $discount
+            'discount' => $discount,
+            'balance' => $student_data->balance
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.receipt', $data);
 
@@ -882,6 +885,8 @@ class TransactionController extends Controller
      public function generateFamilyInvoice(Request $request)
      {
         $student_account = StudentData::all();
+        $view_data['counter'] = 1;
+
         $view_data['student_data'] = $student_account;
 
         return view('dashboard.receipt_family', $view_data);
@@ -889,10 +894,7 @@ class TransactionController extends Controller
 
      public function familyInvoice(Request $request)
      {
-        $student_account = StudentData::select(\DB::raw('COUNT(email) as count'), 'email')
-        ->groupBy('email')
-        ->having('count', '>', 1)
-        ->get();
+        $student_account = StudentData::all();
         $view_data['counter'] = 1;
         // $student_account = StudentData::all();
         // $result = $student_account->groupBy('email');
@@ -964,6 +966,8 @@ class TransactionController extends Controller
         $student_address = $request->input('student_address');
         $discount = $request->input('discount');
 
+        $student_data = StudentData::where('email', $student_email)->first();
+
         $family_members = StudentData::where('email', $request->input('student_email'))->get();
 
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
@@ -984,9 +988,11 @@ class TransactionController extends Controller
             'student_address' => $student_address,
             'cart_items' => $cart_items,
             'counter' => 1,
+            'counter_2' => 1,
             'totalAll' => $total_discount,
             'discount' => $discount,
-            'family_members' => $family_members
+            'family_members' => $family_members,
+            'balance' => $student_data->balance
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_receipt', $data);
 
@@ -1037,6 +1043,8 @@ class TransactionController extends Controller
 
         $family_members = StudentData::where('email', $request->input('student_email'))->get();
 
+        $student_data = StudentData::where('email', $student_email)->first();
+
 
         $stmt = ItemCheckout::where('order_id', $order_id)->get();
         foreach ($stmt as $key => $value) {
@@ -1056,9 +1064,11 @@ class TransactionController extends Controller
             'student_address' => $student_address,
             'cart_items' => $cart_items,
             'counter' => 1,
+            'counter_2' => 1,
             'totalAll' => $total_discount,
             'family_members' => $family_members,
-            'discount' => $discount
+            'discount' => $discount,
+            'balance' => $student_data->balance
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_receipt', $data);
 
@@ -1110,6 +1120,15 @@ class TransactionController extends Controller
         $email = $request->get('email');
         $order_id = sprintf("%06d", mt_rand(1, 999999));
 
+        // $count = 1;
+        // while (true) {
+        // //break after it has executed 1000 times
+        // if ($count == 1000) break;
+        //     $count++;
+        // }
+
+        $family_members = StudentData::where('email', $email)->get();
+
         $student_data = StudentData::where('email', $email)->first();
 
         $new_transaction = Transactions::create([
@@ -1121,16 +1140,25 @@ class TransactionController extends Controller
         ]);
 
         if ($new_transaction) {
+            $student_data = StudentData::find($sid);
+            $new_balance = $student_data->balance - $amount_to_pay;
+            $update_balance = StudentData::where('email', $email)->update([
+                'balance' => $new_balance
+            ]);
             $data = [
                 'status'=>'My Receipt',
                 'invoice_no' => $order_id,
                 'student_email' => $email,
                 'amount_paid' => $amount_to_pay,
                 'student_ffname' => $student_data->ffname,
+                'student_name' => $student_data->name,
                 'student_address' => $student_data->address,
                 'remarks' => $remarks,
                 'trans_id' => $trans_id,
+                'balance' => $new_balance,
                 'counter' => 1,
+                'counter_2' => 1,
+                'family_members' => $family_members,
             ];
             $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.payment', $data);
     
@@ -1145,15 +1173,11 @@ class TransactionController extends Controller
             ];
     
             RecentReceipt::create($invoice_data);
-            $student_data = StudentData::find($sid);
-            $new_balance = $student_data->balance - $amount_to_pay;
-            $update_balance = StudentData::where('email', $email)->update([
-                'balance' => $new_balance
-            ]);
             if ($update_balance) {
                 return response()->json([
                     'status' => 200
                 ]);
+                return $pdf->stream($order_id.'.pdf');
             }
         }else{
             return response()->json([

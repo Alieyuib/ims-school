@@ -82,7 +82,7 @@
                 <th>S/N</th>
                 <th>Description</th>
                 <th>Amount paid</th>
-                <th>Transaction Id</th>
+                {{-- <th>Transaction Id</th> --}}
               </tr>
             </thead>
             <tbody style="padding: 20px">
@@ -90,21 +90,21 @@
                 <td>{{$counter++}}</td>
                 <td>{{$remarks}}</td>
                 <td>N&nbsp;{{ number_format($amount_paid) }}</td>
-                <td>{{$trans_id}}</td>
+                {{-- <td>{{$trans_id}}</td> --}}
               </tr>
             </tbody>
           </table>
         </div>
         <div class="row my-5">
           <div class="col-md-12">
-            
+            <h4 style="float:right; color: #145251; text-transform:uppercase"><b>Total:</b>&nbsp;N&nbsp;{{ number_format($amount_paid) }}</h4><br /><br />
           </div>
           <div class="col-md-12 payment">
-              <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+              <h4 style="color: #145251; margin-left:100px; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
               <h4 style="text-align: center; text-transform:uppercase">
-                <img style="width: 100px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.jpg'))) }}">
+                <img style="width: 200px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.png'))) }}">
               </h4>
-              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
+              <h3 style="color: #145251; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

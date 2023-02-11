@@ -33,7 +33,7 @@
                         </div>
                     </div> 
                 {{-- @endforeach --}}
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3 mb-4">
                     <div class="card shadow p-2">
                         <p class="fs-4 text-center text-ims-orange text-uppercase">Balance</p>
                         <p class="fs-4 text-center text-ims-default text-uppercase">
@@ -45,7 +45,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-8 mb-4">
+                <div class="col-md-9 mb-4">
                     <div class="card shadow p-2">
                         <p class="text-ims-default text-center">Transactions by {{$student_bio->email}}</p>
                         <p class="text-center">
@@ -65,6 +65,7 @@
                                         <th>Remarks</th>
                                         <th>Ref</th>
                                         <th>Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,12 @@
                                             <td>{{$transaction->remarks}}</td>
                                             <td>{{$transaction->trans_id}}</td>
                                             <td>{{$transaction->created_at}}</td>
+                                            <td>
+                                                <p>
+                                                    <a href="/dashboard/edit/transaction/{{$transaction->id}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <button id="{{$transaction->id}}" class="deleteIcon btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                                </p>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -92,6 +99,43 @@
             scrollY: true,
         });
         
+        // delete data 
+        $(document).on('click', '.deleteIcon', function(e){
+            e.preventDefault();
+            let id = $(this).attr('id');
+            console.log(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '{{ route('dashboard.delete.transaction') }}',
+                    method: 'post',
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(res){
+                       console.log(res);
+                       Swal.fire(
+                           'Transaction',
+                           'Deleted',
+                           'success'
+                       )  
+                       location.reload(true)
+                    //    fetchAllItem();
+                    }
+                })
+            }
+            })
+        })
+
         function printReceipt(el){
           var restorepage = $('body').html();
           var printcontent = $('#' + el).clone();
@@ -99,6 +143,8 @@
           window.print();
           $('body').html(restorepage);
         }
+
+
 
         $('#print_btn').on("click", function(el){
             printReceipt('invoice')

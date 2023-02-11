@@ -185,6 +185,9 @@ Route::get('/dashboard/new/transaction/{sid}/{mail}', 'TransactionController@new
 Route::post('/dashboard/new/transaction/', 'TransactionController@add_transaction')->name('dashboard.add.transaction');
 Route::post('/dashboard/new/balance/', 'TransactionController@new_balance')->name('dashboard.new.balance');
 Route::get('/dashboard/edit/balance/{mail}', 'TransactionController@edit_balance')->name('dashboard.edit.balance');
+Route::get('/dashboard/edit/transaction/{id}', 'TransactionController@edit_transaction')->name('dashboard.edit.trans');
+Route::post('/dashboard/edit/transaction/', 'TransactionController@edit_trans')->name('dashboard.edit.transaction');
+Route::any('/dashboard/delete/transaction/', 'TransactionController@delete_transaction')->name('dashboard.delete.transaction');
 
 
 Route::get('/dashboard/create/expense', [ExpenseController::class, 'newExpense'])->name('expense.create');

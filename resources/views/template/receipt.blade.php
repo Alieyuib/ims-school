@@ -110,10 +110,10 @@
           <div class="col-md-12 payment">
               <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
               <h4 style="text-align: center; text-transform:uppercase">
-                <img style="width: 100px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.jpg'))) }}">
+                <img style="width: 200px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.png'))) }}">
               </h4>
-              </h4>
-              <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
+              {{-- </h4> --}}
+              <h3 style="color: #145251; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
           </div>
         </div>
       </div>

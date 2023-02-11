@@ -86,6 +86,7 @@
                                         <th>Remarks</th>
                                         <th>Ref</th>
                                         <th>Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,6 +97,12 @@
                                             <td>{{$transaction->remarks}}</td>
                                             <td>{{$transaction->trans_id}}</td>
                                             <td>{{$transaction->created_at}}</td>
+                                            <td>
+                                                <p>
+                                                    <a href="/dashboard/edit/transaction/{{$transaction->id}}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <button id="{{$transaction->id}}" class="deleteIcon btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                                </p>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -139,6 +146,43 @@
             })
 
         });
+
+        // delete data 
+        $(document).on('click', '.deleteIcon', function(e){
+            e.preventDefault();
+            let id = $(this).attr('id');
+            console.log(id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '{{ route('dashboard.delete.transaction') }}',
+                    method: 'post',
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(res){
+                       console.log(res);
+                       Swal.fire(
+                           'Transaction',
+                           'Deleted',
+                           'success'
+                       )  
+                       location.reload(true)
+                    //    fetchAllItem();
+                    }
+                })
+            }
+            })
+        })
 
         $('#student_bio_id').on('change', function(e){
             e.preventDefault();

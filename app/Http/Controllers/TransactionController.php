@@ -11,6 +11,7 @@ use App\ItemCheckout;
 use App\Items;
 use App\RecentInvoice;
 use App\RecentReceipt;
+use App\RecentTransaction;
 use App\StudentFamilyAccount as StudentFamilyAccount;
 use App\StudentData;
 use App\Transactions;
@@ -780,7 +781,7 @@ class TransactionController extends Controller
             'counter' => 1,
             'totalAll' => $total_discount,
             'discount' => $discount,
-            'balance' => $student_data->balance
+            'balance' => $total_discount
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.receipt', $data);
 
@@ -799,6 +800,10 @@ class TransactionController extends Controller
         $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
+
+            StudentData::where('email', $student_email)->update([
+                'balance' => $total_discount
+            ]);
             
             // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
             //     $m->to($student_email_invoice);
@@ -865,6 +870,10 @@ class TransactionController extends Controller
         $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
+
+            StudentData::where('email', $student_email)->update([
+                'balance' => $total_discount
+            ]);
             
             Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
                 $m->to($student_email_invoice);
@@ -992,7 +1001,7 @@ class TransactionController extends Controller
             'totalAll' => $total_discount,
             'discount' => $discount,
             'family_members' => $family_members,
-            'balance' => $student_data->balance
+            'balance' => $total_discount
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_receipt', $data);
 
@@ -1011,6 +1020,10 @@ class TransactionController extends Controller
         $stmt = RecentReceipt::create($invoice_data);
 
         if ($stmt) {
+
+            StudentData::where('email', $student_email)->update([
+                'balance' => $total_discount
+            ]);
             
             // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
             //     $m->to($student_email_invoice);
@@ -1108,6 +1121,7 @@ class TransactionController extends Controller
      {
         $view_data['sid'] = $sid;
         $view_data['email'] = $email;
+        $view_data['items'] = Items::all();
         return view('dashboard.new_transaction', $view_data);
      }
 
@@ -1210,6 +1224,42 @@ class TransactionController extends Controller
                 'status' => 300
             ]);
         };
+     }
+
+     public function edit_transaction($id){
+        $transaction_data = Transactions::find($id);
+        $view_data['transaction_data'] = $transaction_data;
+        return view('dashboard.edit_transaction', $view_data);
+     }
+
+     public function edit_trans(Request $request){
+        $edit_trans = Transactions::where('id', $request->get('tid'))->update([
+            'amount' => $request->get('amount'),
+            'trans_id' => $request->get('remarks'),
+            'remarks' => $request->get('trans-id'),
+        ]);
+        if($edit_trans){
+            return response()->json([
+                'status' => 200,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        }
+     }
+
+     public function delete_transaction(Request $request){
+        $delete_transaction = Transactions::where('id', $request->get('id'))->delete();
+        if($delete_transaction){
+            return response()->json([
+                'status' => 200
+            ]);
+        }else{
+            return response()->json([
+                'status' => 300
+            ]);
+        }
      }
  
 }

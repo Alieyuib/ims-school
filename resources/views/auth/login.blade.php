@@ -29,7 +29,7 @@
                         <img src="{{ asset('images/logo.jpg') }}" alt="" class="login-logo">
                     </p>
                     <h2 class="text-ims-default">The Priority School</h2>
-                    <h6 class="text-ims-orange">المدرسة ذات الأولوية</h6>
+                    {{-- <h6 class="text-ims-orange">المدرسة ذات الأولوية</h6> --}}
                     <h6 class="text-ims-default">Admistrative Portal</h6>
                     <div class="card-body">
                         <form action="" method="POST" id="login_form">

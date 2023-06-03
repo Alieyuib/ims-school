@@ -104,6 +104,7 @@ class DashboardController extends Controller
             'date_admitted' => '',
             'class_admitted' => '',
             'current_class' => '',
+            'balance' => '',
         ];
 
         $stmt = StudentData::create($student_data);

@@ -83,9 +83,9 @@ class DashboardController extends Controller
     public function enrollStudent(Request $request)
     {
 
-        $file = $request->file('avatar');
-        $fileName = time(). ".". $file->getClientOriginalExtension();
-        $file->storeAs('public/images', $fileName);
+        // $file = $request->file('avatar');
+        // $fileName = time(). ".". $file->getClientOriginalExtension();
+        // $file->storeAs('public/images', $fileName);
 
         $student_token = '123456xyz';
 
@@ -102,7 +102,7 @@ class DashboardController extends Controller
             'Subject_learned' => $request->input('subject'),
             'email' => $request->input('email'),
             'ffname' => $request->input('ffname'),
-            'passport' => $fileName,
+            'passport' => '',
             'token' => $student_token,
             'status' => 'Awaiting', 
             'date_admitted' => '',
@@ -943,5 +943,11 @@ class DashboardController extends Controller
         $view_data['result_data'] = $result_data;
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.result', $view_data);
         return $pdf->stream($result_data->student_name.'.pdf');
+    }
+
+    public function downloadTemplate($file_name)
+    {
+        $file_path = public_path('files/'.$file_name);
+        return response()->download($file_path);
     }
 }

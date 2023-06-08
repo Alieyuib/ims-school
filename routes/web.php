@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::post('/upload-form/fileupload',[DashboardController::class,'uploadResult'])->name('upload-result');
 Route::get('/view-result/{sid}',[DashboardController::class,'viewResult'])->name('view-result');
+Route::get('/download/{filename}',[DashboardController::class,'downloadTemplate'])->name('download-template');
 
 Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/add/picture', 'DashboardController@addPictures')->name('dashboard.add.pictures');

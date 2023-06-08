@@ -128,6 +128,9 @@ data-bs-backdrop="static" aria-hidden="true">
 {{-- edit student modal end --}}
     <div class="card shadow p-2 student-list-div-main">
         <h3 class="text-ims-default">Upload Student Results <span class="text-warning">(تسجيل جميع الطلاب)</span></h3>
+        <a class="btn btn-ims-green" href="/download/result_template.xls">
+            Download template &nbsp;<i class="fa fa-download"></i>
+        </a>
         @if (session()->has('message'))
         <div class="alert alert-success my-2">
             {{  session('message') }}
@@ -141,7 +144,7 @@ data-bs-backdrop="static" aria-hidden="true">
             <div class="col-lg-12 py-3">
                 {{-- <label for="users">Upload Result File</label> --}}
                 <input type="file" class="form-control" style="padding: 3px;" name="result_file" required />
-                <button type="submit" class="btn btn-success mt-2" style="width: 100%;" name="upload">Upload</button>
+                <button type="submit" class="btn btn-ims-orange mt-2" style="width: 100%;" name="upload">Upload</button>
             </div>
         </form>
         <form method="post" class="p-2">

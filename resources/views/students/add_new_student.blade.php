@@ -57,9 +57,9 @@
                 <label for="email">Email Address</label>
                 <input type="text" class="form-control" name="email" placeholder="Email Address" id="email">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-12">
                 <label for="passport">Passport</label>
-                <input type="file" name="avatar" class="form-control" id="passport">
+                <input type="file" disabled='disabled' name="avatar" class="form-control" id="passport">
             </div>
             <div class="form-group col-md-12">
                 <label for="address">Address</label>

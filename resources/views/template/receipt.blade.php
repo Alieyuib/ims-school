@@ -1,123 +1,154 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('app-assets/css/main.css') }}">
-    <link rel="stylesheet" type = "text/css" media="screen" href="{{ asset('app-assets/css/print.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('app-assets/js/app.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <title>Generate Pdf</title>
-  <style>
-    body{
-      background-color: #ffffff !important;
-    }
-    .invoice_table{
-      /* margin-left: 200px; */
-      width: 100%;
-      text-align: center;
-      color: #145251;
-      border: 2px solid #145251;
-    }
-    .invoice_table tr{
-      margin-bottom: 50px;
-      padding: 40px;
-      /* border: 2px solid #145251; */
-    }
-    .total{
-      float: right;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous"> --}}
+    <style>
+        .responsive-img{
+            /* height: 40px; */
+            /* margin-bottom: 40px;  */
+            width: 100%;
+        }
+        .address{
+            font-size: 20px;
+            font-weight: lighter;
+            text-transform: uppercase;
+            width: 40%;
+            /* margin-top: 60px; */
+            margin-bottom: 30px;
+        }
+        .footer{
+            font-size: 24px;
+            font-weight: lighter;
+            /* text-transform: uppercase; */
+            /* width: 40%; */
+            margin-top: 20px;
+            /* margin-bottom: 30px; */
+        }
+        /* .date{
+            margin-left: 50px;
+        } */
+        table{
+            border: 1px solid #ddd;
+            width: 100%;
+            padding: 10px;
+        }
+        thead tr th{
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #28543b;
+            color: #fff;
+        }
+        thead th{
+            font-size: 22px;
+        }
+        tbody tr td{
+            font-size: 22px;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+        ul{
+            list-style-type: decimal;
+        }
+        ul li{
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8" style="text-align: ;">
-        <img style="float: left" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/logo.jpg'))) }}">
-        <h2 style="color: #145251; float: right" class="text-ims-default">THE PRIORITY SCHOOL</h2>
-        <h4 style="color: #d9ba79; margin-top: 40px; position: absolute; left: 200;"  class="text-dark">NO: 2 BILYAMINU STREET OFF EBITUUKIWE, JABI ABUJA</h4>
-        <div style="margin-top: 200px">
-        <h3 style="color: #145251;" class="text-ims-default"><b>Receipt:#{{ $invoice_no }}</b></h3>
-        <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">STUDENT NAME</b>: {{ $student_name }}</h4>
-        <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">ADDRESS</b>: {{ $student_address }}</h4>
-        <h4 style="color: #145251;" class="text-ims-default"><b class="text-ims-orange">DATE</b>: {{ date('D/M/Y') }}</h4>
-        </div>
-        <div id="show_cart_items">
-          <h3 style="color: #145251;">Due Balance: -N&nbsp;{{ number_format($balance) }}</h3>
-          <table class="invoice_table table-bordered table-striped" border="1">
-            <thead>
-              <tr>
-                <th>S/N</th>
-                <th>Descritption</th>
-                <th>Quantity</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody style="padding: 20px">
-              @foreach ($cart_items as $item)
-                  <tr>
-                    <td>{{$counter++}}</td>
-                    <td>{{ $item->item_name }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>N&nbsp;{{ number_format($item->item_price) }}</td>
-                  </tr>
-              @endforeach
-              {{-- <tr>
-                <td><b>Total: &#8358;&nbsp;{{ $totalAll }}</b></td>
-                <td><b>Discount: &#8358;&nbsp;{{ $discount }}</b></td>
-              </tr> --}}
-            </tbody>
-          </table>
-        </div>
-        <div class="row my-5">
-          <div class="col-md-12">
-            <table class="invoice_table" border="1" style="width: 100%; margin-top: 30px">
-              <tbody>
-                {{-- <tr>
-                  <td><b>Tax</b></td>
-                  <td><h4><b>N&nbsp;0</b></h4></td>
-                </tr>
-                <tr>
-                  <td><b>Vat</b></td>
-                  <td><b>N&nbsp;0</b></td>
-                </tr> --}}
-                @if ($discount == 0)
-                    <tr></tr>
-                @else
-                  <tr>
-                    <td><b>Discount</b></td>
-                    <td><b>N&nbsp;{{number_format($discount)}}</b></td>
-                  </tr>
-                @endif
-                <tr>
-                  <td><b>Total</b></td>
-                  <td><b>N&nbsp;{{ number_format($totalAll) }}</b></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md-12 payment">
-              <h4 style="color: #145251; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
-              <h4 style="text-align: center; text-transform:uppercase">
-                <img style="width: 200px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.png'))) }}">
-              </h4>
-              {{-- </h4> --}}
-              <h3 style="color: #145251; text-align: center; text-transform:uppercase"><b>{{ date('d/m/y') }}</b></h3>
-          </div>
-        </div>
-      </div>
+    <div class="row user-profile mt-1 ml-0 mr-0">
+        <img class="responsive-img" alt="" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/receipt_header_school.jpg'))) }}">
     </div>
-  </div>
+    <div style="padding: 30px;">
+        <div>
+            <p class="date" style="">
+                <span style="float: left; width:50%;">
+                    {{-- <em style="font-size: 20px">BILL TO</em><br> --}}
+                    <em style="font-size: 25px">{{ $student_name }}</em><br />
+                    <em style="font-size: 25px">{{ $student_address }}</em>
+                </span>
+                <span style="float:right; width:50%;">
+                    <em style="font-size: 25px"><b>Receipt Number:</b> {{$invoice_no}}</em><br>
+                    <em style="font-size: 25px"><b>Receipt Date:</b> <?php echo date('d M Y') ?></em><br>
+                  </span>
+            </p> <br /><br><br><br>
+            {{-- <p style="margin-bottom: 20px;">
+                <em style="font-size: 25px"><b>Receipt Number:</b> {{$invoice_no}}</em><br>
+                    <em style="font-size: 25px"><b>Receipt Date:</b> <?php //echo date('d M Y') ?></em><br>
+                    {{-- <em style="font-size: 25px"><b>Payment Due:</b> <?php //echo date('d M Y') ?></em><br> --}}
+                    {{-- <em style="font-size: 25px"><b>Due Balance: N{{ number_format($totalAll) }}</b></em><br>
+            </p> --}}
+        </div>
+        <table class="table table-bordered" style="margin-top:40px;">
+            <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Descritption</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach ($cart_items as $item)
+                <tr>
+                  <td>{{$counter++}}</td>
+                  <td>{{ $item->item_name }}</td>
+                  <td>{{ $item->quantity }}</td>
+                  <td>N&nbsp;{{ number_format($item->item_price) }}</td>
+                </tr>
+            @endforeach
+                <tr>
+                    <td><b>DISCOUNT</b></td>
+                    <td><b>N{{number_format($discount)}}</b></td>
+                </tr>
+                {{-- <tr>
+                    <td><b>VAT 7.5%</b></td>
+                    <td><b>&#8358; {{number_format($quotation_vat)}}</b></td>
+                </tr> --}}
+                <tr>
+                    <td><b>TOTAL</b></td>
+                    <td><b>N{{number_format($totalAll)}}</b></td>
+                </tr>
+            </tbody>
+        </table>
+        {{-- <div>
+            <h2 style="margin-top:40px; text-decoration:underline"><b>Notes/Terms:</b></h2>
+         </div>
+         <div>
+            <p class="footer" style="text-transform: uppercase;">
+                Please pay: <br />
+                Account name: Quadco Consults <br />
+                Bank name: United bank of Africa (UBA) <br />
+                Account number: 1025209191 <br />
+            </p>
+         </div> --}}
+         {{-- <div>
+            <p class="footer">
+                We look forward to an opportunity to discuss this matter further.
+            </p>
+        </div>
+        <div>
+            <p class="footer">
+                Best Regards,<br>
+                <span>ABDULLAHI ZUAIRU</span>
+            </p>
+        </div> --}}
+    </div>
+    <div class="row user-profile mt-1 ml-0 mr-0">
+      <div class="col-md-12 payment">
+        <h4 style="color: #000; text-align: center; text-transform:uppercase"><b>Signature/Date</b></h4>
+        <h4 style="text-align: center; text-transform:uppercase">
+          <img style="width: 200px; height: 40px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/signature.png'))) }}">
+        </h4>
+        {{-- </h4> --}}
+        <h3 style="color: #000; text-align: center; text-transform:uppercase"><b>{{ date('d M Y') }}</b></h3>
+    </div>
+        {{-- <img style="margin-top: 50px; width: 100%;" alt="" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('app-assets/images/invoice/quotation_footer.jpg'))) }}"> --}}
+    </div>
 </body>
 </html>

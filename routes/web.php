@@ -102,6 +102,8 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 
+Route::post('/upload-form/fileupload',[DashboardController::class,'uploadResult'])->name('upload-result');
+Route::get('/view-result/{sid}',[DashboardController::class,'viewResult'])->name('view-result');
 
 Route::any('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/add/picture', 'DashboardController@addPictures')->name('dashboard.add.pictures');
@@ -175,6 +177,7 @@ Route::post('/dashboard/invoice/send/', 'TransactionController@sendInvoice')->na
 Route::post('/dashboard/invoice/discount/', 'TransactionController@invoiceDiscount')->name('dashboard.invoice.discount');
 Route::get('/dashboard/receipt/{id}', 'TransactionController@generateReceipts')->name('dashboard.receipt.generate');
 Route::post('/dashboard/receipt/generate', 'TransactionController@generateReceipt__')->name('dashboard.receipt.generate');
+Route::post('/dashboard/invoice/generate/family', 'TransactionController@generateFamilyInvoice__')->name('dashboard.invoice.generate.family');
 Route::post('/dashboard/receipt/generate/family', 'TransactionController@generateFamilyReceipt__')->name('dashboard.receipt.generate.family');
 Route::post('/dashboard/receipt/send', 'TransactionController@sendReceipt')->name('dashboard.send.receipt');
 Route::post('/dashboard/receipt/family/send', 'TransactionController@sendFamilyReceipt')->name('dashboard.send.receipt.family');

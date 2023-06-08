@@ -36,9 +36,9 @@
                             <span class="link-name">
                                 <a href="{{ route('portal.course.registration') }}">
                                     <span class="float-left">
-                                        <i class="fa fa-book"></i>
+                                        <i class="fa fa-bar-chart"></i>
                                     </span>
-                                    &nbsp;Subject Registration</a>
+                                    &nbsp;View Result</a>
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -47,7 +47,7 @@
                                     <span class="float-left">
                                         <i class="fa fa-book"></i>
                                     </span>
-                                    &nbsp;Learning Books</a>
+                                    &nbsp;E-Books</a>
                             </span>
                         </li>
                         {{-- <li class="list-group-item">

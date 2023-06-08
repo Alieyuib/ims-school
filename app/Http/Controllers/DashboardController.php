@@ -25,6 +25,9 @@ use App\StudentFamilyAccount;
 use App\User;
 use App\AccessibleEntities;
 use App\Gallery;
+use App\ImportResult;
+use App\Imports\ResultImport;
+use App\Imports\TestImport;
 use App\Transactions;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
@@ -33,6 +36,7 @@ use Illuminate\Support\Facades\Mail;
 use LDAP\Result;
 use phpDocumentor\Reflection\Types\Null_;
 use Spatie\Permission\Models\Role;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class DashboardController extends Controller
 {
@@ -265,7 +269,7 @@ class DashboardController extends Controller
     public function subjectRecords(Request $request)
     {
         $class = $request->get('class_name');
-        $stmt = RegisteredCourses::where('student_class', $class)->get();
+        $stmt = ImportResult::where('student_class', $class)->get();
             $output = '';
             if ($stmt->count() > 0) {
                 $output .= '<table class="table table-hover">
@@ -275,11 +279,14 @@ class DashboardController extends Controller
                             <th>Student Name</th>
                             <th>Student Class</th>
                             <th>Academic Term</th>
-                            <th>Academic Session</th>
                             <th>Al-Quran Scores</th>
                             <th>Al-Azkar Scores</th>
                             <th>Al-Huruf Scores</th>
+                            <th>Al-Muhadatha Scores</th>
+                            <th>Al-Hadith Scores</th>
                             <th>Al-Arabiya Scores</th>
+                            <th>As-Sirrah Scores</th>
+                            <th>Average</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -289,14 +296,17 @@ class DashboardController extends Controller
                             <td>'.$item->id.'</td>
                             <td> '.$item->student_name.'</td>
                             <td>'.$item->student_class.'</td>
-                            <td>'.$item->academic_term.' Term</td>
-                            <td>'.$item->academic_session.'</td>  
-                            <td>'.$item->sub_one_scores.'</td>  
-                            <td>'.$item->sub_two_scores.'</td>  
-                            <td>'.$item->sub_three_scores.'</td>  
-                            <td>'.$item->sub_four_scores.'</td>  
+                            <td>'.$item->term.' Term</td>
+                            <td>'.$item->obtained_scores_quran.'</td>  
+                            <td>'.$item->obtained_scores_azkar.'</td>  
+                            <td>'.$item->obtained_scores_huruf.'</td>  
+                            <td>'.$item->obtained_scores_muhadatha.'</td>  
+                            <td>'.$item->obtained_scores_hadith.'</td>  
+                            <td>'.$item->obtained_scores_arabic.'</td>  
+                            <td>'.$item->obtained_scores_sirrah.'</td>  
+                            <td>'.$item->average.'</td>  
                             <td>
-                                <a href="#" id="'.$item->id.'" class="btn btn-sm btn-ims-orange mx-2 gradeIcon text-decoration-none" data-bs-toggle="modal" data-bs-target="#gradeStudentModal"></i>Send Result</a>
+                                <a href="/view-result/'.$item->id.'" id="'.$item->id.'" class="btn btn-sm btn-ims-orange mx-2 text-decoration-none"></i>View Result</a>
                             </td>
                         </tr>';
                     }
@@ -909,5 +919,29 @@ class DashboardController extends Controller
         return view('dashboard.family_profile', $view_data);
     }
 
-    
+    // public function upload(Request $request)
+    // {
+    //     request()->validate([
+    //         'test' => 'required|mimes:xlx,xls|max:2048'
+    //     ]);
+    //     \Excel::import(new TestImport, $request->file('test'));
+    //     return back()->with('massage', 'User Imported Successfully');
+    // }
+
+    public function uploadResult(Request $request)
+    {
+        $request->validate([
+            'result_file' => 'required|mimes:xlx,xls|max:9048'
+        ]);
+        \Excel::import( new ResultImport, $request->file('result_file') );
+        return back()->with('message', 'Results uploaded successfully.');
+    }
+
+    public function viewResult(Request $request, $sid)
+    {
+        $result_data = ImportResult::find($sid);
+        $view_data['result_data'] = $result_data;
+        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.result', $view_data);
+        return $pdf->stream($result_data->student_name.'.pdf');
+    }
 }

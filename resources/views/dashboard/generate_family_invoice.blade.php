@@ -124,7 +124,7 @@
                 </div>
                 {{-- <button class="btn-lg btn-ims-green my-3" style="width: 100%" id="print_btn"><i class="fa fa-print"></i>&nbsp;Print Invoice</button> --}}
                 {{-- <button class="btn-lg btn-ims-orange my-1" style="width: 100%" id="save_btn"><i class="fa fa-save"></i>&nbsp;Save Invoice</button> --}}
-                <form action="{{ route('dashboard.receipt.generate.family') }}" method="POST">
+                <form action="{{ route('dashboard.invoice.generate.family') }}" method="POST">
                     @csrf
                     <input type="hidden" name="order_id_invoice" id="order_id_invoice" value="{{ $order_id }}">
                     <input type="hidden" name="student_email" id="student_email" value="{{ $student_data->email }}">

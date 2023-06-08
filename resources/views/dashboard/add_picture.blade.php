@@ -26,6 +26,11 @@
             <button type="submit" style="width: 100%" id="upload_btn" class="btn btn-ims-green">Upload</button>
         </div>
     </form>
+    @if (session()->has('massage'))
+        <div class="alert alert-success my-2">
+            {{  session('massage') }}
+        </div>
+    @endif
     <script>
         // Adding New student
         $('#upload_form').submit(function(e){

@@ -1,0 +1,61 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ImportResult extends Model
+{
+    protected $fillable = [
+        'student_name',
+        'student_class',
+        'no_in_class',
+        'class_teacher_remarks',
+        'head_teacher_remarks',
+        'average',
+        'term',
+        'date',
+        'obtained_scores_quran',
+        'exams_scores_quran',
+        'ca_scores_quran',
+        'cw_scores_quran',
+        'total_scores_quran',
+        'obtained_scores_arabic',
+        'exams_scores_arabic',
+        'ca_scores_arabic',
+        'cw_scores_arabic',
+        'total_scores_arabic',
+        'obtained_scores_hadith',
+        'exams_scores_hadith',
+        'ca_scores_hadith',
+        'cw_scores_hadith',
+        'total_scores_hadith',
+        'obtained_scores_azkar',
+        'exams_scores_azkar',
+        'ca_scores_azkar',
+        'cw_scores_azkar',
+        'total_scores_azkar',
+        'obtained_scores_huruf',
+        'exams_scores_huruf',
+        'ca_scores_huruf',
+        'cw_scores_huruf',
+        'total_scores_huruf',
+        'obtained_scores_muhadatha',
+        'exams_scores_muhadatha',
+        'ca_scores_muhadatha',
+        'cw_scores_muhadatha',
+        'total_scores_muhadatha',
+        'obtained_scores_sirrah',
+        'exams_scores_sirrah',
+        'ca_scores_sirrah',
+        'cw_scores_sirrah',
+        'total_scores_sirrah',
+        'grade_quran',
+        'grade_arabic',
+        'grade_hadith',
+        'grade_azkar',
+        'grade_huruf',
+        'grade_muhadatha',
+        'grade_sirrah',
+    ];
+}

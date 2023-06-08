@@ -649,7 +649,7 @@ class TransactionController extends Controller
             'discount' => $discount,
             'invoice_remarks' => $invoice_remarks
         ];
-        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.mypdf', $data);
+        $pdf = PDF::loadView('template.mypdf', $data);
 
         Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
         $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
@@ -1004,6 +1004,84 @@ class TransactionController extends Controller
             'balance' => $total_discount
         ];
         $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_receipt', $data);
+
+        Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
+        Storage::put($path, $pdf->output());
+
+        // return $pdf->stream($order_id.'.pdf');
+
+        $invoice_data = [
+            'receipt_id' => $order_id,
+            'receipt' => $order_id.'.pdf',
+            'student_email' => $student_email
+        ];
+
+        $stmt = RecentReceipt::create($invoice_data);
+
+        if ($stmt) {
+
+            StudentData::where('email', $student_email)->update([
+                'balance' => $total_discount
+            ]);
+            
+            // Mail::send('template.email', $data, function($m) use($path, $order_id, $student_email_invoice, $pdf){
+            //     $m->to($student_email_invoice);
+            //     $m->subject('Your Invoice'.' '.'#'.$order_id)->attachData($pdf->output(), $path, [
+            //         'mime' => 'application/pdf',
+            //         'as'   => $order_id. '.'.'pdf' 
+            //     ]);
+            // });
+            $request->session()->flash('status', 'Receipt Generated');
+            return $pdf->stream($order_id.'.pdf');
+
+            // return redirect('finance/transaction/generate-receipt');
+
+        }else{
+            $request->session()->flash('status', 'Error while generating.');
+            return redirect('finance/transaction/generate-receipt');
+        }
+     }
+     public function generateFamilyInvoice__(Request $request)
+     {
+        $totalAll = 0;
+        $order_id = $request->input('order_id_invoice');
+        $student_email = $request->input('student_email');
+        $student_email_invoice = $request->input('student_email_invoice');
+        $student_name = $request->input('student_name');
+        $student_ffname = $request->input('student_ffname');
+        $student_address = $request->input('student_address');
+        $discount = $request->input('discount');
+
+        $student_data = StudentData::where('email', $student_email)->first();
+
+        $family_members = StudentData::where('email', $request->input('student_email'))->get();
+
+        $stmt = ItemCheckout::where('order_id', $order_id)->get();
+        foreach ($stmt as $key => $value) {
+            $totalAll += ($value['quantity']*$value['item_price']); // this will save your amount.
+         }
+
+         $total_discount = $totalAll - $discount;
+
+        $cart_items = ItemCheckout::where('order_id', $order_id)->get();
+
+        $data = [
+            'status'=>'My Invoice',
+            'invoice_no' => $order_id,
+            'student_email' => $student_email,
+            'student_name' => $student_name,
+            'student_ffname' => $student_ffname,
+            'student_address' => $student_address,
+            'cart_items' => $cart_items,
+            'counter' => 1,
+            'counter_2' => 1,
+            'totalAll' => $total_discount,
+            'discount' => $discount,
+            'family_members' => $family_members,
+            'balance' => $total_discount
+        ];
+        $pdf = PDF::setOptions(['isHtml5ParserEnable' => true, 'isRemoteEnable' => true])->loadView('template.family_invoice', $data);
 
         Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());
         $path = Storage::put('public/invoice/'.$order_id.'.pdf', $pdf->output());

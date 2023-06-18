@@ -78,7 +78,7 @@ public function fetchAll()
                         <td>'.$item->ffname.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
-                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-danger"></i></a>
                         </td>
                     </tr>';
                 }

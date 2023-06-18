@@ -61,7 +61,6 @@ public function fetchAll()
                 <thead class="text-ims-default">
                     <tr>
                         <th>ID</th>
-                        <th>Avatar</th>
                         <th>Name</th>
                         <th>DOB</th>
                         <th>Sickness/Allergy</th>
@@ -73,9 +72,6 @@ public function fetchAll()
                 foreach ($stmt as $item) {
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
-                        <td>
-                            <img src="../../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
-                        </td>
                         <td> '.$item->name.' </td>
                         <td>'.$item->dob.'</td>
                         <td>'.$item->sickness_allergy.'</td>
@@ -106,11 +102,11 @@ public function fetchAll()
                 <thead class="text-ims-default">
                     <tr>
                         <th>ID</th>
-                        <th>Avatar</th>
                         <th>Name</th>
                         <th>DOB</th>
                         <th>Sickness/Allergy</th>
                         <th>Family Name</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -118,16 +114,14 @@ public function fetchAll()
                 foreach ($stmt as $item) {
                     $output .= '<tr>
                         <td>'.$item->id.'</td>
-                        <td>
-                            <img src="../storage/images/'.$item->passport.'" width="50" class="img-thumbnail rounded-circle" />
-                        </td>
                         <td> '.$item->name.' </td>
                         <td>'.$item->dob.'</td>
                         <td>'.$item->sickness_allergy.'</td>
                         <td>'.$item->ffname.'</td>
+                        <td class="text-uppercase">'.$item->active.'</td>
                         <td>
                             <a href="#" id="'.$item->id.'" class="mx-2 editIcon" data-bs-toggle="modal" data-bs-target="#editStudentModal"><i class="bi-pencil-square text-secondary"></i></a>
-                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-warning"></i></a>
+                            <a href="#" id="'.$item->id.'" class="mx-2 deleteIcon"><i class="bi-trash text-danger"></i></a>
                         </td>
                     </tr>';
                 }
@@ -152,6 +146,13 @@ public function fetchAll()
     // instant update 
     public function update(Request $request)
     {
+        // $active = null;
+        // if ($request->input('active') == 0) {
+        //     $active = true;
+        // };
+        // if ($request->input('active') == 1) {
+        //     $active = false;
+        // };
         $fileName = '';
         $student_id = $request->input('student_id');
         $stmt = StudentData::find($request->student_id);
@@ -180,6 +181,8 @@ public function fetchAll()
             'Subject_learned' => $request->input('subject'),
             'email' => $request->input('email'),
             'ffname' => $request->input('ffname'),
+            'current_class' => $request->input('current_class'),
+            'active' => $request->input('stat'),
             'passport' => $fileName,
         ];
 

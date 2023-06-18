@@ -85,6 +85,23 @@ data-bs-backdrop="static" aria-hidden="true">
                     <label for="passport">Passport</label>
                     <input type="file" name="avatar" class="form-control" id="passport">
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="current_class">Class Admitted</label>
+                    <select name="current_class" id="current_class" class="form-control" style="text-transform: uppercase">
+                        <option selected='selected' id="current_class"></option>
+                        @foreach ($classes as $item)
+                            <option value="{{ $item->class_name }}">{{ $item->class_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="current_status">Student Status</label>
+                    <select name="stat" id="current_status" class="form-control" style="text-transform: uppercase">
+                        <option selected='selected' id="current_status"></option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
                 <div class="mt-2" id="passport-div">
 
                 </div>
@@ -244,6 +261,8 @@ data-bs-backdrop="static" aria-hidden="true">
                     $('#passport-div').html(`<img src="../../storage/images/${res.passport}" class="img-thumbnail">`)
                     $('#address').val(res.address);
                     $('#sickness').val(res.sickness_allergy);
+                    $('#current_class').val(res.current_class);
+                    $('#current_status').val(res.active);
                 }
             })
 

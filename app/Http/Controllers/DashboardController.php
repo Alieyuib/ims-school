@@ -66,7 +66,8 @@ class DashboardController extends Controller
 
     public function fetchStudents(Request $request)
     {
-        return view('students.all_students');
+        $view_data['classes'] = SchoolClasses::all();
+        return view('students.all_students', $view_data);
     }
 
     public function fetchAllStudents()

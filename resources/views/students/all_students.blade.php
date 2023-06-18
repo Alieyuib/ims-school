@@ -295,7 +295,7 @@ data-bs-backdrop="static" aria-hidden="true">
                        console.log(res);
                        Swal.fire(
                            'Deleted',
-                           'Employee Data',
+                           'Student Data',
                            'success'
                        )  
                        fetchAllStudents();

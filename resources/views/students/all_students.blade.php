@@ -127,17 +127,28 @@ data-bs-backdrop="static" aria-hidden="true">
         <h3 class="text-ims-default">All Enroll Students <span class="text-warning">(تسجيل جميع الطلاب)</span></h3>
         <form method="post" class="p-2">
             <p>
-               <select name="class_name" class="form-control" id="class_name" style="width: 100%; border: 1px solid #dedede">
-                    <option value="#" disabled selected>Filter by class</option>
-                    <option value="class 1">Class 1</option>
-                    <option value="class 2">Class 2</option>
-                    <option value="class 3">Class 3</option>
-                    <option value="class 4">Class 4</option>
-                    <option value="hadaanah">Hadaanah</option>
-                    <option value="Faslul Hifiz">Faslul Hifiz</option>
-                    <option value="Arraudatul Ola">Arraudatul Ola</option>
-                    <option value="Arrauda Ath-thaaniya">Arrauda ath thaaniya</option>
-                </select>
+               <div class="row">
+                <div class="form-group col-md-6">
+                    <select name="class_name" class="form-control" id="class_name" style="width: 100%; border: 1px solid #dedede">
+                            <option value="#" disabled selected>Filter by class</option>
+                            <option value="class 1">Class 1</option>
+                            <option value="class 2">Class 2</option>
+                            <option value="class 3">Class 3</option>
+                            <option value="class 4">Class 4</option>
+                            <option value="hadaanah">Hadaanah</option>
+                            <option value="Faslul Hifiz">Faslul Hifiz</option>
+                            <option value="Arraudatul Ola">Arraudatul Ola</option>
+                            <option value="Arrauda Ath-thaaniya">Arrauda ath thaaniya</option>
+                        </select>
+                   </div>
+                   <div class="form-group col-md-6">
+                        <select name="active_inactive" class="form-control" id="active_inactive" style="width: 100%; border: 1px solid #dedede">
+                            <option value="#" disabled selected>Filter by Active/Inactive</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                   </div>
+               </div>
             </p>
         </form>
         <div class="my-4" id="show_all_students">
@@ -183,6 +194,27 @@ data-bs-backdrop="static" aria-hidden="true">
                 method: 'get',
                 data:{
                     class_name: class_name,
+                    _token: '{{ csrf_token() }}'
+                },
+
+                success: function(res){
+                    // console.log(res);
+                    $('#show_all_students').html(res);
+                    $('table').DataTable({
+                        order: [0, 'asc'],
+                    });
+                }
+            })
+        })
+
+        $('#active_inactive').on('change', function(e){
+            e.preventDefault();
+            let active_inactive = $(this).val();
+            $.ajax({
+                url: '{{ route('dashboard.active.filter') }}',
+                method: 'get',
+                data:{
+                    active_inactive: active_inactive,
                     _token: '{{ csrf_token() }}'
                 },
 

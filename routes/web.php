@@ -206,6 +206,7 @@ Route::get('/students', [StudentController::class, 'index']);
 Route::post('/store', [StudentController::class, 'store'])->name('store');
 Route::get('/fetch-all', [StudentController::class, 'fetchAll'])->name('fetchAll');
 Route::get('/filter-by-class', [StudentController::class, 'filter_by_class'])->name('dashboard.class.filter');
+Route::get('/filter-by-active-inactive', [StudentController::class, 'filter_by_active_inactive'])->name('dashboard.active.filter');
 Route::get('/edit', [StudentController::class, 'edit'])->name('edit');
 Route::post('/update', [StudentController::class, 'update'])->name('update');
 Route::post('/delete', [StudentController::class, 'delete'])->name('delete');

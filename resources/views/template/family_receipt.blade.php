@@ -44,10 +44,10 @@
             color: #fff;
         }
         thead th{
-            font-size: 22px;
+            font-size: 18px;
         }
         tbody tr td{
-            font-size: 22px;
+            font-size: 18px;
             border: 1px solid #ddd;
             padding: 5px;
         }
@@ -69,12 +69,12 @@
             <p class="date" style="margin-bottom: 20px;">
                 <span style="float: left; width:50%"">
                     {{-- <em style="font-size: 20px">BILL TO</em><br> --}}
-                    <em style="font-size: 25px">{{ $student_ffname }}</em><br />
-                    <em style="font-size: 25px">{{ $student_address }}</em>
+                    <em style="font-size: 18px">{{ $student_ffname }}</em><br />
+                    <em style="font-size: 18px">{{ $student_address }}</em>
                 </span>
-                <span style="float:right; width:50%;">
-                    <em style="font-size: 25px"><b>Receipt Number:</b> {{$invoice_no}}</em><br>
-                    <em style="font-size: 25px"><b>Receipt Date:</b> <?php echo date('d M Y') ?></em><br>
+                <span style="float:right; width:50%; margin-right: -100px">
+                    <em style="font-size: 18px"><b>Receipt Number:</b> {{$invoice_no}}</em><br>
+                    <em style="font-size: 18px"><b>Receipt Date:</b> <?php echo date('d M Y') ?></em><br>
                   </span>
             </p> <br /><br><br><br>
             {{-- <p style="margin-bottom: 20px;">
@@ -122,16 +122,22 @@
                   <td>N&nbsp;{{ number_format($item->item_price) }}</td>
                 </tr>
             @endforeach
-                <tr>
-                    <td><b>DISCOUNT</b></td>
-                    <td><b>N{{number_format($discount)}}</b></td>
-                </tr>
+                @if ($discount > 1)
+                    <tr>
+                        <td><b>DISCOUNT</b></td>
+                        <td><b></b></td>
+                        <td><b></b></td>
+                        <td><b>N{{number_format($discount)}}</b></td>
+                    </tr>
+                @endif
                 {{-- <tr>
                     <td><b>VAT 7.5%</b></td>
                     <td><b>&#8358; {{number_format($quotation_vat)}}</b></td>
                 </tr> --}}
                 <tr>
                     <td><b>TOTAL</b></td>
+                    <td><b></b></td>
+                    <td><b></b></td>
                     <td><b>N{{number_format($totalAll)}}</b></td>
                 </tr>
             </tbody>

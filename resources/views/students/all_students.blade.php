@@ -221,6 +221,7 @@ data-bs-backdrop="static" aria-hidden="true">
                 success: function(res){
                     // console.log(res);
                     $('#show_all_students').html(res);
+                    $('#active_inactive').val('Filter by Actice/Inactive');
                     $('table').DataTable({
                         order: [0, 'asc'],
                     });

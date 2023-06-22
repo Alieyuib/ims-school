@@ -471,6 +471,7 @@ class DashboardController extends Controller
             'date_admitted' => date('D/M/Y'),
             'class_admitted' => $current_class,
             'current_class' => $current_class,
+            'active' => 'active'
         ];
             
         $final_stmt = StudentData::where('id', $student_id)->update($student_data);
